@@ -24,7 +24,7 @@
     "mocha": "^3.3.0",
     "mockery": "^2.0.0"
   },
-  "dependencies": {
-    "kth-node-log": "^2.0.3"
+  "peerDependencies": {
+    "kth-node-log": ">=1.0.0"
   }
 }
