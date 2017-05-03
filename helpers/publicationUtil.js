@@ -2,7 +2,6 @@
 
 const log = require('kth-node-log')
 
-
 /**
  * Utility functions for publications and lists of publications.
  */
@@ -46,9 +45,11 @@ function _filterList (publicationList, includeHidden) {
 
   var publications = publicationList.publications
   for (var index = 0; index < publications.length; index++) {
-    var publication = publications[ index ]
+    var publication = publications[index]
 
-    publication.visible = publicationList.hiddenPublications.indexOf(publication.publicationId) === -1
+    publication.visible =
+      publicationList.hiddenPublications.indexOf(publication.publicationId) ===
+      -1
 
     // Skip hidden publications if not explicitly requested
     if (!(includeHidden === true || publication.visible)) {
@@ -87,7 +88,7 @@ function _filterList (publicationList, includeHidden) {
       filteredList.patents.push(publication)
     } else if (isPendingPatent(publication)) {
       filteredList.pendingPatents.push(publication)
-    // All publications marked as other is placed in science articles list.
+      // All publications marked as other is placed in science articles list.
     } else if (isOtherArticle(publication)) {
       filteredList.scienceArticles.push(publication)
     } else if (isOtherConferencePaper(publication)) {
@@ -105,11 +106,18 @@ function _filterList (publicationList, includeHidden) {
     } else if (isOtherOther(publication)) {
       filteredList.scienceOthers.push(publication)
     } else {
-      log.debug('Publication is not added to any list: ' + publication.title +
-        ' publicationTypeCode=' + publication.publicationTypeCode +
-        ' publicationSubTypeCode=' + publication.publicationSubTypeCode +
-        ' contentTypeCode=' + publication.contentTypeCode +
-        ' publicationStatus=' + publication.publicationStatus)
+      log.debug(
+        'Publication is not added to any list: ' +
+          publication.title +
+          ' publicationTypeCode=' +
+          publication.publicationTypeCode +
+          ' publicationSubTypeCode=' +
+          publication.publicationSubTypeCode +
+          ' contentTypeCode=' +
+          publication.contentTypeCode +
+          ' publicationStatus=' +
+          publication.publicationStatus
+      )
     }
   }
   sortFilteredList(filteredList)
@@ -119,45 +127,79 @@ function _filterList (publicationList, includeHidden) {
 /* * * * * * * * * * * * * Refereed * * * * * * * * * * * * * */
 
 function isRefereedArticle (publication) {
-  return isArticle(publication) && publication.publicationSubTypeCode !== 'newsItem' && isPublished(publication) && isPubContentRefereed(publication)
+  return (
+    isArticle(publication) &&
+    publication.publicationSubTypeCode !== 'newsItem' &&
+    isPublished(publication) &&
+    isPubContentRefereed(publication)
+  )
 }
 
 function isRefereedConferencePaper (publication) {
-  return publication.publicationTypeCode === 'conferencePaper' && isPubContentRefereed(publication)
+  return (
+    publication.publicationTypeCode === 'conferencePaper' &&
+    isPubContentRefereed(publication)
+  )
 }
 
 function isRefereedBook (publication) {
-  return publication.publicationTypeCode === 'book' && isPubContentRefereed(publication)
+  return (
+    publication.publicationTypeCode === 'book' &&
+    isPubContentRefereed(publication)
+  )
 }
 
 function isRefereedChapter (publication) {
-  return publication.publicationTypeCode === 'chapter' && isPubContentRefereed(publication)
+  return (
+    publication.publicationTypeCode === 'chapter' &&
+    isPubContentRefereed(publication)
+  )
 }
 
 function isRefereedOthers (publication) {
-  return publication.publicationTypeCode === 'other' && isPubContentRefereed(publication)
+  return (
+    publication.publicationTypeCode === 'other' &&
+    isPubContentRefereed(publication)
+  )
 }
 
 /* * * * * * * * * * * * * Non refereed * * * * * * * * * * * * * */
 
 function isScienceArticle (publication) {
-  return isPubContentScience(publication) && isArticle(publication) && publication.publicationSubTypeCode !== 'newsItem' && isPublished(publication)
+  return (
+    isPubContentScience(publication) &&
+    isArticle(publication) &&
+    publication.publicationSubTypeCode !== 'newsItem' &&
+    isPublished(publication)
+  )
 }
 
 function isScienceConferencePaper (publication) {
-  return publication.publicationTypeCode === 'conferencePaper' && isPubContentScience(publication)
+  return (
+    publication.publicationTypeCode === 'conferencePaper' &&
+    isPubContentScience(publication)
+  )
 }
 
 function isScienceOthers (publication) {
-  return publication.publicationTypeCode === 'other' && isPubContentScience(publication)
+  return (
+    publication.publicationTypeCode === 'other' &&
+    isPubContentScience(publication)
+  )
 }
 
 function isScienceBook (publication) {
-  return isPubContentScience(publication) && publication.publicationTypeCode === 'book'
+  return (
+    isPubContentScience(publication) &&
+    publication.publicationTypeCode === 'book'
+  )
 }
 
 function isScienceChapter (publication) {
-  return isPubContentScience(publication) && publication.publicationTypeCode === 'chapter'
+  return (
+    isPubContentScience(publication) &&
+    publication.publicationTypeCode === 'chapter'
+  )
 }
 
 function isScienceThesis (publication) {
@@ -165,25 +207,42 @@ function isScienceThesis (publication) {
 }
 
 function isScienceReport (publication) {
-  return (isPubContentScience(publication) || isPubContentRefereed(publication)) && publication.publicationTypeCode === 'report'
+  return (
+    (isPubContentScience(publication) || isPubContentRefereed(publication)) &&
+    publication.publicationTypeCode === 'report'
+  )
 }
 
 function isScienceConferenceProceeding (publication) {
-  return (isPubContentScience(publication) || isPubContentRefereed(publication)) && publication.publicationTypeCode === 'conferenceProceedings'
+  return (
+    (isPubContentScience(publication) || isPubContentRefereed(publication)) &&
+    publication.publicationTypeCode === 'conferenceProceedings'
+  )
 }
 
 function isScienceCollection (publication) {
-  return (isPubContentScience(publication) || isPubContentRefereed(publication)) && publication.publicationTypeCode === 'collection'
+  return (
+    (isPubContentScience(publication) || isPubContentRefereed(publication)) &&
+    publication.publicationTypeCode === 'collection'
+  )
 }
 
 /* * * * * * * * * * * * * Patent * * * * * * * * * * * * * */
 
 function isPatent (publication) {
-  return isPubContentOther(publication) && publication.publicationTypeCode === 'patent' && pubHasDateIssued(publication)
+  return (
+    isPubContentOther(publication) &&
+    publication.publicationTypeCode === 'patent' &&
+    pubHasDateIssued(publication)
+  )
 }
 
 function isPendingPatent (publication) {
-  return isPubContentOther(publication) && publication.publicationTypeCode === 'patent' && !pubHasDateIssued(publication)
+  return (
+    isPubContentOther(publication) &&
+    publication.publicationTypeCode === 'patent' &&
+    !pubHasDateIssued(publication)
+  )
 }
 
 /*
@@ -191,60 +250,99 @@ function isPendingPatent (publication) {
   * refereed- and science articles if they are of sub type newsItem.
   */
 function isOtherArticle (publication) {
-  log.debug(' publicationTypeCode=' + publication.publicationTypeCode +
-    ' publicationSubTypeCode=' + publication.publicationSubTypeCode +
-    ' contentTypeCode=' + publication.contentTypeCode +
-    ' publicationStatus=' + publication.publicationStatus)
+  log.debug(
+    ' publicationTypeCode=' +
+      publication.publicationTypeCode +
+      ' publicationSubTypeCode=' +
+      publication.publicationSubTypeCode +
+      ' contentTypeCode=' +
+      publication.contentTypeCode +
+      ' publicationStatus=' +
+      publication.publicationStatus
+  )
 
-  var isArticleOfTypeOther = (isPubContentOther(publication) && isArticle(publication))
-  var isNewsItem = (isPubContentScience(publication) || isPubContentRefereed(publication)) && publication.publicationSubTypeCode === 'newsItem'
+  var isArticleOfTypeOther =
+    isPubContentOther(publication) && isArticle(publication)
+  var isNewsItem =
+    (isPubContentScience(publication) || isPubContentRefereed(publication)) &&
+    publication.publicationSubTypeCode === 'newsItem'
   return (isArticleOfTypeOther || isNewsItem) && isPublished(publication)
 }
 
 function isOtherConferencePaper (publication) {
-  return publication.publicationTypeCode === 'conferencePaper' && isPubContentOther(publication)
+  return (
+    publication.publicationTypeCode === 'conferencePaper' &&
+    isPubContentOther(publication)
+  )
 }
 
 function isOtherBook (publication) {
-  return publication.publicationTypeCode === 'book' && isPubContentOther(publication)
+  return (
+    publication.publicationTypeCode === 'book' && isPubContentOther(publication)
+  )
 }
 
 function isOtherChapter (publication) {
-  return publication.publicationTypeCode === 'chapter' && isPubContentOther(publication)
+  return (
+    publication.publicationTypeCode === 'chapter' &&
+    isPubContentOther(publication)
+  )
 }
 
 function isOtherConferenceProceeding (publication) {
-  return publication.publicationTypeCode === 'conferenceProceedings' && isPubContentOther(publication)
+  return (
+    publication.publicationTypeCode === 'conferenceProceedings' &&
+    isPubContentOther(publication)
+  )
 }
 
 function isOtherReport (publication) {
-  return publication.publicationTypeCode === 'report' && isPubContentOther(publication)
+  return (
+    publication.publicationTypeCode === 'report' &&
+    isPubContentOther(publication)
+  )
 }
 
 function isOtherCollection (publication) {
-  return publication.publicationTypeCode === 'collection' && isPubContentOther(publication)
+  return (
+    publication.publicationTypeCode === 'collection' &&
+    isPubContentOther(publication)
+  )
 }
 
 function isOtherOther (publication) {
-  return publication.publicationTypeCode === 'other' && isPubContentOther(publication)
+  return (
+    publication.publicationTypeCode === 'other' &&
+    isPubContentOther(publication)
+  )
 }
 
 // Check if the publication is counted as an article.
 function isArticle (publication) {
-  return (publication.publicationTypeCode === 'article' || publication.publicationTypeCode === 'review' || publication.publicationTypeCode === 'bookReview')
+  return (
+    publication.publicationTypeCode === 'article' ||
+    publication.publicationTypeCode === 'review' ||
+    publication.publicationTypeCode === 'bookReview'
+  )
 }
 
 // Check if the publication is published.
 function isPublished (publication) {
-  return (publication.publicationStatus !== 'Submitted' && publication.publicationStatus !== 'Accepted' && publication.publicationStatus !== 'In press')
+  return (
+    publication.publicationStatus !== 'Submitted' &&
+    publication.publicationStatus !== 'Accepted' &&
+    publication.publicationStatus !== 'In press'
+  )
 }
 
 // Check if the publication is a thesis.
 function isThesis (publication) {
-  return (publication.publicationTypeCode === 'comprehensiveDoctoralThesis' ||
-  publication.publicationTypeCode === 'monographDoctoralThesis' ||
-  publication.publicationTypeCode === 'monographLicentiateThesis' ||
-  publication.publicationTypeCode === 'comprehensiveLicentiateThesis')
+  return (
+    publication.publicationTypeCode === 'comprehensiveDoctoralThesis' ||
+    publication.publicationTypeCode === 'monographDoctoralThesis' ||
+    publication.publicationTypeCode === 'monographLicentiateThesis' ||
+    publication.publicationTypeCode === 'comprehensiveLicentiateThesis'
+  )
 }
 
 // Function checks if publication is refereed
@@ -269,8 +367,11 @@ function pubHasDateIssued (publication) {
 
 function sortFilteredList (filteredList) {
   for (let listName in filteredList) {
-    if (filteredList.hasOwnProperty(listName) && Array.isArray(filteredList[ listName ])) {
-      var list = filteredList[ listName ]
+    if (
+      filteredList.hasOwnProperty(listName) &&
+      Array.isArray(filteredList[listName])
+    ) {
+      var list = filteredList[listName]
       list.sort(sortPublicationsByDateTitle)
     }
   }
