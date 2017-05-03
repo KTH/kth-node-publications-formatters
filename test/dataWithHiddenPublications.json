@@ -1,0 +1,1547 @@
+{
+  "_id" : "562757c70507a29473a2d8d5",
+  "kthId" : "u1e896bp",
+  "username" : "matsjona",
+  "firstname" : "Mats",
+  "lastname" : "Jonasson",
+  "public" : true,
+  "publicDate" : "2015-10-21T09:17:57.354Z",
+  "state" : "ACTIVE",
+  "stateDate" : "2015-10-21T09:35:15.356Z",
+  "syncDate" : "2015-10-21T09:35:30.985Z",
+  "publications" : [
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Edrén",
+		  "givenName" : "Johannes",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jerrelind",
+		  "givenName" : "Jenny",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569ca7",
+	  "title" : "Utilization of Vertical Loads by Optimization for Integrated Vehicle Control",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2012",
+	  "publicationTypeCode" : "conferencePaper",
+	  "publicationSubTypeCode" : "presentation",
+	  "contentTypeCode" : "science",
+	  "hostTitle" : "Proceedings of AVEC12, 11th Symposium on Advanced Vehicle Control, September 9-12, Seoul, Korea, 2012.",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1r19ozh",
+	  "publicationId" : "diva2:763384",
+	  "conferenceName" : "Proceedings of AVEC12, 11th Symposium on Advanced Vehicle Control, September 9-12, Seoul, Korea, 2012.",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Edrén",
+		  "givenName" : "Johannes",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jerrelind",
+		  "givenName" : "Jenny",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Drugge",
+		  "givenName" : "Lars",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Vehicle control"
+		},
+		{
+		  "title" : "Actuator"
+		},
+		{
+		  "title" : "Integrated chassis control"
+		},
+		{
+		  "title" : "Optimization"
+		},
+		{
+		  "title" : "Active suspension"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "Farkostteknik"
+		},
+		{
+		  "title" : "Vehicle and Maritime Engineering"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569ca8",
+	  "title" : "Utilization of optimization solutions to control active suspension for decreased braking distance",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "",
+	  "publicationTypeCode" : "thesis",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "science",
+	  "hostTitle" : "",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1r19ozh",
+	  "publicationId" : "diva2:763382",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Edrén",
+		  "givenName" : "Johannes",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jerrelind",
+		  "givenName" : "Jenny",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Drugge",
+		  "givenName" : "Lars",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Vehicle control"
+		},
+		{
+		  "title" : "Energy efficiency"
+		},
+		{
+		  "title" : "Over-actuation"
+		},
+		{
+		  "title" : "Optimization"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569ca9",
+	  "title" : "Energy efficient cornering using over-actuation",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "",
+	  "publicationTypeCode" : "thesis",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "science",
+	  "hostTitle" : "",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1r19ozh",
+	  "publicationId" : "diva2:763388",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Edrén",
+		  "givenName" : "Johannes",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jerrelind",
+		  "givenName" : "Jenny",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Trigell",
+		  "givenName" : "Annika Stensson",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Drugge",
+		  "givenName" : "Lars",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "actuator"
+		},
+		{
+		  "title" : "active suspension"
+		},
+		{
+		  "title" : "optimisation"
+		},
+		{
+		  "title" : "integrated chassis control"
+		},
+		{
+		  "title" : "vehicle control"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569caa",
+	  "title" : "Utilisation of optimisation solutions to control active suspension for decreased braking distance",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2015",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Vehicle System Dynamics",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "53",
+	  "hostIssue" : "2",
+	  "hostExtentStart" : "256",
+	  "hostExtentEnd" : "273",
+	  "recordOrigin" : "u1gy6uih",
+	  "publicationId" : "diva2:797681",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Edrén",
+		  "givenName" : "Johannes",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Nilsson",
+		  "givenName" : "Andreas",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Rehnberg",
+		  "givenName" : "Adam",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Svahn",
+		  "givenName" : "Fredrik",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Vehicle Dynamics; Education; Dymola; Modelica."
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "SRA - Transport"
+		},
+		{
+		  "title" : "SRA - Transport"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cab",
+	  "title" : "Modelica and Dymola for education in vehicle dynamics at KTH",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2009",
+	  "publicationTypeCode" : "conferencePaper",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Proceedings from 7th Modelica Conference 2009",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "775",
+	  "hostExtentEnd" : "783",
+	  "recordOrigin" : "u1jtpqnj",
+	  "publicationId" : "diva2:502205",
+	  "conferenceName" : "7th Modelica Conference. Como, Italy. Sep. 20-22, 2009",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Edrén",
+		  "givenName" : "Johannes",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Sundström",
+		  "givenName" : "Peter",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jacobson",
+		  "givenName" : "Bengt",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "Johan",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Vehicle Control; Actuator; Integrated Motion Control; Road Friction; Optimisation"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cac",
+	  "title" : "Road friction effect on the optimal vehicle control strategy in two critical manoeuvres",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2014",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "International Journal of Vehicle Safety",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "7",
+	  "hostIssue" : "2",
+	  "hostExtentStart" : "107",
+	  "hostExtentEnd" : "130",
+	  "recordOrigin" : "u1r19ozh",
+	  "publicationId" : "diva2:458988",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "ths"
+		},
+		{
+		  "familyName" : "Gordon",
+		  "givenName" : "Tim",
+		  "role" : "opn"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "autonomous wheel corner"
+		},
+		{
+		  "title" : "actuators"
+		},
+		{
+		  "title" : "vehicle dynamics"
+		},
+		{
+		  "title" : "control allocation"
+		},
+		{
+		  "title" : "electric vehicles"
+		},
+		{
+		  "title" : "vehicle modelling"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cad",
+	  "title" : "Exploiting individual wheel actuators to enhance vehicle dynamics and safety in electric vehicles",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2009",
+	  "publicationTypeCode" : "comprehensiveDoctoralThesis",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "science",
+	  "hostTitle" : "",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1e896bp",
+	  "publicationId" : "diva2:233961",
+	  "conferenceName" : "",
+	  "bookPlace" : "Stockholm",
+	  "bookPublisher" : "KTH",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "Trita-AVE",
+	  "seriesIssueNr" : "2009:33"
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "MPC;  model predictive control;  vehicle systems modelling;  vehicle control;  vehicle dynamics;  over-actuated vehicles;  tyre forces;  vehicle stability;  simulation."
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cae",
+	  "title" : "Using future path information for improving stability of an overactuated vehicle",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2009",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "International Journal of Vehicle Systems Modelling and Testing",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "4",
+	  "hostIssue" : "3",
+	  "hostExtentStart" : "218",
+	  "hostExtentEnd" : "231",
+	  "recordOrigin" : "u1a5dci8",
+	  "publicationId" : "diva2:234430",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "ths"
+		},
+		{
+		  "familyName" : "Lidberg",
+		  "givenName" : "Mathias",
+		  "role" : "opn"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569caf",
+	  "title" : "Aspects of autonomous corner modules as an enabler for new vehicle chassis solutions",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2006",
+	  "publicationTypeCode" : "comprehensiveLicentiateThesis",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "science",
+	  "hostTitle" : "",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "migration",
+	  "publicationId" : "diva2:11577",
+	  "conferenceName" : "",
+	  "bookPlace" : "Stockholm",
+	  "bookPublisher" : "KTH",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "Trita-AVE",
+	  "seriesIssueNr" : "2006:101"
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "J.",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb0",
+	  "title" : "Investigation of the non-convex force constraints imposed by individual wheel torque allocation",
+	  "subTitle" : "",
+	  "publicationStatus" : "Submitted",
+	  "dateIssued" : "2009",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1a5dci8",
+	  "publicationId" : "diva2:234434",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "Johan",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb1",
+	  "title" : "Utilisation of actuators to improve vehicle stability at the limit",
+	  "subTitle" : "from hydraulic brakes towards electric propulsion",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2009",
+	  "publicationTypeCode" : "conferencePaper",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "21st InternationalSymposium on Dynamics of Vehicles on Roads and Tracks",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1a5dci8",
+	  "publicationId" : "diva2:234438",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "Johan",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "autonomous corner module; force allocation; steering actuator; tyre constraints; vehicle control; vehicle dynamics"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb2",
+	  "title" : "Exploiting autonomous corner modules to resolve force constraints in the tyre contact patch",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2008",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Vehicle System Dynamics",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "46",
+	  "hostIssue" : "7",
+	  "hostExtentStart" : "553",
+	  "hostExtentEnd" : "573",
+	  "recordOrigin" : "migration",
+	  "publicationId" : "diva2:11576",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "Johan",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Solyom",
+		  "givenName" : "Stefan",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jacobson",
+		  "givenName" : "Bengt",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "control allocation"
+		},
+		{
+		  "title" : "Modelica modeling"
+		},
+		{
+		  "title" : "electric vehicles"
+		},
+		{
+		  "title" : "force constraints"
+		},
+		{
+		  "title" : "global chassis control"
+		},
+		{
+		  "title" : "vehicle stability"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb3",
+	  "title" : "Utilization of Actuators to Improve Vehicle Stability at the Limit",
+	  "subTitle" : "From Hydraulic Brakes Toward Electric Propulsion",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2011",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Journal of Dynamic Systems Measurement, and Control",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "133",
+	  "hostIssue" : "5",
+	  "hostExtentStart" : "051003",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1a5dci8",
+	  "publicationId" : "diva2:443653",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "Johan",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb4",
+	  "title" : "Modelling and parameterisation of a vehicle for validity under limit handling",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2008",
+	  "publicationTypeCode" : "conferencePaper",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Proceedings of 6th Modelica Conference",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1a5dci8",
+	  "publicationId" : "diva2:234427",
+	  "conferenceName" : "6th Modelica Conference",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "Johan",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "brute force; combined slip; electric vehicles; force allocation; tyre forces; over-actuated vehicles"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb5",
+	  "title" : "Global force potential of over-actuated electric vehicles",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2010",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "International Journal of Vehicle System Dynamics",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "48",
+	  "hostIssue" : "9",
+	  "hostExtentStart" : "983",
+	  "hostExtentEnd" : "998",
+	  "recordOrigin" : "u1a5dci8",
+	  "publicationId" : "diva2:234432",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "Johan",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jacobsson",
+		  "givenName" : "Bengt",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "SRA - Transport"
+		},
+		{
+		  "title" : "SRA - Transport"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb6",
+	  "title" : "Modelling vehicle dynamics for limit handling",
+	  "subTitle" : "Strategies, experiments and validation",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2008",
+	  "publicationTypeCode" : "conferencePaper",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Proceedings of the 9th International Symposium on Advanced Vehicle Control, AVEC´08",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "202",
+	  "hostExtentEnd" : "207",
+	  "recordOrigin" : "u1jtpqnj",
+	  "publicationId" : "diva2:502506",
+	  "conferenceName" : "AVEC´08",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Roos",
+		  "givenName" : "Fredrik",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Automotive; Active suspensions; Electric vehicles; Electric dampers"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb7",
+	  "title" : "Design and evaluation of an active electromechanical wheel suspension system",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2008",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Mechatronics (Oxford)",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "18",
+	  "hostIssue" : "4",
+	  "hostExtentStart" : "218",
+	  "hostExtentEnd" : "230",
+	  "recordOrigin" : "u1a5dci8",
+	  "publicationId" : "diva2:234419",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Wallmark",
+		  "givenName" : "Oskar",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "ACM; Adhesion potential; Autonomous corner module; Electric in-wheel motor; Electric vehicle; Fault handling; Force allocation; Tyre constraints; Vehicle control; Vehicle dynamics"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb8",
+	  "title" : "Control of electric vehicles with autonomous corner modules",
+	  "subTitle" : "implementation aspects and fault handling",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2008",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "International Journal of Vehicle Systems Modelling and Testing",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "3",
+	  "hostIssue" : "3",
+	  "hostExtentStart" : "213",
+	  "hostExtentEnd" : "228",
+	  "recordOrigin" : "migration",
+	  "publicationId" : "diva2:11575",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Wallmark",
+		  "givenName" : "Oskar",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "control system"
+		},
+		{
+		  "title" : "electrical failure"
+		},
+		{
+		  "title" : "inverter"
+		},
+		{
+		  "title" : "in-wheel motor"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cb9",
+	  "title" : "Stability of an electric vehicle with permanent magnet in-wheel motors during electrical faults",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2007",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "The World Electric Cehicle Association Journal",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "1",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "100",
+	  "hostExtentEnd" : "107",
+	  "recordOrigin" : "migration",
+	  "publicationId" : "diva2:11574",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Wallmark",
+		  "givenName" : "Oskar",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cba",
+	  "title" : "Stability of an electric vehicle with permanent-magnet in-wheel motors during electrical faults",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2006",
+	  "publicationTypeCode" : "conferencePaper",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1dhe4xb",
+	  "publicationId" : "diva2:479304",
+	  "conferenceName" : "International Battery, Hybrid and Fuel Cell Electric Vehicle Symposium and Exposition (EVS’22)",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Zetterström",
+		  "givenName" : "S.",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Chassis control"
+		},
+		{
+		  "title" : "vehicle dynamics"
+		},
+		{
+		  "title" : "steering"
+		},
+		{
+		  "title" : "propulsion"
+		},
+		{
+		  "title" : "active suspension"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "TECHNOLOGY"
+		},
+		{
+		  "title" : "TEKNIKVETENSKAP"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cbb",
+	  "title" : "Autonomous corner modules as an enabler for new vehicle chassis solutions",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2006",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "FISTA Transaction",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "migration",
+	  "publicationId" : "diva2:11573",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Sundström",
+		  "givenName" : "Peter",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Andreasson",
+		  "givenName" : "Johan",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jacobsson",
+		  "givenName" : "Bengt",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Vehicle Control"
+		},
+		{
+		  "title" : "Sensor and Actuator"
+		},
+		{
+		  "title" : "Integrated Motion Control"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		},
+		{
+		  "title" : "SRA - Transport"
+		},
+		{
+		  "title" : "SRA - Transport"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cbc",
+	  "title" : "Path and control optimisation for over-actuated vehicles in two safety-critical maneuvres",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2010",
+	  "publicationTypeCode" : "conferencePaper",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Proceedings of 10th International Symposium on Advanced Vehicle Control, AVEC´10",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1jtpqnj",
+	  "publicationId" : "diva2:502111",
+	  "conferenceName" : "10th International Symposium on Advanced Vehicle Control, AVEC´10",
+	  "bookPlace" : "",
+	  "bookPublisher" : "Loughborough University and the Society of Automotive Engineers of Japan, Inc.",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "Tim Gordon and Matt Best",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Wanner",
+		  "givenName" : "Daniel",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Edrén",
+		  "givenName" : "Johannes",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Wallmark",
+		  "givenName" : "Oskar",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Drugge",
+		  "givenName" : "Lars",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Stensson Trigell",
+		  "givenName" : "Annika",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Fault-Tolerant Control"
+		},
+		{
+		  "title" : "Force Allocation"
+		},
+		{
+		  "title" : "Integrated Chassis Control"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cbd",
+	  "title" : "Fault-Tolerant Control of Electric Vehicles with In-Wheel Motors through Tyre-Force Allocation",
+	  "subTitle" : "",
+	  "publicationStatus" : "",
+	  "dateIssued" : "2012",
+	  "publicationTypeCode" : "conferencePaper",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "Proceedings of the 11th International Symposium on Advanced Vehicle Control",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "",
+	  "hostIssue" : "",
+	  "hostExtentStart" : "",
+	  "hostExtentEnd" : "",
+	  "recordOrigin" : "u1qoc1cm",
+	  "publicationId" : "diva2:539153",
+	  "conferenceName" : "11th International Symposium on Advanced Vehicle Control, 9 - 12 September 2012, Seoul, Korea",
+	  "bookPlace" : "Seoul",
+	  "bookPublisher" : "Japan Society of Mechanical Engineers (JSAE)",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	},
+	{
+	  "authors" : [
+		{
+		  "familyName" : "Yang",
+		  "givenName" : "D.",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jacobson",
+		  "givenName" : "B.",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Jonasson",
+		  "givenName" : "Mats",
+		  "role" : "aut"
+		},
+		{
+		  "familyName" : "Gordon",
+		  "givenName" : "T. J.",
+		  "role" : "aut"
+		}
+	  ],
+	  "topics" : [
+		{
+		  "title" : "Vehicle dynamics"
+		},
+		{
+		  "title" : "Optimal path control"
+		},
+		{
+		  "title" : "Post impact"
+		},
+		{
+		  "title" : "Braking"
+		},
+		{
+		  "title" : "Steering"
+		},
+		{
+		  "title" : "Engineering and Technology"
+		},
+		{
+		  "title" : "Teknik och teknologier"
+		}
+	  ],
+	  "_id" : "56275c62289afbce76569cbe",
+	  "title" : "Minimizing Vehicle Post Impact Path Lateral Deviation Using Optimized Braking And Steering Sequences",
+	  "subTitle" : "",
+	  "publicationStatus" : "Published",
+	  "dateIssued" : "2014",
+	  "publicationTypeCode" : "article",
+	  "publicationSubTypeCode" : "",
+	  "contentTypeCode" : "refereed",
+	  "hostTitle" : "International Journal of Automotive Technology",
+	  "hostSubTitle" : "",
+	  "hostVolume" : "15",
+	  "hostIssue" : "1",
+	  "hostExtentStart" : "7",
+	  "hostExtentEnd" : "17",
+	  "recordOrigin" : "u1o2txrh",
+	  "publicationId" : "diva2:698292",
+	  "conferenceName" : "",
+	  "bookPlace" : "",
+	  "bookPublisher" : "",
+	  "bookEdition" : "",
+	  "statementOfResponsibility" : "",
+	  "patent" : "",
+	  "seriesTitle" : "",
+	  "seriesIssueNr" : ""
+	}
+  ],
+  "hiddenPublications" : [ ]
+}

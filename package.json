@@ -1,0 +1,28 @@
+{
+  "name": "kth-node-publications-formatters",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KTH/kth-node-publications-formatters.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KTH/kth-node-publications-formatters/issues"
+  },
+  "homepage": "https://github.com/KTH/kth-node-publications-formatters#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0",
+    "mockery": "^2.0.0"
+  },
+  "dependencies": {
+    "kth-node-log": "^2.0.3"
+  }
+}
