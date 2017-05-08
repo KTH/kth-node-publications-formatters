@@ -11,6 +11,7 @@ mockery.enable({
   warnOnReplace: false
 })
 
+const filters = require('../helpers/filters')
 require('chai').should()
 
 describe('PublicationUtil', function () {
@@ -59,7 +60,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -82,7 +83,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -104,8 +105,8 @@ describe('PublicationUtil', function () {
         hiddenPublications: []
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceArticle)
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(0)
 
@@ -128,7 +129,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -151,7 +152,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -174,7 +175,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -197,7 +198,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -220,7 +221,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -239,7 +240,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceArticles.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(0)
 
@@ -258,7 +259,7 @@ describe('PublicationUtil', function () {
         }
 
         var jsonResult = publicationUtil.filterList(userPublications, true)
-        var numPublications = jsonResult.scienceArticles.length
+        var numPublications = jsonResult.length
 
         numPublications.should.equal(0)
 
@@ -277,7 +278,7 @@ describe('PublicationUtil', function () {
         }
 
         var jsonResult = publicationUtil.filterList(userPublications, true)
-        var numPublications = jsonResult.scienceArticles.length
+        var numPublications = jsonResult.length
 
         numPublications.should.equal(0)
 

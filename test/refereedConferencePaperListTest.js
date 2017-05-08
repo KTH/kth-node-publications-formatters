@@ -49,7 +49,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.refereedConferencePapers.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -72,7 +72,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.refereedConferencePapers.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 

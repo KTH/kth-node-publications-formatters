@@ -13,7 +13,7 @@ mockery.enable({
 
 require('chai').should()
 const assert = require('chai').assert
-
+var { groupPublications } = require('../')
 describe('PublicationUtil', function () {
   var publicationUtil
   var json
@@ -44,7 +44,8 @@ describe('PublicationUtil', function () {
       var publicationsBefore = json.publications.length
 
       var jsonResult = publicationUtil.filterList(json, true)
-      var publicationsAfter = itemCounter(jsonResult)
+      // var publicationsAfter = itemCounter(jsonResult)
+      var publicationsAfter = jsonResult.length
 
       publicationsBefore.should.equal(publicationsAfter)
 
@@ -58,7 +59,8 @@ describe('PublicationUtil', function () {
       var publicationsBefore = json.publications.length
 
       var jsonResult = publicationUtil.filterList(json, false)
-      var publicationsAfter = itemCounter(jsonResult)
+      // var publicationsAfter = itemCounter(jsonResult)
+      var publicationsAfter = jsonResult.length
 
       publicationsBefore.should.not.equal(publicationsAfter)
       publicationsBefore.should.equal(publicationsAfter + 4)
@@ -71,7 +73,8 @@ describe('PublicationUtil', function () {
     it('should be 3 discarded publications.', function (done) {
       var jsonWithHiddenPub = require('./dataWithHiddenPublications.json')
       var publicationsBefore = jsonWithHiddenPub.publications.length
-      var jsonResult = publicationUtil.filterList(jsonWithHiddenPub, false)
+
+      var jsonResult = groupPublications(publicationUtil.filterList(jsonWithHiddenPub, false))
       var publicationsAfter = itemCounter(jsonResult)
 
       assert(

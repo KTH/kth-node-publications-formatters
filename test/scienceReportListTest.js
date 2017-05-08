@@ -11,6 +11,7 @@ mockery.enable({
 })
 
 require('chai').should()
+const filters = require('../helpers/filters')
 
 describe('PublicationUtil', function () {
   var publicationUtil
@@ -47,7 +48,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceReports.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -70,7 +71,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceReports.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -93,7 +94,7 @@ describe('PublicationUtil', function () {
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceReports.length
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(1)
 
@@ -115,8 +116,8 @@ describe('PublicationUtil', function () {
         hiddenPublications: []
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.scienceReports.length
+      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceReport)
+      var numPublications = jsonResult.length
 
       numPublications.should.equal(0)
 
