@@ -13,13 +13,13 @@ module.exports = {
 }
 
 function _render (publications) {
-  return publications.reduce(function (str, item) {
+  return publications.reduce(function (str, item, index) {
     return (
       str +
       `
     <div class="row publicationRow">
       <div class="col-md-1 col-xs-2 publicationNr">
-        <span class="pubNr"></span>
+        <span class="pubNr">[${index + 1}]</span>
       </div>
       <div class="col-md-10 col-xs-8 publicationInfo">
         <span>${item.formattedAuthors}</span>
