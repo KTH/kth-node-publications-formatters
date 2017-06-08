@@ -32,12 +32,19 @@ function _render (publications) {
 }
 
 function _publicationAs (data, style, lang) {
-  switch (style) {
-    case 'ieee':
-      return _publicationAsIEEE(data, lang)
-    default:
-      return _publicationAsIEEE(data, lang)
+  var i = 1
+  var pubs
+  if (Array.isArray(data)) {
+    pubs = data.map(item => {
+      var obj = _formatPublication(item, lang, style)
+      obj.index = ++i
+      return obj
+    })
+  } else {
+    pubs = _formatPublication(data, lang, style)
   }
+
+  return pubs
 }
 
 function _formatPublication (publ, lang, style) {
@@ -47,22 +54,6 @@ function _formatPublication (publ, lang, style) {
   publ.formattedDescription =
     DescriptionHelper.getDescription(publ.publicationTypeCode, publ, lang) + '.'
   return publ
-}
-
-function _publicationAsIEEE (data, lang) {
-  var i = 1
-  var ieee
-  if (Array.isArray(data)) {
-    ieee = data.map(item => {
-      var obj = _formatPublication(item, lang, 'ieee')
-      obj.index = ++i
-      return obj
-    })
-  } else {
-    ieee = _formatPublication(data, lang, 'ieee')
-  }
-
-  return ieee
 }
 
 function _groupPublications (publs) {

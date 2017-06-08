@@ -18,11 +18,7 @@ module.exports = {
 }
 
 function _getHost (publication) {
-  if (
-    publication.publicationTypeCode === 'article' ||
-    publication.publicationTypeCode === 'review' ||
-    publication.publicationTypeCode === 'bookReview'
-  ) {
+  if (publication.publicationTypeCode === 'article' || publication.publicationTypeCode === 'review' || publication.publicationTypeCode === 'bookReview') {
     // Host title
     if (publication.hostTitle) {
       if (publication.hostSubTitle) {
@@ -61,11 +57,7 @@ function _getHost (publication) {
 function _getHostVolume (publication, lang) {
   // Host volume
   if (publication.hostVolume) {
-    if (
-      publication.hostIssue ||
-      publication.hostExtentStart ||
-      publication.dateIssued
-    ) {
+    if (publication.hostIssue || publication.hostExtentStart || publication.dateIssued) {
       return translator.message('host_volume', lang) + publication.hostVolume + ', '
     } else {
       return translator.message('host_volume', lang) + publication.hostVolume
@@ -124,67 +116,50 @@ function _getHostExtent (publication, lang) {
 
 function _getDescription (publicationType, publication, lang) {
   // console.log('publication!: ' + JSON.stringify(publication))
-  var publicationDescription =
-    _getHost(publication) +
-    _getHostVolume(publication, lang) +
-    _getHostIssue(publication, lang) +
-    _getHostExtent(publication, lang)
-
-  // Date issued
-  if (publication.dateIssued) {
-    publicationDescription = publicationDescription.concat(
-      publication.dateIssued
-    )
-  }
+  var publicationDescription = ''
 
   switch (publication.publicationTypeCode) {
     case 'book':
-      publicationDescription = publicationDescription.concat(
-        _getBookReference(publication, lang)
-      )
+      // publicationDescription = ''
+      publicationDescription = publicationDescription.concat(_getBookReference(publication, lang))
       break
     case 'chapter':
-      publicationDescription = publicationDescription.concat(
-        _getChapterReference(publication, lang)
-      )
+      // publicationDescription = ''
+      publicationDescription = publicationDescription.concat(_getChapterReference(publication, lang))
       break
     case 'collection':
-      publicationDescription = publicationDescription.concat(
-        _getCollectionReference(publication, lang)
-      )
+      publicationDescription = publicationDescription.concat(_getCollectionReference(publication, lang))
       break
     case 'conferencePaper':
-      publicationDescription = publicationDescription.concat(
-        _getConferencePaperReference(publication, lang)
-      )
+      publicationDescription = publicationDescription.concat(_getConferencePaperReference(publication, lang))
       break
     case 'conferenceProceedings':
-      publicationDescription = publicationDescription.concat(
-        _getConferenceProceedingsReference(publication, lang)
-      )
+      publicationDescription = publicationDescription.concat(_getConferenceProceedingsReference(publication))
       break
     case 'other':
-      publicationDescription = publicationDescription.concat(
-        _getOtherReference(publication, lang)
-      )
+      publicationDescription = publicationDescription.concat(_getOtherReference(publication))
       break
     case 'patent':
-      publicationDescription = publicationDescription.concat(
-        _getPatentReference(publication, lang)
-      )
+      publicationDescription = publicationDescription.concat(_getPatentReference(publication))
       break
 
     case 'report':
-      publicationDescription = publicationDescription.concat(
-        _getReportReference(publication, lang)
-      )
+      // publicationDescription = ''
+      publicationDescription = publicationDescription.concat(_getReportReference(publication))
+      break
+    default:
+      publicationDescription = _getHost(publication) +
+        _getHostVolume(publication, lang) +
+        _getHostIssue(publication, lang) +
+        _getHostExtent(publication, lang)
+      if (publication.dateIssued) {
+        publicationDescription = publicationDescription.concat(publication.dateIssued)
+      }
       break
   }
 
   if (publicationType === 'scienceThesis') {
-    publicationDescription = publicationDescription.concat(
-      _getThesisReference(publication, lang)
-    )
+    publicationDescription = publicationDescription.concat(_getThesisReference(publication, lang))
   }
 
   return publicationDescription

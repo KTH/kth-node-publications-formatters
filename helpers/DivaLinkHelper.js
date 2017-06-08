@@ -14,9 +14,9 @@ function _getLinkText (publicationType, publication) {
     }
   } else {
     if (publication.subTitle !== null && publication.subTitle !== '') {
-      return '"' + publication.title + ' : ' + publication.subTitle + ',"'
+      return '"' + publication.title + ' : ' + publication.subTitle + '," '
     } else {
-      return '"' + publication.title + ',"'
+      return '"' + publication.title + '," '
     }
   }
 }

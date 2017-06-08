@@ -9,12 +9,7 @@ module.exports = {
 function _getAPAAuthors (publicationType, publication, lang) {
   var authors = publication.authors
   var authorRole = 'aut'
-  if (
-    publicationType === 'scienceCollections' ||
-    publicationType === 'otherCollections' ||
-    publicationType === 'scienceConferenceProceedings' ||
-    publicationType === 'otherConferenceProceedings'
-  ) {
+  if (publicationType === 'scienceCollections' || publicationType === 'otherCollections' || publicationType === 'scienceConferenceProceedings' || publicationType === 'otherConferenceProceedings') {
     authorRole = 'edt'
   }
   if (authors === null) return ''
@@ -54,12 +49,7 @@ function _getAPAAuthors (publicationType, publication, lang) {
 function _getIEEEAuthors (publicationType, publication, lang) {
   var authors = publication.authors
   var authorRole = 'aut'
-  if (
-    publicationType === 'scienceCollections' ||
-    publicationType === 'otherCollections' ||
-    publicationType === 'scienceConferenceProceedings' ||
-    publicationType === 'otherConferenceProceedings'
-  ) {
+  if (publicationType === 'scienceCollections' || publicationType === 'otherCollections' || publicationType === 'scienceConferenceProceedings' || publicationType === 'otherConferenceProceedings') {
     authorRole = 'edt'
   }
   if (authors === null) return ''
@@ -102,7 +92,7 @@ function _getIEEEAuthors (publicationType, publication, lang) {
       translator.message('author_and', lang) +
       ' ' +
       returnNames[1] +
-      ','
+      ', '
   } else if (returnNames.length === 3) {
     authorNames =
       returnNames[0] +
@@ -112,9 +102,9 @@ function _getIEEEAuthors (publicationType, publication, lang) {
       translator.message('author_and', lang) +
       ' ' +
       returnNames[2] +
-      ','
+      ', '
   } else if (returnNames.length > 3) {
-    authorNames = returnNames[0] + ' ' + getEtAl(lang) + ','
+    authorNames = returnNames[0] + ' ' + getEtAl(lang) + ', '
   }
 
   if (authorRole === 'edt') {
