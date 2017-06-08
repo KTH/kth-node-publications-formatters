@@ -13,73 +13,10 @@ module.exports = {
   _getThesisReference: _getThesisReference
 }
 
-function _addDateIssued (publication, tmpString) {
-  if (publication.dateIssued) {
-    if (publication.hostExtentStart) {
-      return tmpString.concat(publication.dateIssued + ', ')
-    }
-    return tmpString.concat(publication.dateIssued)
-  }
-}
-
-const _bookPlaceSuffix = {
-  'book': ' : ',
-  'chapter': ' : ',
-  'thesis': ' : ',
-  'collection': ', ',
-  'conferenceProceedings': ', '
-}
-
-function _addBookPlace (publication, type, tmpString) {
-  var addition = _bookPlaceSuffix[type]
-  if (publication.bookPublisher) {
-    return tmpString.concat(publication.bookPlace + addition)
-  }
-  return tmpString.concat(publication.bookPlace)
-}
-
-function _addBookPublisher (publication, tmpString) {
-  if (!publication.bookPublisher) {
-    return tmpString
-  }
-
-  if (publication.seriesTitle || publication.seriesIssueNr || publication.dateIssued) {
-    return tmpString.concat(publication.bookPublisher + ', ')
-  }
-
-  return tmpString.concat(publication.bookPublisher)
-}
-
-function _addSeriesIssueNumber (publication, tmpString) {
-  if (!publication.seriesIssueNr) {
-    return tmpString
-  }
-
-  if (publication.dateIssued) {
-    return tmpString.concat(publication.seriesIssueNr + ', ')
-  }
-
-  return tmpString.concat(publication.seriesIssueNr)
-}
-
-function _addSeriesTitle (publication, tmpString) {
-  if (!publication.seriesTitle) {
-    return tmpString
-  }
-
-  if (publication.dateIssued) {
-    return tmpString.concat(publication.seriesTitle + ', ')
-  }
-
-  return tmpString.concat(publication.seriesTitle)
-}
-
-function _getBookReference (publication, lang) {
+function _getBookReference (publication, lang, style) {
   // Book edition
   var tmp = ''
-  if (publication.bookEdition) {
-    tmp = tmp.concat(_getEdition(publication.bookEdition, lang))
-  }
+  tmp = tmp.concat(_getEdition(publication, lang))
 
   // City of publisher
   if (publication.bookPlace) {
@@ -88,13 +25,14 @@ function _getBookReference (publication, lang) {
 
   // Publisher
   tmp = _addBookPublisher(publication, tmp)
-
+  if (style === 'ieee') {
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+    tmp = _addDateIssued(publication, tmp)
+  }
   return tmp
 }
 
-function _getChapterReference (publication, lang) {
+function _getChapterReference (publication, lang, style) {
   var tmp = ''
   // Book title
   if (publication.hostTitle) {
@@ -123,38 +61,31 @@ function _getChapterReference (publication, lang) {
   }
 
   // Book edition
-  if (publication.bookEdition) {
-    tmp = tmp.concat(_getEdition(publication.bookEdition, lang) + translator.message('edition', lang))
-  }
+  tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang))
 
   // City of publisher
   tmp = _addBookPlace(publication, 'chapter', tmp)
   // Publisher
   tmp = _addBookPublisher(publication, tmp)
-
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+  if (style === 'ieee') {
+    tmp = _addDateIssued(publication, tmp)
+  }
 
   // Host pages/extent
-  if (publication.hostExtentStart) {
-    if (publication.hostExtentEnd) {
-      tmp = tmp.concat(translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd)
-    } else {
-      tmp = tmp.concat(translator.message('host_page', lang) + publication.hostExtentStart)
-    }
-  }
+  tmp = _addHostStartEnd(publication, lang, tmp, style)
   return tmp
 }
 
-function _getCollectionReference (publication, lang) {
+function _getCollectionReference (publication, lang, style) {
   var tmp = ''
 
   // Book edition
   if (publication.bookEdition) {
     if (publication.bookPlace) {
-      tmp = tmp.concat(_getEdition(publication.bookEdition, lang) + translator.message('edition', lang) + ', ')
+      tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang) + ', ')
     } else {
-      tmp = tmp.concat(_getEdition(publication.bookEdition, lang) + translator.message('edition', lang))
+      tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang))
     }
   }
   // City of publisher
@@ -166,58 +97,47 @@ function _getCollectionReference (publication, lang) {
   // Series issue nr
   tmp = _addSeriesIssueNumber(publication, tmp)
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+  if (style === 'ieee') {
+    tmp = _addDateIssued(publication, tmp)
+  }
   return tmp
 }
 
-function _getConferencePaperReference (publication, lang) {
+function _getConferencePaperReference (publication, lang, style) {
   var tmp = ''
   // Host/conference title
   if (publication.hostTitle) {
     if (publication.hostSubTitle) {
-      if (publication.dateIssued) {
-        tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle) + ', ')
-      } else {
-        tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle))
-      }
+      tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle))
     } else {
-      if (publication.dateIssued !== null && publication.dateIssued !== '') {
-        tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle + ', '))
-      } else {
-        tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle))
-      }
+      tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle))
     }
   } else {
     if (publication.conferenceName) {
-      if (publication.dateIssued) {
-        tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.conferenceName + ', '))
-      } else {
-        tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.conferenceName))
-      }
+      tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.conferenceName))
     }
   }
 
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+  if (style === 'ieee') {
+    tmp = _addDateIssued(publication, tmp)
+  }
 
   // Host pages/extent
-  if (publication.hostExtentStart) {
-    if (publication.hostExtentEnd) {
-      tmp = tmp.concat(translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd)
-    } else {
-      tmp = tmp.concat(translator.message('host_page', lang) + publication.hostExtentStart)
-    }
-  }
+  tmp = _addHostStartEnd(publication, lang, tmp, style)
   return tmp
 }
 
-function _getConferenceProceedingsReference (publication) {
+function _getConferenceProceedingsReference (publication, style) {
   var tmp = ''
   // City of publisher
   tmp = _addBookPlace(publication, 'conferenceProceedings', tmp)
 
   // Publisher
   tmp = _addBookPublisher(publication, tmp)
+  if (publication.seriesTitle || publication.seriesIssueNr || publication.dateIssued) {
+    tmp = tmp + ', '
+  }
 
   // Series title
   tmp = _addSeriesTitle(publication, tmp)
@@ -226,46 +146,44 @@ function _getConferenceProceedingsReference (publication) {
   tmp = _addSeriesIssueNumber(publication, tmp)
 
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+  if (style === 'ieee') {
+    tmp = _addDateIssued(publication, tmp)
+  }
   return tmp
 }
 
-function _getOtherReference (publication) {
+function _getOtherReference (publication, style) {
   var tmp = ''
   // Publisher
   if (publication.bookPublisher) {
     if (publication.bookPlace) {
       tmp = tmp.concat(publication.bookPlace + ' : ')
     }
-    if (publication.dateIssued) {
-      tmp = tmp.concat(publication.bookPublisher + ', ')
-    } else {
-      tmp = tmp.concat(publication.bookPublisher)
-    }
+    tmp = tmp.concat(publication.bookPublisher)
   }
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+  if (style === 'ieee') {
+    tmp = _addDateIssued(publication, tmp)
+  }
 
   return tmp
 }
 
-function _getPatentReference (publication) {
+function _getPatentReference (publication, style) {
   // Patent
   var tmp = ''
   if (publication.patent) {
-    if (publication.dateIssued) {
-      tmp = tmp.concat(publication.patent + ', ')
-    } else {
-      tmp = tmp.concat(publication.patent)
-    }
+    tmp = tmp.concat(publication.patent)
   }
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+  if (style === 'ieee') {
+    tmp = _addDateIssued(publication, tmp)
+  }
 
   return tmp
 }
 
-function _getReportReference (publication) {
+function _getReportReference (publication, style) {
   var tmp = ''
   // City of publisher
   if (publication.bookPlace) {
@@ -280,36 +198,28 @@ function _getReportReference (publication) {
   tmp = _addBookPublisher(publication, tmp)
 
   // Series title
-  if (publication.seriesTitle) {
-    if (!publication.seriesIssuenr && publication.dateIssued) {
-      tmp = tmp.concat(publication.seriesTitle + ', ')
-    } else {
-      tmp = tmp.concat(publication.seriesTitle)
-    }
-  }
+  tmp = _addSeriesTitle(publication, tmp)
 
   // Series issue nr
   tmp = _addSeriesIssueNumber(publication, tmp)
 
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+  if (style === 'ieee') {
+    tmp = _addDateIssued(publication, tmp)
+  }
 
   return tmp
 }
 
-function _getThesisReference (publication, lang) {
+function _getThesisReference (publication, lang, style) {
   var tmp = ''
   // Thesis type
   var i18nThesisType = 'thesis_licentiate'
   if (publication.publicationTypeCode === 'comprehensiveDoctoralThesis' || publication.publicationTypeCode === 'monographDoctoralThesis') {
     i18nThesisType = 'thesis_doctoral'
   }
-  if (publication.bookPlace) {
-    tmp = tmp.concat(translator.message(i18nThesisType, lang) + ', ')
-  } else {
-    tmp = tmp.concat(translator.message(i18nThesisType, lang))
-  }
 
+  tmp = tmp.concat(translator.message(i18nThesisType, lang))
   // City of publisher
   tmp = _addBookPlace(publication, 'thesis', tmp)
 
@@ -317,20 +227,30 @@ function _getThesisReference (publication, lang) {
   tmp = _addBookPublisher(publication, tmp)
 
   // Series title
-  if (publication.seriesTitle) {
-    tmp = tmp.concat(publication.seriesTitle)
-  }
+  tmp = _addSeriesTitle(publication, tmp)
 
   // Series issue nr
   tmp = _addSeriesIssueNumber(publication, tmp)
 
   // Date issued
-  tmp = _addDateIssued(publication, tmp)
+  if (style === 'ieee') {
+    tmp = _addDateIssued(publication, tmp)
+  }
 
   return tmp
 }
 
-function _getEdition (text, lang) {
+/**
+ *
+ *  UTILITY FUNCTIONS
+ *
+*/
+
+function _getEdition (publication, lang) {
+  if (!publication.bookEdition) {
+    return ''
+  }
+  var text = publication.bookEdition
   var value = 0
   try {
     value = parseInt(text)
@@ -346,5 +266,66 @@ function _getEdition (text, lang) {
       return value + translator.message('suffix_three', lang)
     default:
       return value + translator.message('suffix_default', lang)
+  }
+}
+
+function _addDateIssued (publication, tmpString) {
+  if (publication.dateIssued) {
+    var prepend = tmpString.endsWith(', ') ? '' : ', '
+    return tmpString.concat(prepend + publication.dateIssued)
+  }
+}
+
+const _bookPlaceSuffix = {
+  'book': ' : ',
+  'chapter': ' : ',
+  'thesis': ' : ',
+  'collection': ', ',
+  'conferenceProceedings': ', '
+}
+
+function _addBookPlace (publication, type, tmpString) {
+  var addition = _bookPlaceSuffix[type]
+  if (publication.bookPublisher) {
+    return tmpString.concat(publication.bookPlace + addition)
+  }
+  var prepend = tmpString.endsWith(', ') ? '' : ', '
+  return tmpString.concat(prepend + publication.bookPlace)
+}
+
+function _addBookPublisher (publication, tmpString) {
+  if (!publication.bookPublisher) {
+    return tmpString
+  }
+  return tmpString.concat(publication.bookPublisher)
+}
+
+function _addSeriesIssueNumber (publication, tmpString) {
+  if (!publication.seriesIssueNr) {
+    return tmpString
+  }
+  var prepend = tmpString.endsWith(', ') ? '' : ', '
+
+  return tmpString.concat(prepend + publication.seriesIssueNr)
+}
+
+function _addSeriesTitle (publication, tmpString) {
+  if (!publication.seriesTitle) {
+    return tmpString
+  }
+  var prepend = tmpString.endsWith(', ') ? '' : ', '
+
+  return tmpString.concat(prepend + publication.seriesTitle)
+}
+
+function _addHostStartEnd (publication, lang, tmpString, style) {
+  if (!publication.hostExtentStart) {
+    return tmpString
+  }
+  var prepend = tmpString.endsWith(', ') ? '' : ', '
+  if (publication.hostExtentEnd) {
+    return tmpString.concat(prepend + (style === 'ieee' ? translator.message('host_pages', lang) : '') + publication.hostExtentStart + '-' + publication.hostExtentEnd)
+  } else {
+    return tmpString.concat(prepend + (style === 'ieee' ? translator.message('host_page', lang) : '') + publication.hostExtentStart)
   }
 }

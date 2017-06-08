@@ -22,138 +22,88 @@ function _getHost (publication) {
     // Host title
     if (publication.hostTitle) {
       if (publication.hostSubTitle) {
-        if (
-          publication.hostVolume ||
-          publication.hostIssue ||
-          publication.hostExtentStart ||
-          publication.dateIssued
-        ) {
-          return makeItalic(
-            publication.hostTitle + ' : ' + publication.hostSubTitle + ', '
-          )
-        } else {
-          return makeItalic(
-            publication.hostTitle + ' : ' + publication.hostSubTitle
-          )
-        }
-      } else {
-        if (
-          publication.hostVolume ||
-          publication.hostIssue ||
-          publication.hostExtentStart ||
-          publication.dateIssued
-        ) {
-          return makeItalic(publication.hostTitle + ', ')
-        } else {
-          return makeItalic(publication.hostTitle)
-        }
+        return makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle)
       }
+      return makeItalic(publication.hostTitle)
     }
-  } else {
-    return ''
   }
+  return ''
 }
 
-function _getHostVolume (publication, lang) {
+function _getHostVolume (publication, lang, style) {
   // Host volume
   if (publication.hostVolume) {
-    if (publication.hostIssue || publication.hostExtentStart || publication.dateIssued) {
-      return translator.message('host_volume', lang) + publication.hostVolume + ', '
-    } else {
-      return translator.message('host_volume', lang) + publication.hostVolume
+    var tmp = ', '
+    if (style === 'ieee') {
+      return tmp + translator.message('host_volume', lang) + publication.hostVolume
     }
-  } else {
-    return ''
+    return tmp + makeItalic(publication.hostVolume)
   }
+  return ''
 }
 
-function _getHostIssue (publication, lang) {
+function _getHostIssue (publication, lang, style) {
   // Host Issue
   if (publication.hostIssue) {
-    if (publication.hostExtentStart || publication.dateIssued) {
-      return translator.message('host_issue', lang) + publication.hostIssue + ', '
-    } else {
-      return translator.message('host_issue', lang) + publication.hostIssue
+    if (style === 'ieee') {
+      return ', ' + translator.message('host_issue', lang) + publication.hostIssue
     }
-  } else {
-    return ''
+    return '(' + publication.hostIssue + ')'
   }
+  return ''
 }
 
-function _getHostExtent (publication, lang) {
+function _getHostExtent (publication, lang, style) {
   // --Host pages/extent--
   if (publication.hostExtentStart) {
+    var tmp = ', ' + (style === 'ieee' ? translator.message('host_pages', lang) : '') + publication.hostExtentStart
     if (publication.hostExtentEnd) {
-      if (publication.dateIssued) {
-        return (
-          translator.message('host_pages', lang) +
-          publication.hostExtentStart +
-          '-' +
-          publication.hostExtentEnd +
-          ', '
-        )
-      } else {
-        return (
-          translator.message('host_pages', lang) +
-          publication.hostExtentStart +
-          '-' +
-          publication.hostExtentEnd
-        )
-      }
-    } else {
-      if (publication.dateIssued) {
-        return (
-          translator.message('host_page', lang) + publication.hostExtentStart + ', '
-        )
-      } else {
-        return translator.message('host_page', lang) + publication.hostExtentStart
-      }
+      return tmp + '-' + publication.hostExtentEnd
     }
-  } else {
-    return ''
+    return tmp
   }
+
+  return ''
 }
 
-function _getDescription (publicationType, publication, lang) {
-  // console.log('publication!: ' + JSON.stringify(publication))
+function _getDescription (publicationType, publication, lang, style) {
   var publicationDescription = ''
 
   switch (publication.publicationTypeCode) {
     case 'book':
       // publicationDescription = ''
-      publicationDescription = publicationDescription.concat(_getBookReference(publication, lang))
+      publicationDescription = publicationDescription.concat(_getBookReference(publication, lang, style))
       break
     case 'chapter':
       // publicationDescription = ''
-      publicationDescription = publicationDescription.concat(_getChapterReference(publication, lang))
+      publicationDescription = publicationDescription.concat(_getChapterReference(publication, lang, style))
       break
     case 'collection':
-      publicationDescription = publicationDescription.concat(_getCollectionReference(publication, lang))
+      publicationDescription = publicationDescription.concat(_getCollectionReference(publication, lang, style))
       break
     case 'conferencePaper':
-      publicationDescription = publicationDescription.concat(_getConferencePaperReference(publication, lang))
+      publicationDescription = publicationDescription.concat(_getConferencePaperReference(publication, lang, style))
       break
     case 'conferenceProceedings':
-      publicationDescription = publicationDescription.concat(_getConferenceProceedingsReference(publication))
+      publicationDescription = publicationDescription.concat(_getConferenceProceedingsReference(publication, style))
       break
     case 'other':
-      publicationDescription = publicationDescription.concat(_getOtherReference(publication))
+      publicationDescription = publicationDescription.concat(_getOtherReference(publication, style))
       break
     case 'patent':
-      publicationDescription = publicationDescription.concat(_getPatentReference(publication))
+      publicationDescription = publicationDescription.concat(_getPatentReference(publication, style))
       break
-
     case 'report':
       // publicationDescription = ''
-      publicationDescription = publicationDescription.concat(_getReportReference(publication))
+      publicationDescription = publicationDescription.concat(_getReportReference(publication, style))
       break
     default:
       publicationDescription = _getHost(publication) +
-        _getHostVolume(publication, lang) +
-        _getHostIssue(publication, lang) +
-        _getHostExtent(publication, lang)
-      if (publication.dateIssued) {
-        publicationDescription = publicationDescription.concat(publication.dateIssued)
+        _getHostVolume(publication, lang, style) +
+        _getHostIssue(publication, lang, style) +
+        _getHostExtent(publication, lang, style)
+      if (publication.dateIssued && style === 'ieee') {
+        publicationDescription = publicationDescription.concat(', ' + publication.dateIssued)
       }
       break
   }

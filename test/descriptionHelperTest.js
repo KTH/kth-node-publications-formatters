@@ -17,7 +17,7 @@ describe('DescriptionHelper', function () {
         publicationTypeCode: 'article',
         hostTitle: 'The title'
       }
-      helper.getDescription('refereedArticles', publication, 'sv').should.equal('<i>The title</i>')
+      helper.getDescription('refereedArticles', publication, 'sv', 'ieee').should.equal('<i>The title</i>')
       done()
     })
 
@@ -28,7 +28,7 @@ describe('DescriptionHelper', function () {
         hostTitle: 'The title',
         hostSubTitle: 'The subtitle'
       }
-      helper.getDescription('refereedArticles', publication, 'sv').should.equal('<i>The title : The subtitle</i>')
+      helper.getDescription('refereedArticles', publication, 'sv', 'ieee').should.equal('<i>The title : The subtitle</i>')
       done()
     })
 
@@ -40,7 +40,7 @@ describe('DescriptionHelper', function () {
         hostSubTitle: 'The subtitle',
         hostVolume: '40'
       }
-      helper.getDescription('refereedArticles', publication, 'sv').should.equal('<i>The title : The subtitle, </i>vol. 40')
+      helper.getDescription('refereedArticles', publication, 'sv', 'ieee').should.equal('<i>The title : The subtitle</i>, vol. 40')
       done()
     })
 
@@ -53,7 +53,7 @@ describe('DescriptionHelper', function () {
         hostVolume: '40',
         hostIssue: '2'
       }
-      helper.getDescription('refereedArticles', publication, 'sv').should.equal('<i>The title : The subtitle, </i>vol. 40, no. 2')
+      helper.getDescription('refereedArticles', publication, 'sv', 'ieee').should.equal('<i>The title : The subtitle</i>, vol. 40, no. 2')
       done()
     })
   })
