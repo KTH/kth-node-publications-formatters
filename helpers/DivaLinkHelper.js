@@ -22,8 +22,5 @@ function _getLinkText (publicationType, publication) {
 }
 
 function _getLinkUrl (publicationType, publication) {
-  return (
-    'http://kth.diva-portal.org/smash/record.jsf?dswid=3396&pid=' +
-    publication.publicationId
-  )
+  return ('http://kth.diva-portal.org/smash/record.jsf?dswid=3396&pid=' + publication.publicationId)
 }
