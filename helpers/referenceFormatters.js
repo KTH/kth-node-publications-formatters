@@ -241,9 +241,11 @@ function _getThesisReference (publication, lang, style) {
 }
 
 /**
- *
  *  UTILITY FUNCTIONS
- *
+ * The idea is to decide as much as possible about the formatting as late as possible to avoid a lot of branching.
+ * Example: if we have a publisherPlace, we should append a comma and the publisherPlace to the formatted string,
+ * not decide in publisher whether or not we should append the comma.
+ * This doesn't always work, some things have either a colon or comma depending on some parameter.
 */
 
 function _getEdition (publication, lang) {
@@ -271,7 +273,7 @@ function _getEdition (publication, lang) {
 
 function _addDateIssued (publication, tmpString) {
   if (publication.dateIssued) {
-    var prepend = tmpString.endsWith(', ') ? '' : ', '
+    var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
     return tmpString.concat(prepend + publication.dateIssued)
   }
 }
@@ -289,7 +291,7 @@ function _addBookPlace (publication, type, tmpString) {
   if (publication.bookPublisher) {
     return tmpString.concat(publication.bookPlace + addition)
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', '
+  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
   return tmpString.concat(prepend + publication.bookPlace)
 }
 
@@ -304,7 +306,7 @@ function _addSeriesIssueNumber (publication, tmpString) {
   if (!publication.seriesIssueNr) {
     return tmpString
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', '
+  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
 
   return tmpString.concat(prepend + publication.seriesIssueNr)
 }
@@ -313,7 +315,7 @@ function _addSeriesTitle (publication, tmpString) {
   if (!publication.seriesTitle) {
     return tmpString
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', '
+  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
 
   return tmpString.concat(prepend + publication.seriesTitle)
 }
@@ -322,7 +324,7 @@ function _addHostStartEnd (publication, lang, tmpString, style) {
   if (!publication.hostExtentStart) {
     return tmpString
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', '
+  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
   if (publication.hostExtentEnd) {
     return tmpString.concat(prepend + (style === 'ieee' ? translator.message('host_pages', lang) : '') + publication.hostExtentStart + '-' + publication.hostExtentEnd)
   } else {

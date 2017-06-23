@@ -6,7 +6,7 @@ module.exports = {
   splitAndFixNameParts: _splitAndFixNameParts
 }
 
-function _getAPAAuthors (publicationType, publication, lang) {
+function _getAPAAuthors (publicationType, publication) {
   var authors = publication.authors
   var authorRole = 'aut'
   if (publicationType === 'scienceCollections' || publicationType === 'otherCollections' || publicationType === 'scienceConferenceProceedings' || publicationType === 'otherConferenceProceedings') {

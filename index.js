@@ -1,3 +1,5 @@
+'use strict'
+
 const AuthorHelper = require('./helpers/AuthorHelper')
 const DescriptionHelper = require('./helpers/DescriptionHelper')
 const DivaLinkHelper = require('./helpers/DivaLinkHelper')
@@ -7,11 +9,12 @@ const pubUtil = require('./helpers/publicationUtil')
 
 module.exports = {
   render: _render,
-  formatPublications: _publicationAs,
+  formatPublications: _formatPublications,
   filterList: pubUtil.filterList,
   groupPublications: _groupPublications
 }
 
+// This function is primarily used to get a formatted output for Cortina
 function _render (publications) {
   return publications.reduce(function (str, item, index) {
     return (
@@ -31,23 +34,23 @@ function _render (publications) {
   }, '')
 }
 
-function _publicationAs (data, style, lang) {
+function _formatPublications (data, style, lang) {
   var i = 1
   var pubs
   if (Array.isArray(data)) {
     pubs = data.map(item => {
-      var obj = _formatPublication(item, lang, style)
+      var obj = _formatSinglePublication(item, lang, style)
       obj.index = ++i
       return obj
     })
   } else {
-    pubs = _formatPublication(data, lang, style)
+    pubs = _formatSinglePublication(data, lang, style)
   }
 
   return pubs
 }
 
-function _formatPublication (publ, lang, style) {
+function _formatSinglePublication (publ, lang, style) {
   publ.formattedAuthors = AuthorHelper.getAuthors(publ.publicationTypeCode, publ, lang, style)
   publ.formattedLink = DivaLinkHelper.getLinkUrl(publ.publicationTypeCode, publ)
   publ.formattedLinkText = DivaLinkHelper.getLinkText(publ.publicationTypeCode, publ)
@@ -55,6 +58,7 @@ function _formatPublication (publ, lang, style) {
   return publ
 }
 
+// This function repacks a list of publications into an object with several sublists of publications of the same type
 function _groupPublications (publs) {
   var obj = {}
   obj.refereedArticles = []
