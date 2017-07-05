@@ -15,7 +15,7 @@ function _getLinkText (publicationType, publication) {
   // since they need edition or so before the period
   if (isBookOrSo(publication)) {
     if (title.length > 1 && title.endsWith('.')) {
-      title = title.substring(0, title.length -2)
+      title = title.substring(0, title.length - 2)
     }
   } else {
     if (!title.endsWith('.')) {
@@ -31,12 +31,12 @@ function _getLinkText (publicationType, publication) {
 }
 
 function isBookOrSo (publication) {
-  return (publication.publicationTypeCode === 'book' 
-      || filters.isScienceThesis(publication)
-      || filters.isScienceReport(publication)
-      || filters.isOtherReport(publication)
-      || filters.isScienceConferenceProceeding(publication)
-      || filters.isOtherConferenceProceeding(publication)
-      || filters.isScienceCollection(publication)
-      || filters.isOtherCollection(publication))
+  return (publication.publicationTypeCode === 'book' ||
+    filters.isScienceThesis(publication) ||
+    filters.isScienceReport(publication) ||
+    filters.isOtherReport(publication) ||
+    filters.isScienceConferenceProceeding(publication) ||
+    filters.isOtherConferenceProceeding(publication) ||
+    filters.isScienceCollection(publication) ||
+    filters.isOtherCollection(publication))
 }

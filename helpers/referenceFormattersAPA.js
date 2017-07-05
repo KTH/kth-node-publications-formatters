@@ -23,7 +23,7 @@ function _getBookReference (publication, lang) {
   // City and publisher
   let placeAndPublisher = _getPlaceAndPublisher(publication)
   if (placeAndPublisher && tmp) {
-      tmp += ' '
+    tmp += ' '
   }
   tmp += placeAndPublisher
 
@@ -53,7 +53,7 @@ function _getChapterReference (publication, lang) {
     if (publication.hostExtentEnd) {
       pages = translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd
     } else {
-      pages= translator.message('host_page', lang) + publication.hostExtentStart
+      pages = translator.message('host_page', lang) + publication.hostExtentStart
     }
   }
 
@@ -85,7 +85,7 @@ function _getCollectionReference (publication, lang) {
   // City and publisher
   let placeAndPublisher = _getPlaceAndPublisher(publication)
   if (placeAndPublisher && tmp) {
-      tmp += ' '
+    tmp += ' '
   }
   tmp += placeAndPublisher
 
@@ -120,8 +120,8 @@ function _getOtherReference (publication) {
   // City and publisher
   let placeAndPublisher = _getPlaceAndPublisher(publication)
   if (placeAndPublisher) {
-      tmp += ' '
-      tmp += placeAndPublisher
+    tmp += ' '
+    tmp += placeAndPublisher
   }
 
   return tmp
@@ -140,7 +140,7 @@ function _getPatentReference (publication) {
 function _getReportReference (publication) {
   var tmp = ''
   // Series info
-  const seriesInfo = _getSeriesInfo (publication)
+  const seriesInfo = _getSeriesInfo(publication)
   if (seriesInfo) {
     tmp += ' ('
     tmp += seriesInfo
@@ -165,14 +165,14 @@ function _getThesisReference (publication, lang) {
   const thesisType = translator.message(i18nThesisType, lang)
 
   // University and/or City of thesis
-  const thesisOrigin = _getThesisOrigin (publication)
+  const thesisOrigin = _getThesisOrigin(publication)
   // Series
-  const thesisSeries = _getSeriesInfo (publication)
+  const thesisSeries = _getSeriesInfo(publication)
   tmp += '('
   tmp += thesisType
-  tmp += (!thesisOrigin) ? '': ', '
+  tmp += (!thesisOrigin) ? '' : ', '
   tmp += thesisOrigin
-  tmp += (!thesisSeries) ? '': ', '
+  tmp += (!thesisSeries) ? '' : ', '
   tmp += thesisSeries
   tmp += ')'
   if (publication.identifierUri) {

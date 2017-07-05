@@ -7,7 +7,7 @@ module.exports = {
 }
 
 function _getLinkText (publicationType, publication, style) {
-  if ('apa' === style) {
+  if (style === 'apa') {
     return apaStyle.getLinkText(publicationType, publication)
   } else {
     return ieeeStyle.getLinkText(publicationType, publication)

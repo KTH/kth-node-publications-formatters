@@ -36,7 +36,7 @@ function formatAuthors (publication, authorNames, lang) {
     filters.isScienceArticle(publication) ||
     filters.isArticle(publication) ||
     filters.isOtherArticle(publication)) {
-      return formatArticleAuthors(authorNames)
+    return formatArticleAuthors(authorNames)
   }
 
   // book
@@ -50,50 +50,50 @@ function formatAuthors (publication, authorNames, lang) {
   if (filters.isRefereedChapter(publication) ||
     filters.isScienceChapter(publication) ||
     filters.isOtherChapter(publication)) {
-      return formatArticleAuthors(authorNames)
+    return formatArticleAuthors(authorNames)
   }
 
   // conference paper
   if (filters.isRefereedConferencePaper(publication) ||
     filters.isScienceConferencePaper(publication) ||
     filters.isOtherConferencePaper(publication)) {
-      return authorNames.join(',')
+    return authorNames.join(',')
   }
 
   // report
   if (filters.isScienceReport(publication) ||
     filters.isOtherReport(publication)) {
-      return formatArticleAuthors(authorNames)
+    return formatArticleAuthors(authorNames)
   }
 
   // proceedings
   if (filters.isScienceConferenceProceeding(publication, lang) ||
     filters.isOtherConferenceProceeding(publication)) {
-      return formatCollectionAuthors(authorNames, lang)
+    return formatCollectionAuthors(authorNames, lang)
   }
 
   // thesis
   if (filters.isScienceThesis(publication)) {
-      return formatArticleAuthors(authorNames)
+    return formatArticleAuthors(authorNames)
   }
 
   // patent
   if (filters.isPatent(publication) ||
     filters.isPendingPatent(publication)) {
-      return formatArticleAuthors(authorNames)
+    return formatArticleAuthors(authorNames)
   }
 
   // collection
   if (filters.isScienceCollection(publication) ||
     filters.isOtherCollection(publication)) {
-      return formatCollectionAuthors(authorNames, lang)
+    return formatCollectionAuthors(authorNames, lang)
   }
 
   // others = articles, for now
   if (filters.isRefereedOthers(publication) ||
     filters.isScienceOthers(publication) ||
     filters.isOtherOther(publication)) {
-      return formatArticleAuthors(authorNames)
+    return formatArticleAuthors(authorNames)
   }
 
   return authorNames.join(',')

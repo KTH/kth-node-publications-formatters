@@ -1,4 +1,3 @@
-const translator = require('./translate')
 const apaStyle = require('./AuthorHelperAPA')
 const ieeeStyle = require('./AuthorHelperIEEE')
 const util = require('./AuthorHelperUtil')
