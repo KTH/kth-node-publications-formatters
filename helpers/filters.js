@@ -255,7 +255,7 @@ function isPubContentRefereed (publication) {
 
 // Function checks if publication is type science
 function isPubContentScience (publication) {
-  return publication.contentTypeCode.toLowerCase() === 'science'
+  return publication.contentTypeCode && publication.contentTypeCode.toLowerCase() === 'science'
 }
 
 // Function checks if publication is type other
