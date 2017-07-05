@@ -53,7 +53,7 @@ function _formatPublications (data, style, lang) {
 function _formatSinglePublication (publ, lang, style) {
   publ.formattedAuthors = AuthorHelper.getAuthors(publ.publicationTypeCode, publ, lang, style)
   publ.formattedLink = DivaLinkHelper.getLinkUrl(publ.publicationTypeCode, publ)
-  publ.formattedLinkText = DivaLinkHelper.getLinkText(publ.publicationTypeCode, publ)
+  publ.formattedLinkText = DivaLinkHelper.getLinkText(publ.publicationTypeCode, publ, style)
   publ.formattedDescription = DescriptionHelper.getDescription(publ.publicationTypeCode, publ, lang, style) + '.'
   return publ
 }

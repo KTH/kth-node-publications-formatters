@@ -1,243 +1,92 @@
+'use strict'
+
 const translator = require('./translate')
 const { makeItalic } = require('./styleFormatters')
+const apaStyle = require('./referenceFormattersAPA')
+const ieeeStyle = require('./referenceFormattersIEEE')
 
 module.exports = {
-  _getBookReference: _getBookReference,
-  _getChapterReference: _getChapterReference,
-  _getCollectionReference: _getCollectionReference,
-  _getConferencePaperReference: _getConferencePaperReference,
-  _getConferenceProceedingsReference: _getConferenceProceedingsReference,
-  _getOtherReference: _getOtherReference,
-  _getPatentReference: _getPatentReference,
-  _getReportReference: _getReportReference,
-  _getThesisReference: _getThesisReference
+  getBookReference: _getBookReference,
+  getChapterReference: _getChapterReference,
+  getCollectionReference: _getCollectionReference,
+  getConferencePaperReference: _getConferencePaperReference,
+  getConferenceProceedingsReference: _getConferenceProceedingsReference,
+  getOtherReference: _getOtherReference,
+  getPatentReference: _getPatentReference,
+  getReportReference: _getReportReference,
+  getThesisReference: _getThesisReference
 }
 
 function _getBookReference (publication, lang, style) {
-  // Book edition
-  var tmp = ''
-  tmp = tmp.concat(_getEdition(publication, lang))
-
-  // City of publisher
-  if (publication.bookPlace) {
-    tmp = tmp.concat(publication.bookPlace + ' : ')
+  if (style === 'apa') {
+    return apaStyle.getBookReference(publication, lang)
   }
 
-  // Publisher
-  tmp = _addBookPublisher(publication, tmp)
-  if (style === 'ieee') {
-  // Date issued
-    tmp = _addDateIssued(publication, tmp)
-  }
-  return tmp
+  return ieeeStyle.getBookReference(publication, lang)
 }
 
 function _getChapterReference (publication, lang, style) {
-  var tmp = ''
-  // Book title
-  if (publication.hostTitle) {
-    if (publication.hostSubTitle) {
-      if (publication.statementOfResponsibility || publication.bookEdition || publication.bookPlace || publication.bookPublisher) {
-        tmp = tmp.concat(translator.message('chapter_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle + ', ')
-        )
-      } else {
-        tmp = tmp.concat(translator.message('chapter_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle))
-      }
-    } else {
-      if (publication.statementOfResponsibility || publication.bookEdition || publication.bookPlace || publication.bookPublisher) {
-        tmp = tmp.concat(translator.message('chapter_in', lang) + makeItalic(publication.hostTitle + ', '))
-      } else {
-        tmp = tmp.concat(translator.message('chapter_in', lang) + makeItalic(publication.hostTitle))
-      }
-    }
+  if (style === 'apa') {
+    return apaStyle.getChapterReference(publication, lang)
   }
 
-  // Statement of responsibility
-  if (publication.statementOfResponsibility) {
-    tmp = tmp.concat(publication.statementOfResponsibility + translator.message('editor', lang))
-    if (publication.bookEdition || publication.bookPlace || publication.bookPublisher) {
-      tmp += ', '
-    }
-  }
-
-  // Book edition
-  tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang))
-
-  // City of publisher
-  tmp = _addBookPlace(publication, 'chapter', tmp)
-  // Publisher
-  tmp = _addBookPublisher(publication, tmp)
-  // Date issued
-  if (style === 'ieee') {
-    tmp = _addDateIssued(publication, tmp)
-  }
-
-  // Host pages/extent
-  tmp = _addHostStartEnd(publication, lang, tmp, style)
-  return tmp
+  return ieeeStyle.getChapterReference(publication, lang)
 }
 
 function _getCollectionReference (publication, lang, style) {
-  var tmp = ''
+  if (style === 'apa') {
+    return apaStyle.getCollectionReference(publication, lang)
+  }
 
-  // Book edition
-  if (publication.bookEdition) {
-    if (publication.bookPlace) {
-      tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang) + ', ')
-    } else {
-      tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang))
-    }
-  }
-  // City of publisher
-  tmp = _addBookPlace(publication, 'collection', tmp)
-  // Publisher
-  tmp = _addBookPublisher(publication, tmp)
-  // Series title
-  tmp = _addSeriesTitle(publication, tmp)
-  // Series issue nr
-  tmp = _addSeriesIssueNumber(publication, tmp)
-  // Date issued
-  if (style === 'ieee') {
-    tmp = _addDateIssued(publication, tmp)
-  }
-  return tmp
+  return ieeeStyle.getCollectionReference(publication, lang)
 }
 
 function _getConferencePaperReference (publication, lang, style) {
-  var tmp = ''
-  // Host/conference title
-  if (publication.hostTitle) {
-    if (publication.hostSubTitle) {
-      tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle))
-    } else {
-      tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle))
-    }
-  } else {
-    if (publication.conferenceName) {
-      tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.conferenceName))
-    }
+  if (style === 'apa') {
+    return apaStyle.getConferencePaperReference(publication, lang)
   }
 
-  // Date issued
-  if (style === 'ieee') {
-    tmp = _addDateIssued(publication, tmp)
-  }
-
-  // Host pages/extent
-  tmp = _addHostStartEnd(publication, lang, tmp, style)
-  return tmp
+  return ieeeStyle.getConferencePaperReference(publication, lang)
 }
 
-function _getConferenceProceedingsReference (publication, style) {
-  var tmp = ''
-  // City of publisher
-  tmp = _addBookPlace(publication, 'conferenceProceedings', tmp)
-
-  // Publisher
-  tmp = _addBookPublisher(publication, tmp)
-  if (publication.seriesTitle || publication.seriesIssueNr || publication.dateIssued) {
-    tmp = tmp + ', '
+function _getConferenceProceedingsReference (publication, lang, style) {
+  if (style === 'apa') {
+    return apaStyle.getConferenceProceedingsReference(publication, lang)
   }
 
-  // Series title
-  tmp = _addSeriesTitle(publication, tmp)
-
-  // Series issue nr
-  tmp = _addSeriesIssueNumber(publication, tmp)
-
-  // Date issued
-  if (style === 'ieee') {
-    tmp = _addDateIssued(publication, tmp)
-  }
-  return tmp
+  return ieeeStyle.getConferenceProceedingsReference(publication, lang)
 }
 
 function _getOtherReference (publication, style) {
-  var tmp = ''
-  // Publisher
-  if (publication.bookPublisher) {
-    if (publication.bookPlace) {
-      tmp = tmp.concat(publication.bookPlace + ' : ')
-    }
-    tmp = tmp.concat(publication.bookPublisher)
-  }
-  // Date issued
-  if (style === 'ieee') {
-    tmp = _addDateIssued(publication, tmp)
+  if (style === 'apa') {
+    return apaStyle.getOtherReference(publication)
   }
 
-  return tmp
+  return ieeeStyle.getOtherReference(publication)
 }
 
 function _getPatentReference (publication, style) {
-  // Patent
-  var tmp = ''
-  if (publication.patent) {
-    tmp = tmp.concat(publication.patent)
-  }
-  // Date issued
-  if (style === 'ieee') {
-    tmp = _addDateIssued(publication, tmp)
+  if (style === 'apa') {
+    return apaStyle.getPatentReference(publication)
   }
 
-  return tmp
+  return ieeeStyle.getPatentReference(publication)
 }
 
 function _getReportReference (publication, style) {
-  var tmp = ''
-  // City of publisher
-  if (publication.bookPlace) {
-    if (!publication.bookPublisher) {
-      tmp = tmp.concat(publication.bookPlace + ', ')
-    } else {
-      tmp = tmp.concat(publication.bookPlace + ' : ')
-    }
+  if (style === 'apa') {
+    return apaStyle.getReportReference(publication)
   }
 
-  // Publisher
-  tmp = _addBookPublisher(publication, tmp)
-
-  // Series title
-  tmp = _addSeriesTitle(publication, tmp)
-
-  // Series issue nr
-  tmp = _addSeriesIssueNumber(publication, tmp)
-
-  // Date issued
-  if (style === 'ieee') {
-    tmp = _addDateIssued(publication, tmp)
-  }
-
-  return tmp
+  return ieeeStyle.getReportReference(publication)
 }
 
 function _getThesisReference (publication, lang, style) {
-  var tmp = ''
-  // Thesis type
-  var i18nThesisType = 'thesis_licentiate'
-  if (publication.publicationTypeCode === 'comprehensiveDoctoralThesis' || publication.publicationTypeCode === 'monographDoctoralThesis') {
-    i18nThesisType = 'thesis_doctoral'
+  if (style === 'apa') {
+    return apaStyle.getThesisReference(publication, lang)
   }
 
-  tmp = tmp.concat(translator.message(i18nThesisType, lang))
-  // City of publisher
-  tmp = _addBookPlace(publication, 'thesis', tmp)
-
-  // Publisher
-  tmp = _addBookPublisher(publication, tmp)
-
-  // Series title
-  tmp = _addSeriesTitle(publication, tmp)
-
-  // Series issue nr
-  tmp = _addSeriesIssueNumber(publication, tmp)
-
-  // Date issued
-  if (style === 'ieee') {
-    tmp = _addDateIssued(publication, tmp)
-  }
-
-  return tmp
+  return ieeeStyle.getThesisReference(publication, lang)
 }
 
 /**
@@ -320,14 +169,14 @@ function _addSeriesTitle (publication, tmpString) {
   return tmpString.concat(prepend + publication.seriesTitle)
 }
 
-function _addHostStartEnd (publication, lang, tmpString, style) {
+function _addHostStartEnd (publication, lang, tmpString) {
   if (!publication.hostExtentStart) {
     return tmpString
   }
   var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
   if (publication.hostExtentEnd) {
-    return tmpString.concat(prepend + (style === 'ieee' ? translator.message('host_pages', lang) : '') + publication.hostExtentStart + '-' + publication.hostExtentEnd)
+    return tmpString.concat(prepend + translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd)
   } else {
-    return tmpString.concat(prepend + (style === 'ieee' ? translator.message('host_page', lang) : '') + publication.hostExtentStart)
+    return tmpString.concat(prepend + translator.message('host_page', lang) + publication.hostExtentStart)
   }
 }

@@ -1,16 +1,17 @@
+const filters = require('./filters')
 const translator = require('./translate')
 const { makeItalic } = require('./styleFormatters')
 
 const {
-  _getBookReference,
-  _getCollectionReference,
-  _getConferenceProceedingsReference,
-  _getPatentReference,
-  _getReportReference,
-  _getChapterReference,
-  _getConferencePaperReference,
-  _getOtherReference,
-  _getThesisReference
+  getBookReference,
+  getCollectionReference,
+  getConferenceProceedingsReference,
+  getPatentReference,
+  getReportReference,
+  getChapterReference,
+  getConferencePaperReference,
+  getOtherReference,
+  getThesisReference
 } = require('./referenceFormatters')
 
 module.exports = {
@@ -69,33 +70,37 @@ function _getHostExtent (publication, lang, style) {
 function _getDescription (publicationType, publication, lang, style) {
   var publicationDescription = ''
 
+  if (filters.isScienceThesis(publication)) {
+    return publicationDescription.concat(getThesisReference(publication, lang, style))
+  }
+
   switch (publication.publicationTypeCode) {
     case 'book':
       // publicationDescription = ''
-      publicationDescription = publicationDescription.concat(_getBookReference(publication, lang, style))
+      publicationDescription = publicationDescription.concat(getBookReference(publication, lang, style))
       break
     case 'chapter':
       // publicationDescription = ''
-      publicationDescription = publicationDescription.concat(_getChapterReference(publication, lang, style))
+      publicationDescription = publicationDescription.concat(getChapterReference(publication, lang, style))
       break
     case 'collection':
-      publicationDescription = publicationDescription.concat(_getCollectionReference(publication, lang, style))
+      publicationDescription = publicationDescription.concat(getCollectionReference(publication, lang, style))
       break
     case 'conferencePaper':
-      publicationDescription = publicationDescription.concat(_getConferencePaperReference(publication, lang, style))
+      publicationDescription = publicationDescription.concat(getConferencePaperReference(publication, lang, style))
       break
     case 'conferenceProceedings':
-      publicationDescription = publicationDescription.concat(_getConferenceProceedingsReference(publication, style))
+      publicationDescription = publicationDescription.concat(getConferenceProceedingsReference(publication, lang, style))
       break
     case 'other':
-      publicationDescription = publicationDescription.concat(_getOtherReference(publication, style))
+      publicationDescription = publicationDescription.concat(getOtherReference(publication, style))
       break
     case 'patent':
-      publicationDescription = publicationDescription.concat(_getPatentReference(publication, style))
+      publicationDescription = publicationDescription.concat(getPatentReference(publication, style))
       break
     case 'report':
       // publicationDescription = ''
-      publicationDescription = publicationDescription.concat(_getReportReference(publication, style))
+      publicationDescription = publicationDescription.concat(getReportReference(publication, style))
       break
     default:
       publicationDescription = _getHost(publication) +
@@ -106,10 +111,6 @@ function _getDescription (publicationType, publication, lang, style) {
         publicationDescription = publicationDescription.concat(', ' + publication.dateIssued)
       }
       break
-  }
-
-  if (publicationType === 'scienceThesis') {
-    publicationDescription = publicationDescription.concat(_getThesisReference(publication, lang))
   }
 
   return publicationDescription
