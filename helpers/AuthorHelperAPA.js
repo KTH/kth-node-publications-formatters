@@ -57,7 +57,7 @@ function formatAuthors (publication, authorNames, lang) {
   if (filters.isRefereedConferencePaper(publication) ||
     filters.isScienceConferencePaper(publication) ||
     filters.isOtherConferencePaper(publication)) {
-    return authorNames.join(',')
+    return authorNames.join(', ')
   }
 
   // report
@@ -96,7 +96,7 @@ function formatAuthors (publication, authorNames, lang) {
     return formatArticleAuthors(authorNames)
   }
 
-  return authorNames.join(',')
+  return authorNames.join(', ')
 }
 
 function formatArticleAuthors (authorNames) {
@@ -131,7 +131,7 @@ function formatBookAuthors (authorNames) {
 
 function formatCollectionAuthors (authorNames, lang) {
   let editorLabel = authorNames.length > 1 ? translator.message('editors_apa', lang) : translator.message('editor_apa', lang)
-  return authorNames.join(',').concat(' ' + editorLabel)
+  return authorNames.join(', ').concat(' ' + editorLabel)
 }
 
 function formatAuthorName (author) {
