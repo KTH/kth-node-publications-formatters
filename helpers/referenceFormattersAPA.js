@@ -168,7 +168,7 @@ function _getThesisReference (publication, lang) {
   const thesisOrigin = _getThesisOrigin(publication)
   // Series
   const thesisSeries = _getSeriesInfo(publication)
-  tmp += '('
+  tmp += ' ('
   tmp += thesisType
   tmp += (!thesisOrigin) ? '' : ', '
   tmp += thesisOrigin
