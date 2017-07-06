@@ -1,5 +1,6 @@
 'use strict'
 
+const translator = require('./translate')
 const apaStyle = require('./referenceFormattersAPA')
 const ieeeStyle = require('./referenceFormattersIEEE')
 
@@ -12,7 +13,8 @@ module.exports = {
   getOtherReference: _getOtherReference,
   getPatentReference: _getPatentReference,
   getReportReference: _getReportReference,
-  getThesisReference: _getThesisReference
+  getThesisReference: _getThesisReference,
+  getManuscriptReference: _getManuscriptReference
 }
 
 function _getBookReference (publication, lang, style) {
@@ -85,4 +87,13 @@ function _getThesisReference (publication, lang, style) {
   }
 
   return ieeeStyle.getThesisReference(publication, lang)
+}
+
+function _getManuscriptReference (publication, lang) {
+  var tmp = ''
+  tmp += ' ('
+  tmp += translator.message('manuscript', lang)
+  tmp += ')'
+
+  return tmp
 }

@@ -11,7 +11,8 @@ const {
   getChapterReference,
   getConferencePaperReference,
   getOtherReference,
-  getThesisReference
+  getThesisReference,
+  getManuscriptReference
 } = require('./referenceFormatters')
 
 module.exports = {
@@ -101,6 +102,9 @@ function _getDescription (publicationType, publication, lang, style) {
     case 'report':
       // publicationDescription = ''
       publicationDescription = publicationDescription.concat(getReportReference(publication, style))
+      break
+    case 'manuscript':
+      publicationDescription = publicationDescription.concat(getManuscriptReference(publication, lang, style))
       break
     default:
       publicationDescription = _getHost(publication) +

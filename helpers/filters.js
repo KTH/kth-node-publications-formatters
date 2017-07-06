@@ -24,7 +24,8 @@ module.exports = {
   isOtherConferencePaper,
   isOtherConferenceProceeding,
   isOtherReport,
-  isOtherOther
+  isOtherOther,
+  isScienceManuscript
 }
 
 /* * * * * * * * * * * * * Refereed * * * * * * * * * * * * * */
@@ -261,6 +262,14 @@ function isPubContentScience (publication) {
 // Function checks if publication is type other
 function isPubContentOther (publication) {
   return publication.contentTypeCode.toLowerCase() === 'other'
+}
+
+// Function checks if publication is type science manuscript
+function isScienceManuscript (publication) {
+  if (isPubContentScience(publication) && publication.publicationTypeCode === 'manuscript') {
+    return true
+  }
+  return false
 }
 
 // Function checks if publication has date issued

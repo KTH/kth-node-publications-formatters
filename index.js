@@ -137,6 +137,8 @@ function _groupPublications (publs) {
       obj.scienceCollections.push(publication)
     } else if (filters.isOtherOther(publication)) {
       obj.scienceOthers.push(publication)
+    } else if (filters.isScienceManuscript(publication)) {
+      obj.scienceOthers.push(publication)
     } else {
       log.debug(
         'Publication is not added to any list: ' +
