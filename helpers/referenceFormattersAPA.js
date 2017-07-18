@@ -99,7 +99,7 @@ function _getConferencePaperReference (publication, lang) {
   // Since values for host title and conference most often contain "Proceedings of" Just list the title and hope for the best
   if (publication.hostTitle) {
     if (publication.hostSubTitle) {
-      tmp +=  translator.message('conference_in_apa', lang) + makeItalic(publication.hostTitle + ': ' + publication.hostSubTitle + '.')
+      tmp += translator.message('conference_in_apa', lang) + makeItalic(publication.hostTitle + ': ' + publication.hostSubTitle + '.')
     } else {
       tmp = translator.message('conference_in_apa', lang) + makeItalic(publication.hostTitle + '.')
     }
