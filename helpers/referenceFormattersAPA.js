@@ -58,7 +58,7 @@ function _getChapterReference (publication, lang) {
   }
 
   if (edition || pages) {
-    tmp += '('
+    tmp += ' ('
     if (edition && pages) {
       tmp += edition + ' ' + pages
     } else if (edition) {
@@ -98,16 +98,27 @@ function _getConferencePaperReference (publication, lang) {
   // This is not according to PI suggestion
   // Since values for host title and conference most often contain "Proceedings of" Just list the title and hope for the best
   if (publication.hostTitle) {
-    tmp = tmp.concat(translator.message('conference_in_apa', lang) + makeItalic(publication.hostTitle))
+    if (publication.hostSubTitle) {
+      tmp +=  translator.message('conference_in_apa', lang) + makeItalic(publication.hostTitle + ': ' + publication.hostSubTitle + '.')
+    } else {
+      tmp = translator.message('conference_in_apa', lang) + makeItalic(publication.hostTitle + '.')
+    }
   } else {
     if (publication.conferenceName) {
-      tmp = tmp.concat(translator.message('presented_at', lang))
-      tmp = tmp.concat(makeItalic(publication.conferenceName))
+      tmp = translator.message('presented_at', lang) + makeItalic(publication.conferenceName) + '.'
     }
   }
 
   // Host pages/extent
-  tmp = _addHostStartEnd(publication, lang, tmp)
+  const pages = _getHostStartEnd(publication, lang)
+  if (pages) {
+    tmp += ' (' + pages + ').'
+  }
+  // City and publisher
+  let placeAndPublisher = _getPlaceAndPublisher(publication)
+  if (placeAndPublisher) {
+    tmp += ' ' + placeAndPublisher
+  }
   return tmp
 }
 
@@ -178,7 +189,7 @@ function _getThesisReference (publication, lang) {
   if (publication.identifierUri) {
     tmp += '. '
     tmp += translator.message('thesis_retrieved_from', lang)
-    tmp += ' ' + publication.identifierUri
+    tmp += ' <a target="_blank" href="' + publication.identifierUri + '">' + publication.identifierUri + '</a>'
   }
 
   return tmp
@@ -193,29 +204,14 @@ function _getThesisReference (publication, lang) {
 */
 
 function _getEdition (publication, lang) {
-  let result = ''
   if (!publication.bookEdition) {
     return ''
   }
-  var text = publication.bookEdition
-  var value = 0
-  try {
-    value = parseInt(text)
-    switch (value) {
-      case 1:
-        result = ''
-        break
-      case 2:
-        result = value + translator.message('suffix_two', lang)
-        break
-      case 3:
-        result = value + translator.message('suffix_three', lang)
-        break
-      default:
-        result = value + translator.message('suffix_default', lang)
-    }
-  } catch (e) {
-    result = text
+  let result = publication.bookEdition
+  // add ed/uppl if edition numeric
+  const numbersRegex = /^[0-9]*$/
+  if (numbersRegex.test(result)) {
+    result += translator.message('edition_apa', lang)
   }
 
   if (result) {
@@ -265,14 +261,14 @@ function _getSeriesInfo (publication) {
   return thesisSeries
 }
 
-function _addHostStartEnd (publication, lang, tmpString) {
+function _getHostStartEnd (publication, lang) {
   if (!publication.hostExtentStart) {
-    return tmpString
+    return ''
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+
   if (publication.hostExtentEnd) {
-    return tmpString.concat(prepend + translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd)
+    return translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd
   } else {
-    return tmpString.concat(prepend + translator.message('host_page', lang) + publication.hostExtentStart)
+    return translator.message('host_page', lang) + publication.hostExtentStart
   }
 }

@@ -27,7 +27,7 @@ function _getAPAAuthors (publicationType, publication, lang) {
   let formattedAuthorNames = formatAuthors(publication, authorNames, lang)
   var formattedDate = publication.dateIssued
 
-  return formattedAuthorNames.concat('. ').concat('(' + formattedDate + '). ')
+  return formattedAuthorNames.concat(' ').concat('(' + formattedDate + '). ')
 }
 
 function formatAuthors (publication, authorNames, lang) {
@@ -131,7 +131,7 @@ function formatBookAuthors (authorNames) {
 
 function formatCollectionAuthors (authorNames, lang) {
   let editorLabel = authorNames.length > 1 ? translator.message('editors_apa', lang) : translator.message('editor_apa', lang)
-  return authorNames.join(', ').concat(' ' + editorLabel)
+  return authorNames.join(', ').concat(' ' + editorLabel + '.')
 }
 
 function formatAuthorName (author) {
@@ -148,6 +148,10 @@ function formatAuthorName (author) {
     return author.familyName + ', ' + util.splitAndFixNameParts(author.givenName, '-')
   } else {
     // Standard single name, eg Anna
-    return author.familyName + ', ' + util.shortenAndPunctuate(author.givenName)
+    let formattedName = util.shortenAndPunctuate(author.givenName)
+    if (formattedName.length === 1) {
+      formattedName += '.' // all given names should be initials and ended with a period
+    }
+    return author.familyName + ', ' + formattedName
   }
 }

@@ -107,10 +107,7 @@ function _getDescription (publicationType, publication, lang, style) {
       publicationDescription = publicationDescription.concat(getManuscriptReference(publication, lang, style))
       break
     default:
-      if (style === 'apa') {
-        publicationDescription += ' '
-      }
-      publicationDescription += _getHost(publication) +
+      publicationDescription = ' ' + _getHost(publication) +
         _getHostVolume(publication, lang, style) +
         _getHostIssue(publication, lang, style) +
         _getHostExtent(publication, lang, style)
