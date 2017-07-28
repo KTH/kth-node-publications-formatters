@@ -18,7 +18,7 @@ module.exports = {
 function _getBookReference (publication, lang) {
   // Book edition
   var tmp = ''
-  tmp = tmp.concat(_getEdition(publication, lang))
+  tmp = _getEdition(publication, tmp, lang)
 
   // City of publisher
   if (publication.bookPlace) {
@@ -62,7 +62,7 @@ function _getChapterReference (publication, lang) {
   }
 
   // Book edition
-  tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang))
+  tmp = _getEdition(publication, tmp, lang)
 
   // City of publisher
   tmp = _addBookPlace(publication, 'chapter', tmp)
@@ -80,13 +80,8 @@ function _getCollectionReference (publication, lang) {
   var tmp = ''
 
   // Book edition
-  if (publication.bookEdition) {
-    if (publication.bookPlace) {
-      tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang) + ', ')
-    } else {
-      tmp = tmp.concat(_getEdition(publication, lang) + translator.message('edition', lang))
-    }
-  }
+  tmp = _getEdition(publication, tmp, lang)
+
   // City of publisher
   tmp = _addBookPlace(publication, 'collection', tmp)
   // Publisher
@@ -235,26 +230,27 @@ function _getThesisReference (publication, lang) {
  * This doesn't always work, some things have either a colon or comma depending on some parameter.
 */
 
-function _getEdition (publication, lang) {
+function _getEdition (publication, tmpString, lang) {
   if (!publication.bookEdition) {
-    return ''
+    return tmpString
   }
   var text = publication.bookEdition
   var value = 0
   try {
     value = parseInt(text)
   } catch (e) {
-    return text
+    return tmpString
   }
+
   switch (value) {
     case 1:
-      return value + translator.message('suffix_one', lang)
+      return tmpString.concat(value + translator.message('suffix_one', lang) + translator.message('edition', lang))
     case 2:
-      return value + translator.message('suffix_two', lang)
+      return tmpString.concat(value + translator.message('suffix_two', lang) + translator.message('edition', lang))
     case 3:
-      return value + translator.message('suffix_three', lang)
+      return tmpString.concat(value + translator.message('suffix_three', lang) + translator.message('edition', lang))
     default:
-      return value + translator.message('suffix_default', lang)
+      return tmpString.concat(value + translator.message('suffix_default', lang) + translator.message('edition', lang))
   }
 }
 

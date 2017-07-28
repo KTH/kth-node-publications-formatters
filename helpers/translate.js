@@ -12,7 +12,7 @@ const _messages = {
     editor: ' Ed.',
     editors_apa: '(Eds.)',
     editor_apa: '(Ed.)',
-    edition: ' ed. ',
+    edition: 'ed. ',
     edition_apa: ' ed.',
     conference_in: ' in ',
     conference_in_apa: ' In ',

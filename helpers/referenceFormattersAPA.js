@@ -22,16 +22,16 @@ function _getBookReference (publication, lang) {
 
   // City and publisher
   let placeAndPublisher = _getPlaceAndPublisher(publication)
-  if (placeAndPublisher && tmp) {
-    tmp += ' '
-  }
+  // if (placeAndPublisher && tmp) {
+  //   tmp += ' '
+  // }
   tmp += placeAndPublisher
 
   return tmp
 }
 
 function _getChapterReference (publication, lang) {
-  var tmp = ' ' + translator.message('chapter_in_apa', lang) + ' '
+  var tmp = ' ' + translator.message('chapter_in_apa', lang)
 
   // editor
   let editor = publication.statementOfResponsibility
@@ -84,9 +84,9 @@ function _getCollectionReference (publication, lang) {
 
   // City and publisher
   let placeAndPublisher = _getPlaceAndPublisher(publication)
-  if (placeAndPublisher && tmp) {
-    tmp += ' '
-  }
+  // if (placeAndPublisher && tmp) {
+  //   tmp += ' '
+  // }
   tmp += placeAndPublisher
 
   return tmp

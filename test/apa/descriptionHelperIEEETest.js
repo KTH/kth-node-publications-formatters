@@ -142,8 +142,8 @@ describe('DescriptionHelper', function () {
         bookPublisher: 'Advanced Knowledge International',
         dateIssued: '2017'
       }
-      helper.getDescription('refereedBook', publication, 'sv', 'ieee').should.equal('5.Bräkne-Hoby : Advanced Knowledge International, 2017')
-      helper.getDescription('refereedBook', publication, 'en', 'ieee').should.equal('5th Bräkne-Hoby : Advanced Knowledge International, 2017')
+      helper.getDescription('refereedBook', publication, 'sv', 'ieee').should.equal('5. uppl. Bräkne-Hoby : Advanced Knowledge International, 2017')
+      helper.getDescription('refereedBook', publication, 'en', 'ieee').should.equal('5th ed. Bräkne-Hoby : Advanced Knowledge International, 2017')
     })
   })
 
@@ -160,13 +160,13 @@ describe('DescriptionHelper', function () {
         publicationTypeCode: 'chapter',
         dateIssued: '2017'
       }
-      helper.getDescription('refereedChapter', publication, 'sv', 'ieee').should.equal(' i  <i>Rakosten: en uppskjuten framgångssaga</i>Urpo ja Turpo red. (s. 72-83). Bräkne-Hoby: Advanced Knowledge International')
-      helper.getDescription('refereedChapter', publication, 'en', 'ieee').should.equal(' in  Urpo ja Turpo Ed., <i>Rakosten: en uppskjuten framgångssaga</i> (pp. 72-83). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedChapter', publication, 'sv', 'ieee').should.equal('i <i>Rakosten : en uppskjuten framgångssaga, </i>Urpo ja Turpo red., Bräkne-Hoby : Advanced Knowledge International, 2017, s. 72-83')
+      helper.getDescription('refereedChapter', publication, 'en', 'ieee').should.equal('in <i>Rakosten : en uppskjuten framgångssaga, </i>Urpo ja Turpo Ed., Bräkne-Hoby : Advanced Knowledge International, 2017, pp. 72-83')
     })
   })
 
-  describe('Rules for formatting the description of a publication of the type chapter.', function () {
-    it('Chapter correctly formatted.', function () {
+  describe('Rules for formatting the description of a publication of the type thesis.', function () {
+    it('Thesis correctly formatted.', function () {
       var publication = {
         seriesIssueNr: '2017:29',
         seriesTitle: 'TRITA-TEST',
@@ -176,8 +176,8 @@ describe('DescriptionHelper', function () {
         contentTypeCode: 'science',
         publicationTypeCode: 'comprehensiveDoctoralThesis'
       }
-      helper.getDescription('refereedScienceThesis', publication, 'sv', 'ieee').should.equal(' (Doktorsavhandling , Advanced Knowledge International, Bräkne-Hoby, TRITA-TEST 2017:29). Hämtad från <a target="_blank" href="http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-206750">http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-206750</a>')
-      helper.getDescription('refereedScienceThesis', publication, 'en', 'ieee').should.equal(' (Doctoral thesis , Advanced Knowledge International, Bräkne-Hoby, TRITA-TEST 2017:29). Retrieved from <a target="_blank" href="http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-206750">http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-206750</a>')
+      helper.getDescription('refereedScienceThesis', publication, 'sv', 'ieee').should.equal('Doktorsavhandling Bräkne-Hoby : Advanced Knowledge International, TRITA-TEST, 2017:29')
+      helper.getDescription('refereedScienceThesis', publication, 'en', 'ieee').should.equal('Doctoral thesis Bräkne-Hoby : Advanced Knowledge International, TRITA-TEST, 2017:29')
     })
   })
 
@@ -190,7 +190,7 @@ describe('DescriptionHelper', function () {
         bookPlace: 'Bräkne-Hoby',
         bookPublisher: 'Advanced Knowledge International'
       }
-      helper.getDescription('refereedBook', publication, 'sv', 'ieee').should.equal(' (Testserie 2012:06). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedBook', publication, 'sv', 'ieee').should.equal('Bräkne-Hoby : Advanced Knowledge International, Testserie, 2012:06')
     })
   })
 
@@ -203,8 +203,8 @@ describe('DescriptionHelper', function () {
         contentTypeCode: 'other',
         publicationTypeCode: 'collection'
       }
-      helper.getDescription('refereedCollection', publication, 'sv', 'ieee').should.equal(' (3 uppl.).  Bräkne-Hoby: Advanced Knowledge International')
-      helper.getDescription('refereedCollection', publication, 'en', 'ieee').should.equal(' (3 ed.).  Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedCollection', publication, 'sv', 'ieee').should.equal('3. uppl. Bräkne-Hoby, Advanced Knowledge International')
+      helper.getDescription('refereedCollection', publication, 'en', 'ieee').should.equal('3rd ed. Bräkne-Hoby, Advanced Knowledge International')
     })
   })
 
@@ -217,8 +217,8 @@ describe('DescriptionHelper', function () {
         contentTypeCode: 'refereed',
         publicationTypeCode: 'conferenceProceedings'
       }
-      helper.getDescription('refereedConferenceProceedings', publication, 'sv', 'ieee').should.equal(' (3 uppl.).  Bräkne-Hoby: Advanced Knowledge International')
-      helper.getDescription('refereedConferenceProceedings', publication, 'en', 'ieee').should.equal(' (3 ed.).  Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedConferenceProceedings', publication, 'sv', 'ieee').should.equal('Bräkne-Hoby, Advanced Knowledge International')
+      helper.getDescription('refereedConferenceProceedings', publication, 'en', 'ieee').should.equal('Bräkne-Hoby, Advanced Knowledge International')
     })
   })
 
@@ -230,7 +230,7 @@ describe('DescriptionHelper', function () {
         contentTypeCode: 'other',
         publicationTypeCode: 'patent'
       }
-      helper.getDescription('patent', publication, 'sv', 'ieee').should.equal(' <i>WO2015144902-A1</i>')
+      helper.getDescription('patent', publication, 'sv', 'ieee').should.equal('WO2015144902-A1')
     })
   })
 })

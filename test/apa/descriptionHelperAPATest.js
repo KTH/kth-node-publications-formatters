@@ -136,8 +136,8 @@ describe('DescriptionHelper', function () {
         bookPlace: 'Bräkne-Hoby',
         bookPublisher: 'Advanced Knowledge International'
       }
-      helper.getDescription('refereedBook', publication, 'sv', 'apa').should.equal(' (5 uppl.).  Bräkne-Hoby: Advanced Knowledge International')
-      helper.getDescription('refereedBook', publication, 'en', 'apa').should.equal(' (5 ed.).  Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedBook', publication, 'sv', 'apa').should.equal(' (5 uppl.). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedBook', publication, 'en', 'apa').should.equal(' (5 ed.). Bräkne-Hoby: Advanced Knowledge International')
     })
   })
 
@@ -153,13 +153,13 @@ describe('DescriptionHelper', function () {
         hostTitle: 'Rakosten',
         publicationTypeCode: 'chapter'
       }
-      helper.getDescription('refereedChapter', publication, 'sv', 'apa').should.equal(' I  Urpo ja Turpo red., <i>Rakosten: en uppskjuten framgångssaga</i> (s. 72-83). Bräkne-Hoby: Advanced Knowledge International')
-      helper.getDescription('refereedChapter', publication, 'en', 'apa').should.equal(' In  Urpo ja Turpo Ed., <i>Rakosten: en uppskjuten framgångssaga</i> (pp. 72-83). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedChapter', publication, 'sv', 'apa').should.equal(' I Urpo ja Turpo red., <i>Rakosten: en uppskjuten framgångssaga</i> (s. 72-83). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedChapter', publication, 'en', 'apa').should.equal(' In Urpo ja Turpo Ed., <i>Rakosten: en uppskjuten framgångssaga</i> (pp. 72-83). Bräkne-Hoby: Advanced Knowledge International')
     })
   })
 
-  describe('Rules for formatting the description of a publication of the type chapter.', function () {
-    it('Chapter correctly formatted.', function () {
+  describe('Rules for formatting the description of a publication of the type thesis.', function () {
+    it('Thesis correctly formatted.', function () {
       var publication = {
         seriesIssueNr: '2017:29',
         seriesTitle: 'TRITA-TEST',
@@ -196,8 +196,8 @@ describe('DescriptionHelper', function () {
         contentTypeCode: 'other',
         publicationTypeCode: 'collection'
       }
-      helper.getDescription('refereedCollection', publication, 'sv', 'apa').should.equal(' (3 uppl.).  Bräkne-Hoby: Advanced Knowledge International')
-      helper.getDescription('refereedCollection', publication, 'en', 'apa').should.equal(' (3 ed.).  Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedCollection', publication, 'sv', 'apa').should.equal(' (3 uppl.). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedCollection', publication, 'en', 'apa').should.equal(' (3 ed.). Bräkne-Hoby: Advanced Knowledge International')
     })
   })
 
@@ -210,8 +210,8 @@ describe('DescriptionHelper', function () {
         contentTypeCode: 'refereed',
         publicationTypeCode: 'conferenceProceedings'
       }
-      helper.getDescription('refereedConferenceProceedings', publication, 'sv', 'apa').should.equal(' (3 uppl.).  Bräkne-Hoby: Advanced Knowledge International')
-      helper.getDescription('refereedConferenceProceedings', publication, 'en', 'apa').should.equal(' (3 ed.).  Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedConferenceProceedings', publication, 'sv', 'apa').should.equal(' (3 uppl.). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedConferenceProceedings', publication, 'en', 'apa').should.equal(' (3 ed.). Bräkne-Hoby: Advanced Knowledge International')
     })
   })
 
