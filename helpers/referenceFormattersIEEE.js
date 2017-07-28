@@ -263,6 +263,7 @@ function _addDateIssued (publication, tmpString) {
     var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
     return tmpString.concat(prepend + publication.dateIssued)
   }
+  return tmpString
 }
 
 const _bookPlaceSuffix = {
