@@ -5,7 +5,7 @@ describe('DescriptionHelper', function () {
   var helper
 
   before(function (done) {
-    helper = require('../helpers/DescriptionHelper')
+    helper = require('../../helpers/DescriptionHelper')
     done()
   })
 

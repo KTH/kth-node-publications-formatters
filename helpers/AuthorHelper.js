@@ -1,10 +1,10 @@
 const apaStyle = require('./AuthorHelperAPA')
 const ieeeStyle = require('./AuthorHelperIEEE')
-const util = require('./AuthorHelperUtil')
+const utils = require('./AuthorHelperUtil')
 
 module.exports = {
   getAuthors: _getAuthors,
-  splitAndFixNameParts: util.splitAndFixNameParts
+  splitAndFixNameParts: utils.splitAndFixNameParts
 }
 
 function _getAuthors (publicationType, publication, lang, style) {

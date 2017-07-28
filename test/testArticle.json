@@ -1,0 +1,64 @@
+{
+    "publicationId" : "diva2:338787",
+    "authors" : [ 
+        {
+            "familyName" : "Test",
+            "givenName" : "Pekka",
+            "role" : "aut"
+        }, 
+        {
+            "familyName" : "Mule",
+            "givenName" : "Olli",
+            "role" : "aut"
+        },
+        {
+            "familyName" : "Wåffel",
+            "givenName" : "Hannu",
+            "role" : "aut"
+        } 
+    ],
+    "topics" : [ 
+        {
+            "title" : "ALOHA"
+        }, 
+        {
+            "title" : "capture"
+        }, 
+        {
+            "title" : "constrained power control"
+        }, 
+        {
+            "title" : "energy efficiency"
+        }, 
+        {
+            "title" : "slotted aloha"
+        }, 
+        {
+            "title" : "channels"
+        }
+    ],
+    "organizationId" : "6221",
+    "seriesIssueNr" : "",
+    "seriesTitle" : "",
+    "patent" : "",
+    "statementOfResponsibility" : "",
+    "identifierUri" : "http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-20094",
+    "bookEdition" : "",
+    "bookPublisher" : "",
+    "bookPlace" : "",
+    "conferenceName" : "",
+    "recordOrigin" : "",
+    "hostExtentEnd" : "285",
+    "hostExtentStart" : "283",
+    "hostIssue" : "9",
+    "hostVolume" : "4",
+    "hostSubTitle" : "",
+    "hostTitle" : "IEEE Communications Letters",
+    "contentTypeCode" : "refereed",
+    "publicationSubTypeCode" : "",
+    "publicationTypeCode" : "article",
+    "dateIssued" : "2000",
+    "publicationStatus" : "Published",
+    "subTitle" : "",
+    "title" : "Throughput and energy consumption tradeoffs in pathgain-based constrained power control in ALOHA networks"
+}
