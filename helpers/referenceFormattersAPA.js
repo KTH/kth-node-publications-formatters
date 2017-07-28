@@ -142,7 +142,7 @@ function _getPatentReference (publication) {
   // Patent
   var tmp = ''
   if (publication.patent) {
-    tmp = tmp.concat(' ' + publication.patent)
+    tmp = tmp.concat(' ' + makeItalic(publication.patent))
   }
 
   return tmp
