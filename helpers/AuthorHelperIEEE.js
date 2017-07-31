@@ -1,6 +1,6 @@
 const translator = require('./translate')
 const styleFormatters = require('./styleFormatters')
-const util = require('./AuthorHelperUtil')
+const utils = require('./AuthorHelperUtil')
 
 module.exports = {
   getAuthors: _getIEEEAuthors
@@ -26,17 +26,17 @@ function _getIEEEAuthors (publicationType, publication, lang) {
       if (author.givenName.indexOf(' ') !== -1) {
         // Space separated name, eg Anna Lisa
         returnNames.push(
-          util.splitAndFixNameParts(author.givenName, ' ') + ' ' + author.familyName
+          utils.splitAndFixNameParts(author.givenName, ' ') + ' ' + author.familyName
         )
       } else if (author.givenName.indexOf('-') !== -1) {
         // Line separated name, eg Anna-Lisa
         returnNames.push(
-          util.splitAndFixNameParts(author.givenName, '-') + ' ' + author.familyName
+          utils.splitAndFixNameParts(author.givenName, '-') + ' ' + author.familyName
         )
       } else {
         // Standard single name, eg Anna
         returnNames.push(
-          util.shortenAndPunctuate(author.givenName) + '. ' + author.familyName
+          utils.shortenAndPunctuate(author.givenName) + '. ' + author.familyName
         )
       }
     }
@@ -44,7 +44,7 @@ function _getIEEEAuthors (publicationType, publication, lang) {
 
   var authorNames = ''
   if (returnNames.length === 1) {
-    authorNames = returnNames[0] + ','
+    authorNames = returnNames[0] + ', '
   } else if (returnNames.length === 2) {
     authorNames =
       returnNames[0] +
@@ -69,9 +69,9 @@ function _getIEEEAuthors (publicationType, publication, lang) {
 
   if (authorRole === 'edt') {
     if (returnNames.length === 1) {
-      authorNames += ' Ed.'
+      authorNames += 'Ed.'
     } else if (returnNames.length > 1) {
-      authorNames += ' Eds.'
+      authorNames += 'Eds.'
     }
   }
   return authorNames

@@ -1,0 +1,87 @@
+{
+    "publicationId" : "diva2:951846",
+    "authors" : [ 
+        {
+            "familyName" : "Test",
+            "givenName" : "Pekka",
+            "role" : "edt"
+        }, 
+        {
+            "familyName" : "Mule",
+            "givenName" : "Olli",
+            "role" : "edt"
+        },
+        {
+            "familyName" : "Wåffel",
+            "givenName" : "Hannu",
+            "role" : "edt"
+        } 
+    ],
+    "topics" : [ 
+        {
+            "title" : "CLT"
+        }, 
+        {
+            "title" : "cross-laminated timber"
+        }, 
+        {
+            "title" : "material and product properties"
+        }, 
+        {
+            "title" : "timber engineering"
+        }, 
+        {
+            "title" : "timber construction"
+        }, 
+        {
+            "title" : "COST Action"
+        }, 
+        {
+            "title" : "fire design"
+        }, 
+        {
+            "title" : "connections"
+        }, 
+        {
+            "title" : "Engineering and Technology"
+        }, 
+        {
+            "title" : "Teknik och teknologier"
+        }, 
+        {
+            "title" : "Civil and Architectural Engineering"
+        }, 
+        {
+            "title" : "Byggvetenskap"
+        }, 
+        {
+            "title" : "Materials Science and Engineering"
+        }, 
+        {
+            "title" : "Teknisk materialvetenskap"
+        }
+    ],
+    "organizationId" : "5860",
+    "seriesIssueNr" : "2016:2",
+    "seriesTitle" : "",
+    "patent" : "",
+    "statementOfResponsibility" : "",
+    "bookEdition" : "",
+    "bookPublisher" : "KTH Royal Institute of Technology",
+    "bookPlace" : "Stockholm",
+    "conferenceName" : "Joint Conference of COST Actions FP1402 & FP1404 Cross Laminated Timber",
+    "recordOrigin" : "u1pvn9h4",
+    "hostExtentEnd" : "",
+    "hostExtentStart" : "",
+    "hostIssue" : "",
+    "hostVolume" : "",
+    "hostSubTitle" : "",
+    "hostTitle" : "",
+    "contentTypeCode" : "refereed",
+    "publicationSubTypeCode" : "",
+    "publicationTypeCode" : "conferenceProceedings",
+    "dateIssued" : "2016",
+    "publicationStatus" : "",
+    "subTitle" : "Samlingsverk (redaktörskap) refereegranskat",
+    "title" : "Testpost"
+}

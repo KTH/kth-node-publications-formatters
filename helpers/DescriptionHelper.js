@@ -77,11 +77,9 @@ function _getDescription (publicationType, publication, lang, style) {
 
   switch (publication.publicationTypeCode) {
     case 'book':
-      // publicationDescription = ''
       publicationDescription = publicationDescription.concat(getBookReference(publication, lang, style))
       break
     case 'chapter':
-      // publicationDescription = ''
       publicationDescription = publicationDescription.concat(getChapterReference(publication, lang, style))
       break
     case 'collection':
@@ -100,7 +98,6 @@ function _getDescription (publicationType, publication, lang, style) {
       publicationDescription = publicationDescription.concat(getPatentReference(publication, style))
       break
     case 'report':
-      // publicationDescription = ''
       publicationDescription = publicationDescription.concat(getReportReference(publication, style))
       break
     case 'manuscript':
