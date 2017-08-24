@@ -46,13 +46,19 @@ function _getHostAndHostVolume (publication, lang, style) {
   }
   // Host volume
   if (publication.hostVolume) {
-    tmp = tmp + ', '
     if (style === 'ieee') {
+      if (tmp) tmp = makeItalic(tmp)
+      tmp = tmp + ', '
       return tmp + translator.message('host_volume', lang) + publication.hostVolume
     }
+    tmp = tmp + ', '
     return makeItalic(tmp + publication.hostVolume)
   }
-  return ''
+  if (tmp) {
+    return makeItalic(tmp)
+  } else {
+    return ''
+  }
 }
 
 function _getHostVolume (publication, lang, style) {

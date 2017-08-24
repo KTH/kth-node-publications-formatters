@@ -38,7 +38,7 @@ describe('DescriptionHelper', function () {
         hostSubTitle: 'The host subtitle',
         hostVolume: '40'
       }
-      helper.getDescription('refereedArticles', publication, 'sv', 'apa').should.equal(' <i>The host title : The host subtitle</i>, <i>40</i>')
+      helper.getDescription('refereedArticles', publication, 'sv', 'apa').should.equal(' <i>The host title : The host subtitle, 40</i>')
     })
 
     // If Article has hostIssue (Both swedish and english)
@@ -50,7 +50,7 @@ describe('DescriptionHelper', function () {
         hostVolume: '40',
         hostIssue: '2'
       }
-      helper.getDescription('refereedArticles', publication, 'sv', 'apa').should.equal(' <i>The host title : The host subtitle</i>, <i>40</i>(2)')
+      helper.getDescription('refereedArticles', publication, 'sv', 'apa').should.equal(' <i>The host title : The host subtitle, 40</i>(2)')
     })
 
     // If Article has hostExtentStart and hostExtentEnd
@@ -64,7 +64,7 @@ describe('DescriptionHelper', function () {
         hostExtentStart: 283,
         hostExtentEnd: 285
       }
-      helper.getDescription('refereedArticles', publication, 'sv', 'apa').should.equal(' <i>The host title : The host subtitle</i>, <i>40</i>(2), 283-285')
+      helper.getDescription('refereedArticles', publication, 'sv', 'apa').should.equal(' <i>The host title : The host subtitle, 40</i>(2), 283-285')
     })
   })
 
@@ -153,8 +153,8 @@ describe('DescriptionHelper', function () {
         hostTitle: 'Rakosten',
         publicationTypeCode: 'chapter'
       }
-      helper.getDescription('refereedChapter', publication, 'sv', 'apa').should.equal(' I Urpo ja Turpo red., <i>Rakosten: en uppskjuten framgångssaga</i> (s. 72-83). Bräkne-Hoby: Advanced Knowledge International')
-      helper.getDescription('refereedChapter', publication, 'en', 'apa').should.equal(' In Urpo ja Turpo Ed., <i>Rakosten: en uppskjuten framgångssaga</i> (pp. 72-83). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedChapter', publication, 'sv', 'apa').should.equal(' I Urpo ja Turpo (Red.), <i>Rakosten: en uppskjuten framgångssaga</i> (s. 72-83). Bräkne-Hoby: Advanced Knowledge International')
+      helper.getDescription('refereedChapter', publication, 'en', 'apa').should.equal(' In Urpo ja Turpo (Ed.), <i>Rakosten: en uppskjuten framgångssaga</i> (pp. 72-83). Bräkne-Hoby: Advanced Knowledge International')
     })
   })
 
