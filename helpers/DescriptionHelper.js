@@ -32,6 +32,29 @@ function _getHost (publication) {
   return ''
 }
 
+function _getHostAndHostVolume (publication, lang, style) {
+  let tmp = ''
+  if (publication.publicationTypeCode === 'article' || publication.publicationTypeCode === 'review' || publication.publicationTypeCode === 'bookReview') {
+    // Host title
+    if (publication.hostTitle) {
+      if (publication.hostSubTitle) {
+        tmp = publication.hostTitle + ' : ' + publication.hostSubTitle
+      } else {
+        tmp = publication.hostTitle
+      }
+    }
+  }
+  // Host volume
+  if (publication.hostVolume) {
+    tmp = tmp + ', '
+    if (style === 'ieee') {
+      return tmp + translator.message('host_volume', lang) + publication.hostVolume
+    }
+    return makeItalic(tmp + publication.hostVolume)
+  }
+  return ''
+}
+
 function _getHostVolume (publication, lang, style) {
   // Host volume
   if (publication.hostVolume) {
@@ -104,8 +127,7 @@ function _getDescription (publicationType, publication, lang, style) {
       publicationDescription = publicationDescription.concat(getManuscriptReference(publication, lang, style))
       break
     default:
-      publicationDescription = ' ' + _getHost(publication) +
-        _getHostVolume(publication, lang, style) +
+      publicationDescription = ' ' + _getHostAndHostVolume(publication, lang, style) +
         _getHostIssue(publication, lang, style) +
         _getHostExtent(publication, lang, style)
       if (publication.dateIssued && style === 'ieee') {

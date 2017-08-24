@@ -36,7 +36,7 @@ function _getChapterReference (publication, lang) {
   // editor
   let editor = publication.statementOfResponsibility
   if (editor) {
-    tmp += editor + translator.message('editor', lang) + ', '
+    tmp += editor + ' ' + translator.message('editor_apa', lang) + ', '
   }
 
   // title
