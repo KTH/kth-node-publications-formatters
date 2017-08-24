@@ -19,19 +19,6 @@ module.exports = {
   getDescription: _getDescription
 }
 
-function _getHost (publication) {
-  if (publication.publicationTypeCode === 'article' || publication.publicationTypeCode === 'review' || publication.publicationTypeCode === 'bookReview') {
-    // Host title
-    if (publication.hostTitle) {
-      if (publication.hostSubTitle) {
-        return makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle)
-      }
-      return makeItalic(publication.hostTitle)
-    }
-  }
-  return ''
-}
-
 function _getHostAndHostVolume (publication, lang, style) {
   let tmp = ''
   if (publication.publicationTypeCode === 'article' || publication.publicationTypeCode === 'review' || publication.publicationTypeCode === 'bookReview') {
@@ -59,18 +46,6 @@ function _getHostAndHostVolume (publication, lang, style) {
   } else {
     return ''
   }
-}
-
-function _getHostVolume (publication, lang, style) {
-  // Host volume
-  if (publication.hostVolume) {
-    var tmp = ', '
-    if (style === 'ieee') {
-      return tmp + translator.message('host_volume', lang) + publication.hostVolume
-    }
-    return tmp + makeItalic(publication.hostVolume)
-  }
-  return ''
 }
 
 function _getHostIssue (publication, lang, style) {
