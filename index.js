@@ -11,12 +11,12 @@ module.exports = {
   render: _render,
   formatPublications: _formatPublications,
   filterList: pubUtil.filterList,
-  groupPublications: _groupPublications
+  groupPublications: _groupPublications,
 }
 
 // This function is primarily used to get a formatted output for Cortina
-function _render (publications) {
-  return publications.reduce(function (str, item, index) {
+function _render(publications) {
+  return publications.reduce(function(str, item, index) {
     return (
       str +
       `
@@ -34,7 +34,7 @@ function _render (publications) {
   }, '')
 }
 
-function _formatPublications (data, style, lang) {
+function _formatPublications(data, style, lang) {
   var i = 1
   var pubs
   if (Array.isArray(data)) {
@@ -50,7 +50,7 @@ function _formatPublications (data, style, lang) {
   return pubs
 }
 
-function _formatSinglePublication (publ, lang, style) {
+function _formatSinglePublication(publ, lang, style) {
   publ.formattedAuthors = AuthorHelper.getAuthors(publ.publicationTypeCode, publ, lang, style)
   publ.formattedLink = DivaLinkHelper.getLinkUrl(publ.publicationTypeCode, publ)
   publ.formattedLinkText = DivaLinkHelper.getLinkText(publ.publicationTypeCode, publ, style)
@@ -63,12 +63,12 @@ function _formatSinglePublication (publ, lang, style) {
 }
 
 // This function repacks a list of publications into an object with several sublists of publications of the same type
-function _groupPublications (publs) {
+function _groupPublications(publs) {
   var obj = {}
   obj.refereedArticles = []
   obj.refereedConferencePapers = []
-  obj.refereedChapters = []
   obj.refereedBooks = []
+  obj.refereedChapters = []
   obj.refereedOthers = []
   obj.temporaryList = [] // temporary list
   obj.scienceArticles = []
@@ -162,19 +162,16 @@ function _groupPublications (publs) {
   return obj
 }
 
-function sortFilteredList (filteredList) {
+function sortFilteredList(filteredList) {
   for (let listName in filteredList) {
-    if (
-      filteredList.hasOwnProperty(listName) &&
-      Array.isArray(filteredList[listName])
-    ) {
+    if (filteredList.hasOwnProperty(listName) && Array.isArray(filteredList[listName])) {
       var list = filteredList[listName]
       list.sort(sortPublicationsByDateTitle)
     }
   }
 }
 
-function sortPublicationsByDateTitle (item1, item2) {
+function sortPublicationsByDateTitle(item1, item2) {
   if (item1.dateIssued > item2.dateIssued) {
     return -1
   } else if (item1.dateIssued < item2.dateIssued) {
