@@ -4,7 +4,8 @@
   "description": "This is a utility library for formatting publications in publications-web/api",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**"
+    "test": "mocha test/**",
+    "build": "npm test"
   },
   "repository": {
     "type": "git",
