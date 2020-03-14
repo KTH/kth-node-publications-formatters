@@ -7,10 +7,14 @@ const log = require('kth-node-log')
  */
 
 module.exports = {
-  filterList: _filterList
+  filterList: _filterList,
 }
-// Filter the publication list
-function _filterList (publicationList, includeHidden) {
+
+/**
+ * Filter the publication list.
+ * Excludes all hidden publication by user if not explicitly requested.
+ */
+function _filterList(publicationList, includeHidden) {
   var filteredList = []
 
   if (!publicationList) {
@@ -22,9 +26,7 @@ function _filterList (publicationList, includeHidden) {
   for (var index = 0; index < publications.length; index++) {
     var publication = publications[index]
 
-    publication.visible =
-      publicationList.hiddenPublications.indexOf(publication.publicationId) ===
-      -1
+    publication.visible = publicationList.hiddenPublications.indexOf(publication.publicationId) === -1
 
     // Skip hidden publications if not explicitly requested
     if (!(includeHidden === true || publication.visible)) {

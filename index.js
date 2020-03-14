@@ -141,7 +141,7 @@ function _groupPublications(publs) {
       obj.scienceCollections.push(publication)
     } else if (filters.isOtherOther(publication)) {
       obj.scienceOthers.push(publication)
-    } else if (filters.isScienceManuscript(publication)) {
+    } else if (filters.isManuscript(publication)) {
       obj.scienceOthers.push(publication)
     } else {
       log.debug(
