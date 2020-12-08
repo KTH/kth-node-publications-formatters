@@ -26,7 +26,9 @@ function _render(publications) {
       </div>
       <div class="col-md-10 col-xs-8 publicationInfo">
         <span>${item.formattedAuthors}</span>
-        <a href=${item.formattedLink}" target='_blank'><span>${item.formattedLinkText}</span></a>
+        <a href="${item.formattedLink}" target="_blank" rel="noopener noreferrer"><span>${
+        item.formattedLinkText
+      }</span></a>
         <span>${item.formattedDescription}</span>
       </div>
     </div>`

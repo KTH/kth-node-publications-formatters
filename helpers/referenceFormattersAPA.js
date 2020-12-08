@@ -12,10 +12,10 @@ module.exports = {
   getOtherReference: _getOtherReference,
   getPatentReference: _getPatentReference,
   getReportReference: _getReportReference,
-  getThesisReference: _getThesisReference
+  getThesisReference: _getThesisReference,
 }
 
-function _getBookReference (publication, lang) {
+function _getBookReference(publication, lang) {
   // Book edition
   var tmp = ''
   tmp = tmp.concat(_getEdition(publication, lang) + '. ')
@@ -30,7 +30,7 @@ function _getBookReference (publication, lang) {
   return tmp
 }
 
-function _getChapterReference (publication, lang) {
+function _getChapterReference(publication, lang) {
   var tmp = ' ' + translator.message('chapter_in_apa', lang)
 
   // editor
@@ -77,7 +77,7 @@ function _getChapterReference (publication, lang) {
   return tmp
 }
 
-function _getCollectionReference (publication, lang) {
+function _getCollectionReference(publication, lang) {
   // Book edition
   var tmp = ''
   tmp = tmp.concat(_getEdition(publication, lang) + '. ')
@@ -92,14 +92,16 @@ function _getCollectionReference (publication, lang) {
   return tmp
 }
 
-function _getConferencePaperReference (publication, lang) {
+function _getConferencePaperReference(publication, lang) {
   var tmp = ''
   // Host/conference title
   // This is not according to PI suggestion
   // Since values for host title and conference most often contain "Proceedings of" Just list the title and hope for the best
   if (publication.hostTitle) {
     if (publication.hostSubTitle) {
-      tmp += translator.message('conference_in_apa', lang) + makeItalic(publication.hostTitle + ': ' + publication.hostSubTitle + '.')
+      tmp +=
+        translator.message('conference_in_apa', lang) +
+        makeItalic(publication.hostTitle + ': ' + publication.hostSubTitle + '.')
     } else {
       tmp = translator.message('conference_in_apa', lang) + makeItalic(publication.hostTitle + '.')
     }
@@ -122,11 +124,11 @@ function _getConferencePaperReference (publication, lang) {
   return tmp
 }
 
-function _getConferenceProceedingsReference (publication, lang) {
+function _getConferenceProceedingsReference(publication, lang) {
   return _getCollectionReference(publication, lang)
 }
 
-function _getOtherReference (publication) {
+function _getOtherReference(publication) {
   var tmp = ''
   // City and publisher
   let placeAndPublisher = _getPlaceAndPublisher(publication)
@@ -138,7 +140,7 @@ function _getOtherReference (publication) {
   return tmp
 }
 
-function _getPatentReference (publication) {
+function _getPatentReference(publication) {
   // Patent
   var tmp = ''
   if (publication.patent) {
@@ -148,7 +150,7 @@ function _getPatentReference (publication) {
   return tmp
 }
 
-function _getReportReference (publication) {
+function _getReportReference(publication) {
   var tmp = ''
   // Series info
   const seriesInfo = _getSeriesInfo(publication)
@@ -166,11 +168,14 @@ function _getReportReference (publication) {
   return tmp
 }
 
-function _getThesisReference (publication, lang) {
+function _getThesisReference(publication, lang) {
   var tmp = ''
   // Thesis type
   var i18nThesisType = 'thesis_licentiate'
-  if (publication.publicationTypeCode === 'comprehensiveDoctoralThesis' || publication.publicationTypeCode === 'monographDoctoralThesis') {
+  if (
+    publication.publicationTypeCode === 'comprehensiveDoctoralThesis' ||
+    publication.publicationTypeCode === 'monographDoctoralThesis'
+  ) {
     i18nThesisType = 'thesis_doctoral'
   }
   const thesisType = translator.message(i18nThesisType, lang)
@@ -181,15 +186,20 @@ function _getThesisReference (publication, lang) {
   const thesisSeries = _getSeriesInfo(publication)
   tmp += ' ('
   tmp += thesisType
-  tmp += (!thesisOrigin) ? '' : ', '
+  tmp += !thesisOrigin ? '' : ', '
   tmp += thesisOrigin
-  tmp += (!thesisSeries) ? '' : ', '
+  tmp += !thesisSeries ? '' : ', '
   tmp += thesisSeries
   tmp += ')'
   if (publication.identifierUri) {
     tmp += '. '
     tmp += translator.message('thesis_retrieved_from', lang)
-    tmp += ' <a target="_blank" href="' + publication.identifierUri + '">' + publication.identifierUri + '</a>'
+    tmp +=
+      ' <a target="_blank" rel="noopener noreferrer" href="' +
+      publication.identifierUri +
+      '">' +
+      publication.identifierUri +
+      '</a>'
   }
 
   return tmp
@@ -201,9 +211,9 @@ function _getThesisReference (publication, lang) {
  * Example: if we have a publisherPlace, we should append a comma and the publisherPlace to the formatted string,
  * not decide in publisher whether or not we should append the comma.
  * This doesn't always work, some things have either a colon or comma depending on some parameter.
-*/
+ */
 
-function _getEdition (publication, lang) {
+function _getEdition(publication, lang) {
   if (!publication.bookEdition) {
     return ''
   }
@@ -220,7 +230,7 @@ function _getEdition (publication, lang) {
   return ''
 }
 
-function _getThesisOrigin (publication) {
+function _getThesisOrigin(publication) {
   let university = ''
   if (publication.bookPublisher) {
     university = publication.bookPublisher
@@ -234,7 +244,7 @@ function _getThesisOrigin (publication) {
   return university
 }
 
-function _getPlaceAndPublisher (publication) {
+function _getPlaceAndPublisher(publication) {
   let result = publication.bookPlace
   if (publication.bookPublisher) {
     if (result) {
@@ -248,7 +258,7 @@ function _getPlaceAndPublisher (publication) {
   return result || ''
 }
 
-function _getSeriesInfo (publication) {
+function _getSeriesInfo(publication) {
   let space = ''
   let thesisSeries = ''
   if (publication.seriesTitle) {
@@ -256,12 +266,12 @@ function _getSeriesInfo (publication) {
     space = ' '
   }
   if (publication.seriesIssueNr) {
-    thesisSeries += (space + publication.seriesIssueNr)
+    thesisSeries += space + publication.seriesIssueNr
   }
   return thesisSeries
 }
 
-function _getHostStartEnd (publication, lang) {
+function _getHostStartEnd(publication, lang) {
   if (!publication.hostExtentStart) {
     return ''
   }
