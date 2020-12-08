@@ -2,6 +2,7 @@
   "name": "kth-node-publications-formatters",
   "version": "2.1.4",
   "description": "This is a utility library for formatting publications in publications-web/api",
+  "automaticPublish": "true",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/**",
