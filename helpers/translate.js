@@ -1,3 +1,5 @@
+const log = require('kth-node-log')
+
 const _messages = {
   en: {
     author_and: 'and',
@@ -25,7 +27,7 @@ const _messages = {
     suffix_one: 'st ',
     suffix_two: 'nd ',
     suffix_three: 'rd ',
-    suffix_default: 'th '
+    suffix_default: 'th ',
   },
   sv: {
     author_and: 'och',
@@ -53,15 +55,23 @@ const _messages = {
     suffix_one: '.',
     suffix_two: '.',
     suffix_three: '.',
-    suffix_default: '.'
-  }
+    suffix_default: '.',
+  },
 }
 
 module.exports = {
-  message: _message
+  message: _message,
 }
 
-function _message (key, lang = 'sv') {
-  if (!key) throw new Error('Key must be defined')
+function _message(key, lang = 'sv') {
+  if (lang !== 'en' && lang !== 'sv') {
+    lang = 'sv'
+    log.info('Given lang parameter is not on correct format: (' + lang + '). Falling back to "sv"')
+  }
+
+  if (!key) {
+    throw new Error('Key must be defined')
+  }
+
   return _messages[lang][key]
 }
