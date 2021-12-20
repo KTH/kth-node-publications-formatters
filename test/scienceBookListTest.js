@@ -5,10 +5,10 @@ const mockLogger = {}
 // mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = console.log
 mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = () => {}
 
-mockery.registerMock('kth-node-log', mockLogger)
+mockery.registerMock('@kth/log', mockLogger)
 mockery.enable({
   warnOnUnregistered: false,
-  warnOnReplace: false
+  warnOnReplace: false,
 })
 
 const filters = require('../helpers/filters')
@@ -33,19 +33,17 @@ describe('PublicationUtil', function () {
   // contentTypeCode: "science" eller "other"
   // publicationTypeCode: "book"
   describe('Rules for adding a publication to list of science books.', function () {
-    it('should add one publication to the list of scienceBooks when science, and publication type code book', function (
-      done
-    ) {
+    it('should add one publication to the list of scienceBooks when science, and publication type code book', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
             publicationTypeCode: 'book',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
@@ -56,19 +54,17 @@ describe('PublicationUtil', function () {
       done()
     })
 
-    it('should add one publication to the list of scienceBooks when other, and publication type code book', function (
-      done
-    ) {
+    it('should add one publication to the list of scienceBooks when other, and publication type code book', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'other',
             publicationTypeCode: 'book',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
@@ -79,19 +75,17 @@ describe('PublicationUtil', function () {
       done()
     })
 
-    it('should NOT add a publication to the list of scienceBooks when science and publication type code has BAD casing', function (
-      done
-    ) {
+    it('should NOT add a publication to the list of scienceBooks when science and publication type code has BAD casing', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
             publicationTypeCode: 'Book',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceBook)
@@ -102,19 +96,17 @@ describe('PublicationUtil', function () {
       done()
     })
 
-    it('should NOT add a publication to the list of scienceBooks when other publication type code has BAD casing', function (
-      done
-    ) {
+    it('should NOT add a publication to the list of scienceBooks when other publication type code has BAD casing', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'other',
             publicationTypeCode: 'Book',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceBook)

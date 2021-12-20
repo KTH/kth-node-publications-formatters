@@ -5,10 +5,10 @@ const mockLogger = {}
 // mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = console.log
 mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = () => {}
 
-mockery.registerMock('kth-node-log', mockLogger)
+mockery.registerMock('@kth/log', mockLogger)
 mockery.enable({
   warnOnUnregistered: false,
-  warnOnReplace: false
+  warnOnReplace: false,
 })
 
 require('chai').should()
@@ -33,19 +33,17 @@ describe('PublicationUtil', function () {
   // publicationTypeCode: "conferencePaper"
   // publicationSubTypeCode: ""
   describe('Rules for adding a publication to list of refereed conference papers.', function () {
-    it('should add one publication to the list of refereedConferencePapers when refereed, conferencePaper, and correct subtype = ""', function (
-      done
-    ) {
+    it('should add one publication to the list of refereedConferencePapers when refereed, conferencePaper, and correct subtype = ""', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
             publicationTypeCode: 'conferencePaper',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
@@ -56,19 +54,17 @@ describe('PublicationUtil', function () {
       done()
     })
 
-    it('should add a publication to the list of refereedConferencePapers regardless of publicationSubTypeCode', function (
-      done
-    ) {
+    it('should add a publication to the list of refereedConferencePapers regardless of publicationSubTypeCode', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
             publicationTypeCode: 'conferencePaper',
             publicationSubTypeCode: 'newsItem',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)

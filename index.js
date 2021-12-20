@@ -4,7 +4,7 @@ const AuthorHelper = require('./helpers/AuthorHelper')
 const DescriptionHelper = require('./helpers/DescriptionHelper')
 const DivaLinkHelper = require('./helpers/DivaLinkHelper')
 const filters = require('./helpers/filters')
-const log = require('kth-node-log')
+const log = require('@kth/log')
 const pubUtil = require('./helpers/publicationUtil')
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
 
 // This function is primarily used to get a formatted output for Cortina
 function _render(publications) {
-  return publications.reduce(function(str, item, index) {
+  return publications.reduce(function (str, item, index) {
     return (
       str +
       `
@@ -40,7 +40,7 @@ function _formatPublications(data, style, lang) {
   var i = 1
   var pubs
   if (Array.isArray(data)) {
-    pubs = data.map(item => {
+    pubs = data.map((item) => {
       var obj = _formatSinglePublication(item, lang, style)
       obj.index = ++i
       return obj
@@ -93,7 +93,7 @@ function _groupPublications(publs) {
   obj.otherCollections = []
   obj.otherOthers = []
 
-  publs.map(publication => {
+  publs.map((publication) => {
     if (filters.isRefereedArticle(publication)) {
       obj.refereedArticles.push(publication)
     } else if (filters.isRefereedConferencePaper(publication)) {

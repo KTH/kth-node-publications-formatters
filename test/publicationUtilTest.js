@@ -5,10 +5,10 @@ const mockLogger = {}
 // mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = console.log
 mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = () => {}
 
-mockery.registerMock('kth-node-log', mockLogger)
+mockery.registerMock('@kth/log', mockLogger)
 mockery.enable({
   warnOnUnregistered: false,
-  warnOnReplace: false
+  warnOnReplace: false,
 })
 
 require('chai').should()
@@ -38,9 +38,7 @@ describe('PublicationUtil', function () {
 
   // Kontrollera att alla publikationer i listan skrivs ut
   describe('No publications should be lost after filtering', function () {
-    it('should be the same amount of publications if includeHidden is true.', function (
-      done
-    ) {
+    it('should be the same amount of publications if includeHidden is true.', function (done) {
       var publicationsBefore = json.publications.length
 
       var jsonResult = publicationUtil.filterList(json, true)
@@ -77,10 +75,7 @@ describe('PublicationUtil', function () {
       var jsonResult = groupPublications(publicationUtil.filterList(jsonWithHiddenPub, false))
       var publicationsAfter = itemCounter(jsonResult)
 
-      assert(
-        publicationsBefore === 24,
-        'Test data should contain 24 publications'
-      )
+      assert(publicationsBefore === 24, 'Test data should contain 24 publications')
       publicationsAfter.should.be.equal(21)
 
       done()
@@ -89,7 +84,7 @@ describe('PublicationUtil', function () {
 
   // Kontrollera att properties: Author/description/diva-helper finns på publikationen
 
-  function itemCounter (json) {
+  function itemCounter(json) {
     var counter = 0
     for (var list in json) {
       var item = json[list]

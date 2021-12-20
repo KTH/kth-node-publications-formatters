@@ -4,10 +4,10 @@ const mockLogger = {}
 // mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = console.log
 mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = () => {}
 
-mockery.registerMock('kth-node-log', mockLogger)
+mockery.registerMock('@kth/log', mockLogger)
 mockery.enable({
   warnOnUnregistered: false,
-  warnOnReplace: false
+  warnOnReplace: false,
 })
 const filters = require('../helpers/filters')
 
@@ -32,19 +32,17 @@ describe('PublicationUtil', function () {
   // contentTypeCode: "science"
   // publicationTypeCode: "comprehensiveDoctoralThesis", "monographDoctoralThesis", "monographLicentiateThesis" eller "comprehensiveLicentiateThesis"
   describe('Rules for adding a publication to list of science thesis.', function () {
-    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveDoctoralThesis', function (
-      done
-    ) {
+    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveDoctoralThesis', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
             publicationTypeCode: 'comprehensiveDoctoralThesis',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
@@ -55,19 +53,17 @@ describe('PublicationUtil', function () {
       done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type monographDoctoralThesis', function (
-      done
-    ) {
+    it('should add one publication to the list of scienceThesis when science, and publication type monographDoctoralThesis', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
             publicationTypeCode: 'monographDoctoralThesis',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
@@ -78,19 +74,17 @@ describe('PublicationUtil', function () {
       done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type monographLicentiateThesis', function (
-      done
-    ) {
+    it('should add one publication to the list of scienceThesis when science, and publication type monographLicentiateThesis', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
             publicationTypeCode: 'monographLicentiateThesis',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
@@ -101,19 +95,17 @@ describe('PublicationUtil', function () {
       done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveLicentiateThesis', function (
-      done
-    ) {
+    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveLicentiateThesis', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
             publicationTypeCode: 'comprehensiveLicentiateThesis',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true)
@@ -124,19 +116,17 @@ describe('PublicationUtil', function () {
       done()
     })
 
-    it('should NOT add a publication to the list of scienceThesis when publication type code casing is BAD', function (
-      done
-    ) {
+    it('should NOT add a publication to the list of scienceThesis when publication type code casing is BAD', function (done) {
       var userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
             publicationTypeCode: 'ComprehensiveDoctoralThesis',
             publicationSubTypeCode: '',
-            publicationStatus: ''
-          }
+            publicationStatus: '',
+          },
         ],
-        hiddenPublications: []
+        hiddenPublications: [],
       }
 
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceThesis)

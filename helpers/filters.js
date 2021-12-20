@@ -1,4 +1,4 @@
-const log = require('kth-node-log')
+const log = require('@kth/log')
 module.exports = {
   isRefereedArticle,
   isRefereedBook,
