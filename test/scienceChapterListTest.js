@@ -1,14 +1,5 @@
 /* eslint-env mocha */
-const mockery = require('mockery')
 const filters = require('../helpers/filters')
-const mockLogger = {}
-// mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = console.log
-mockLogger.debug = mockLogger.info = mockLogger.warn = mockLogger.error = () => {}
-mockery.registerMock('@kth/log', mockLogger)
-mockery.enable({
-  warnOnUnregistered: false,
-  warnOnReplace: false,
-})
 
 require('chai').should()
 
