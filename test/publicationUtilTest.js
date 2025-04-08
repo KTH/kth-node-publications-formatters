@@ -1,63 +1,60 @@
-/* eslint-env mocha */
-
-require('chai').should()
 const assert = require('chai').assert
 var { groupPublications } = require('../')
-describe('PublicationUtil', function () {
+describe('PublicationUtil', () => {
   var publicationUtil
   var json
   if (!json) {
     json = ''
   }
 
-  before(function (done) {
+  beforeAll((done) => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
     done()
   })
 
-  describe('Test itemCounter', function () {
-    it('should count 3', function (done) {
+  describe('Test itemCounter', () => {
+    it('should count 3', (done) => {
       var json = { list: [1, 2], list2: [1], name: 'Jon' }
-      itemCounter(json).should.equal(3)
+      expect(itemCounter(json)).toBe(3)
       done()
     })
   })
 
   // Kontrollera att alla publikationer i listan skrivs ut
-  describe('No publications should be lost after filtering', function () {
-    it('should be the same amount of publications if includeHidden is true.', function (done) {
+  describe('No publications should be lost after filtering', () => {
+    it('should be the same amount of publications if includeHidden is true.', (done) => {
       var publicationsBefore = json.publications.length
 
       var jsonResult = publicationUtil.filterList(json, true)
       // var publicationsAfter = itemCounter(jsonResult)
       var publicationsAfter = jsonResult.length
 
-      publicationsBefore.should.equal(publicationsAfter)
+      expect(publicationsBefore).toBe(publicationsAfter)
 
       done()
     })
   })
 
   // Kontrollera att om publications är hidden så skall den ej visas i publication-vyn
-  describe('Publications have to be hidden in Publication view if they are hidden in edit view', function () {
-    it('blabla', function (done) {
+  describe('Publications have to be hidden in Publication view if they are hidden in edit view', () => {
+    it('blabla', (done) => {
       var publicationsBefore = json.publications.length
 
       var jsonResult = publicationUtil.filterList(json, false)
       // var publicationsAfter = itemCounter(jsonResult)
       var publicationsAfter = jsonResult.length
 
-      publicationsBefore.should.not.equal(publicationsAfter)
-      publicationsBefore.should.equal(publicationsAfter + 4)
+      expect(publicationsBefore).not.toBe(publicationsAfter)
+      expect(publicationsBefore).toBe(publicationsAfter + 4)
 
       done()
     })
   })
 
-  describe('For publications not filterable to any list, discard them.', function () {
-    it('should be 3 discarded publications.', function (done) {
+  describe('For publications not filterable to any list, discard them.', () => {
+    it('should be 3 discarded publications.', (done) => {
       var jsonWithHiddenPub = require('./dataWithHiddenPublications.json')
       var publicationsBefore = jsonWithHiddenPub.publications.length
 
@@ -65,7 +62,7 @@ describe('PublicationUtil', function () {
       var publicationsAfter = itemCounter(jsonResult)
 
       assert(publicationsBefore === 24, 'Test data should contain 24 publications')
-      publicationsAfter.should.be.equal(21)
+      expect(publicationsAfter).toBe(21)
 
       done()
     })

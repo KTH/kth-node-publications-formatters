@@ -1,17 +1,13 @@
-/* eslint-env mocha */
-
 const filters = require('../helpers/filters')
 
-require('chai').should()
-
-describe('PublicationUtil', function () {
+describe('PublicationUtil', () => {
   var publicationUtil
   var json
   if (!json) {
     json = ''
   }
 
-  before(function (done) {
+  beforeAll((done) => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
@@ -22,8 +18,8 @@ describe('PublicationUtil', function () {
   // För att lägga till en publikation:
   // contentTypeCode: "science", "refereed" eller "other"
   // publicationTypeCode: "collection"
-  describe('Rules for adding a publication to list of science collections.', function () {
-    it('should add one publication to the list of scienceCollections when science, and publication type collection', function (done) {
+  describe('Rules for adding a publication to list of science collections.', () => {
+    it('should add one publication to the list of scienceCollections when science, and publication type collection', (done) => {
       var userPublications = {
         publications: [
           {
@@ -39,12 +35,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should add one publication to the list of scienceCollections when refereed, and publication type collection', function (done) {
+    it('should add one publication to the list of scienceCollections when refereed, and publication type collection', (done) => {
       var userPublications = {
         publications: [
           {
@@ -60,12 +56,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should add one publication to the list of scienceCollections when other, and publication type collection', function (done) {
+    it('should add one publication to the list of scienceCollections when other, and publication type collection', (done) => {
       var userPublications = {
         publications: [
           {
@@ -81,12 +77,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should NOT add a publication to the list of scienceCollections when publication type code casing is BAD', function (done) {
+    it('should NOT add a publication to the list of scienceCollections when publication type code casing is BAD', (done) => {
       var userPublications = {
         publications: [
           {
@@ -102,7 +98,7 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceCollection)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(0)
+      expect(numPublications).toBe(0)
 
       done()
     })

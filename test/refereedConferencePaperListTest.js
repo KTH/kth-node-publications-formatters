@@ -1,15 +1,11 @@
-/* eslint-env mocha */
-
-require('chai').should()
-
-describe('PublicationUtil', function () {
+describe('PublicationUtil', () => {
   var publicationUtil
   var json
   if (!json) {
     json = ''
   }
 
-  before(function (done) {
+  beforeAll((done) => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
@@ -21,8 +17,8 @@ describe('PublicationUtil', function () {
   // contentTypeCode: "refereed"
   // publicationTypeCode: "conferencePaper"
   // publicationSubTypeCode: ""
-  describe('Rules for adding a publication to list of refereed conference papers.', function () {
-    it('should add one publication to the list of refereedConferencePapers when refereed, conferencePaper, and correct subtype = ""', function (done) {
+  describe('Rules for adding a publication to list of refereed conference papers.', () => {
+    it('should add one publication to the list of refereedConferencePapers when refereed, conferencePaper, and correct subtype = ""', (done) => {
       var userPublications = {
         publications: [
           {
@@ -38,12 +34,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should add a publication to the list of refereedConferencePapers regardless of publicationSubTypeCode', function (done) {
+    it('should add a publication to the list of refereedConferencePapers regardless of publicationSubTypeCode', (done) => {
       var userPublications = {
         publications: [
           {
@@ -59,7 +55,7 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })

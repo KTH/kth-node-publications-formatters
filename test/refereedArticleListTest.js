@@ -1,16 +1,13 @@
-/* eslint-env mocha */
-
 const filters = require('../helpers/filters')
-require('chai').should()
 
-describe('PublicationUtil', function () {
+describe('PublicationUtil', () => {
   var publicationUtil
   var json
   if (!json) {
     json = ''
   }
 
-  before(function (done) {
+  beforeAll((done) => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
@@ -23,8 +20,8 @@ describe('PublicationUtil', function () {
   // publicationTypeCode: "article" eller "review"
   // publicationSubTypeCode: får inte vara "newsItem"
   // publicationStatus: får inte vara någon av ["In press", "Accepted", "Submitted"]
-  describe('Rules for adding a publication to list of refereed articles.', function () {
-    it('should add one publication to the list of refereedArticles when refereed, article, and correct subtype and status', function (done) {
+  describe('Rules for adding a publication to list of refereed articles.', () => {
+    it('should add one publication to the list of refereedArticles when refereed, article, and correct subtype and status', (done) => {
       var userPublications = {
         publications: [
           {
@@ -40,12 +37,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should add one publication to the list of refereedArticles when refereed, review, and correct subtype and status', function (done) {
+    it('should add one publication to the list of refereedArticles when refereed, review, and correct subtype and status', (done) => {
       var userPublications = {
         publications: [
           {
@@ -61,12 +58,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should NOT add a publication to the list of refereedArticles when publication sub type code is BAD', function (done) {
+    it('should NOT add a publication to the list of refereedArticles when publication sub type code is BAD', (done) => {
       var userPublications = {
         publications: [
           {
@@ -82,12 +79,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedArticle)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(0)
+      expect(numPublications).toBe(0)
 
       done()
     })
 
-    it('should NOT add a publication to the list of refereedArticles when publication status is BAD', function (done) {
+    it('should NOT add a publication to the list of refereedArticles when publication status is BAD', (done) => {
       var userPublications = {
         publications: [
           {
@@ -103,7 +100,7 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedArticle)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(0)
+      expect(numPublications).toBe(0)
 
       done()
     })

@@ -1,17 +1,13 @@
-/* eslint-env mocha */
-
 const filters = require('../helpers/filters')
 
-require('chai').should()
-
-describe('PublicationUtil', function () {
+describe('PublicationUtil', () => {
   var publicationUtil
   var json
   if (!json) {
     json = ''
   }
 
-  before(function (done) {
+  beforeAll((done) => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
@@ -22,8 +18,8 @@ describe('PublicationUtil', function () {
   // För att lägga till en publikation:
   // contentTypeCode: "refereed"
   // publicationTypeCode: "chapter"
-  describe('Rules for adding a publication to list of refereed chapters.', function () {
-    it('should add one publication to the list of refereedChapters when refereed, chapter', function (done) {
+  describe('Rules for adding a publication to list of refereed chapters.', () => {
+    it('should add one publication to the list of refereedChapters when refereed, chapter', (done) => {
       var userPublications = {
         publications: [
           {
@@ -39,12 +35,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should NOT add a publication to the list of refereedChapters when publication type code has BAD casing', function (done) {
+    it('should NOT add a publication to the list of refereedChapters when publication type code has BAD casing', (done) => {
       var userPublications = {
         publications: [
           {
@@ -60,7 +56,7 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedChapter)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(0)
+      expect(numPublications).toBe(0)
 
       done()
     })

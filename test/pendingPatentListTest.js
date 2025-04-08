@@ -1,16 +1,13 @@
-/* eslint-env mocha */
-
-require('chai').should()
 const filters = require('../helpers/filters')
 
-describe('PublicationUtil', function () {
+describe('PublicationUtil', () => {
   var publicationUtil
   var json
   if (!json) {
     json = ''
   }
 
-  before(function (done) {
+  beforeAll((done) => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
@@ -22,8 +19,8 @@ describe('PublicationUtil', function () {
   // contentTypeCode: "other"
   // publicationTypeCode: "patent"
   // dateIssued: null dvs saknar värde
-  describe('Rules for adding a publication to list of pendingPatents.', function () {
-    it('should add one publication to the list of pendingPatents when other, publication type patent and dateIssued set', function (done) {
+  describe('Rules for adding a publication to list of pendingPatents.', () => {
+    it('should add one publication to the list of pendingPatents when other, publication type patent and dateIssued set', (done) => {
       var userPublications = {
         publications: [
           {
@@ -39,12 +36,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should NOT add a publication to the list of pendingPatents when publication issuedDate is missing', function (done) {
+    it('should NOT add a publication to the list of pendingPatents when publication issuedDate is missing', (done) => {
       var userPublications = {
         publications: [
           {
@@ -60,7 +57,7 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isPendingPatent)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(0)
+      expect(numPublications).toBe(0)
 
       done()
     })

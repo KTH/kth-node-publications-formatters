@@ -1,17 +1,13 @@
-/* eslint-env mocha */
-
 const filters = require('../helpers/filters')
 
-require('chai').should()
-
-describe('PublicationUtil', function () {
+describe('PublicationUtil', () => {
   var publicationUtil
   var json
   if (!json) {
     json = ''
   }
 
-  before(function (done) {
+  beforeAll((done) => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
@@ -22,8 +18,8 @@ describe('PublicationUtil', function () {
   // För att lägga till en publikation:
   // contentTypeCode: "science"
   // publicationTypeCode: "comprehensiveDoctoralThesis", "monographDoctoralThesis", "monographLicentiateThesis" eller "comprehensiveLicentiateThesis"
-  describe('Rules for adding a publication to list of science thesis.', function () {
-    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveDoctoralThesis', function (done) {
+  describe('Rules for adding a publication to list of science thesis.', () => {
+    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveDoctoralThesis', (done) => {
       var userPublications = {
         publications: [
           {
@@ -39,12 +35,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type monographDoctoralThesis', function (done) {
+    it('should add one publication to the list of scienceThesis when science, and publication type monographDoctoralThesis', (done) => {
       var userPublications = {
         publications: [
           {
@@ -60,12 +56,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type monographLicentiateThesis', function (done) {
+    it('should add one publication to the list of scienceThesis when science, and publication type monographLicentiateThesis', (done) => {
       var userPublications = {
         publications: [
           {
@@ -81,12 +77,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveLicentiateThesis', function (done) {
+    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveLicentiateThesis', (done) => {
       var userPublications = {
         publications: [
           {
@@ -102,12 +98,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should NOT add a publication to the list of scienceThesis when publication type code casing is BAD', function (done) {
+    it('should NOT add a publication to the list of scienceThesis when publication type code casing is BAD', (done) => {
       var userPublications = {
         publications: [
           {
@@ -123,7 +119,7 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceThesis)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(0)
+      expect(numPublications).toBe(0)
 
       done()
     })

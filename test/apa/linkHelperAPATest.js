@@ -1,26 +1,25 @@
-/* eslint-env mocha */
-require('chai').should()
-
-describe('LinkHelper', function () {
+describe('LinkHelper', () => {
   var helper
 
-  before(function (done) {
+  beforeAll((done) => {
     helper = require('../../helpers/DivaLinkHelper')
     done()
   })
 
-  describe('APA Link Text', function () {
-    it('should correctly format the link text of an article in APA', function () {
+  describe('APA Link Text', () => {
+    it('should correctly format the link text of an article in APA', () => {
       var pub = require('../testArticle.json')
-      helper.getLinkText('article', pub, 'apa').should.equal('Testpost : Artikel recension refereegranskat.')
+      expect(helper.getLinkText('article', pub, 'apa')).toBe('Testpost : Artikel recension refereegranskat.')
     })
-    it('should correctly format the authors of a conference proceeding in APA', function () {
+    it('should correctly format the authors of a conference proceeding in APA', () => {
       var pub = require('../testConferenceProceedings.json')
-      helper.getLinkText('scienceConferenceProceedings', pub, 'apa').should.equal('<i>Testpost : Samlingsverk (redaktörskap) refereegranskat</i>')
+      expect(helper.getLinkText('scienceConferenceProceedings', pub, 'apa')).toBe(
+        '<i>Testpost : Samlingsverk (redaktörskap) refereegranskat</i>'
+      )
     })
-    it('should correctly format the authors of a book in APA', function () {
+    it('should correctly format the authors of a book in APA', () => {
       var pub = require('../testBook.json')
-      helper.getLinkText('book', pub, 'apa').should.equal('<i> Testpost : Bok Övrigt vetenskapligt</i>')
+      expect(helper.getLinkText('book', pub, 'apa')).toBe('<i> Testpost : Bok Övrigt vetenskapligt</i>')
     })
   })
 })

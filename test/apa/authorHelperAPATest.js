@@ -1,26 +1,25 @@
-/* eslint-env mocha */
-require('chai').should()
-
-describe('AuthorHelper', function () {
+describe('AuthorHelper', () => {
   var helper
 
-  before(function (done) {
+  beforeAll((done) => {
     helper = require('../../helpers/AuthorHelper')
     done()
   })
 
-  describe('APA Authors', function () {
-    it('should correctly format the authors of an article in APA', function () {
+  describe('APA Authors', () => {
+    it('should correctly format the authors of an article in APA', () => {
       var pub = require('../testArticle.json')
-      helper.getAuthors('article', pub, 'sv', 'apa').should.equal('Test, P., Mule, O. & Wåffel, H. (2000). ')
+      expect(helper.getAuthors('article', pub, 'sv', 'apa')).toBe('Test, P., Mule, O. & Wåffel, H. (2000). ')
     })
-    it('should correctly format the authors of a conference proceeding in APA', function () {
+    it('should correctly format the authors of a conference proceeding in APA', () => {
       var pub = require('../testConferenceProceedings.json')
-      helper.getAuthors('scienceConferenceProceedings', pub, 'sv', 'apa').should.equal('Test, P., Mule, O., Wåffel, H. (Red.). (2016). ')
+      expect(helper.getAuthors('scienceConferenceProceedings', pub, 'sv', 'apa')).toBe(
+        'Test, P., Mule, O., Wåffel, H. (Red.). (2016). '
+      )
     })
-    it('should correctly format the authors of a book in APA', function () {
+    it('should correctly format the authors of a book in APA', () => {
       var pub = require('../testBook.json')
-      helper.getAuthors('book', pub, 'en', 'apa').should.equal('Test, P., Mule, O. & Wåffel, H. (2016). ')
+      expect(helper.getAuthors('book', pub, 'en', 'apa')).toBe('Test, P., Mule, O. & Wåffel, H. (2016). ')
     })
   })
 })

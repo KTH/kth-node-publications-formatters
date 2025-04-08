@@ -1,52 +1,49 @@
-/* eslint-env mocha */
-require('chai').should()
-
-describe('AuthorHelper', function () {
+describe('AuthorHelper', () => {
   var helper
 
-  before(function (done) {
+  beforeAll((done) => {
     helper = require('../helpers/AuthorHelper')
     done()
   })
 
-  describe('Eva', function () {
-    it('should be E.', function (done) {
-      helper.splitAndFixNameParts('Eva', ' ').should.equal('E.')
+  describe('Eva', () => {
+    it('should be E.', (done) => {
+      expect(helper.splitAndFixNameParts('Eva', ' ')).toBe('E.')
       done()
     })
   })
 
-  describe('Jon-Olov', function () {
-    it('should be J.-O.', function (done) {
-      helper.splitAndFixNameParts('Jon-Olov', '-').should.equal('J.-O.')
+  describe('Jon-Olov', () => {
+    it('should be J.-O.', (done) => {
+      expect(helper.splitAndFixNameParts('Jon-Olov', '-')).toBe('J.-O.')
       done()
     })
   })
 
-  describe('Jon Olov', function () {
-    it('should be J. O.', function (done) {
-      helper.splitAndFixNameParts('Jon Olov', ' ').should.equal('J. O.')
+  describe('Jon Olov', () => {
+    it('should be J. O.', (done) => {
+      expect(helper.splitAndFixNameParts('Jon Olov', ' ')).toBe('J. O.')
       done()
     })
   })
 
-  describe('Candice L.', function () {
-    it('should be C. L.', function (done) {
-      helper.splitAndFixNameParts('Candice L.', ' ').should.equal('C. L.')
+  describe('Candice L.', () => {
+    it('should be C. L.', (done) => {
+      expect(helper.splitAndFixNameParts('Candice L.', ' ')).toBe('C. L.')
       done()
     })
   })
 
-  describe('Gerald Q. Jr.', function () {
-    it('should be G. Q. Jr.', function (done) {
-      helper.splitAndFixNameParts('Gerald Q. Jr.', ' ').should.equal('G. Q. Jr.')
+  describe('Gerald Q. Jr.', () => {
+    it('should be G. Q. Jr.', (done) => {
+      expect(helper.splitAndFixNameParts('Gerald Q. Jr.', ' ')).toBe('G. Q. Jr.')
       done()
     })
   })
 
-  describe('Joakim Von Anka', function () {
-    it('should be J. Von A.', function (done) {
-      helper.splitAndFixNameParts('Joakim Von Anka', ' ').should.equal('J. Von A.')
+  describe('Joakim Von Anka', () => {
+    it('should be J. Von A.', (done) => {
+      expect(helper.splitAndFixNameParts('Joakim Von Anka', ' ')).toBe('J. Von A.')
       done()
     })
   })

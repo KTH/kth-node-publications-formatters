@@ -1,16 +1,13 @@
-/* eslint-env mocha */
-
 const filters = require('../helpers/filters')
-require('chai').should()
 
-describe('PublicationUtil', function () {
+describe('PublicationUtil', () => {
   var publicationUtil
   var json
   if (!json) {
     json = ''
   }
 
-  before(function (done) {
+  beforeAll((done) => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
@@ -21,8 +18,8 @@ describe('PublicationUtil', function () {
   // För att lägga till en publikation:
   // contentTypeCode: "science" eller "other"
   // publicationTypeCode: "book"
-  describe('Rules for adding a publication to list of science books.', function () {
-    it('should add one publication to the list of scienceBooks when science, and publication type code book', function (done) {
+  describe('Rules for adding a publication to list of science books.', () => {
+    it('should add one publication to the list of scienceBooks when science, and publication type code book', (done) => {
       var userPublications = {
         publications: [
           {
@@ -38,12 +35,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should add one publication to the list of scienceBooks when other, and publication type code book', function (done) {
+    it('should add one publication to the list of scienceBooks when other, and publication type code book', (done) => {
       var userPublications = {
         publications: [
           {
@@ -59,12 +56,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(1)
+      expect(numPublications).toBe(1)
 
       done()
     })
 
-    it('should NOT add a publication to the list of scienceBooks when science and publication type code has BAD casing', function (done) {
+    it('should NOT add a publication to the list of scienceBooks when science and publication type code has BAD casing', (done) => {
       var userPublications = {
         publications: [
           {
@@ -80,12 +77,12 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceBook)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(0)
+      expect(numPublications).toBe(0)
 
       done()
     })
 
-    it('should NOT add a publication to the list of scienceBooks when other publication type code has BAD casing', function (done) {
+    it('should NOT add a publication to the list of scienceBooks when other publication type code has BAD casing', (done) => {
       var userPublications = {
         publications: [
           {
@@ -101,7 +98,7 @@ describe('PublicationUtil', function () {
       var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceBook)
       var numPublications = jsonResult.length
 
-      numPublications.should.equal(0)
+      expect(numPublications).toBe(0)
 
       done()
     })
