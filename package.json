@@ -9,6 +9,8 @@
     "helpers"
   ],
   "scripts": {
+    "lint": "eslint --quiet",
+    "lint-v": "eslint",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "npm ci",
