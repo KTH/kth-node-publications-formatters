@@ -1,4 +1,3 @@
-const assert = require('chai').assert
 var { groupPublications } = require('../')
 describe('PublicationUtil', () => {
   var publicationUtil
@@ -61,7 +60,7 @@ describe('PublicationUtil', () => {
       var jsonResult = groupPublications(publicationUtil.filterList(jsonWithHiddenPub, false))
       var publicationsAfter = itemCounter(jsonResult)
 
-      assert(publicationsBefore === 24, 'Test data should contain 24 publications')
+      expect(publicationsBefore).toBe(24)
       expect(publicationsAfter).toBe(21)
 
       done()

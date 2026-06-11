@@ -1,5 +1,3 @@
-require('chai')
-
 describe('DescriptionHelper', () => {
   var helper
 
