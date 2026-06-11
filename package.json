@@ -35,7 +35,7 @@
     "node": ">=20.0.0"
   },
   "devDependencies": {
-    "@kth/eslint-config-kth": "^3.0.10",
+    "@kth/eslint-config-kth": "^4.0.0",
     "chai": "^4.3.6",
     "eslint": "^8.20.0",
     "husky": "^7.0.4",
