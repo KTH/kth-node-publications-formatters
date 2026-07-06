@@ -7,11 +7,10 @@ describe('PublicationUtil', () => {
     json = ''
   }
 
-  beforeAll((done) => {
+  beforeAll(() => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
-    done()
   })
 
   // Kontrollera reglerna för att lägga till en publikation i listan för "science reports".
@@ -19,7 +18,7 @@ describe('PublicationUtil', () => {
   // contentTypeCode: "science", "refereed" eller "other"
   // publicationTypeCode: "report"
   describe('Rules for adding a publication to list of science reports.', () => {
-    it('should add one publication to the list of scienceReports when science, and publication type report', (done) => {
+    it('should add one publication to the list of scienceReports when science, and publication type report', () => {
       const userPublications = {
         publications: [
           {
@@ -36,11 +35,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceReports when refereed, and publication type report', (done) => {
+    it('should add one publication to the list of scienceReports when refereed, and publication type report', () => {
       const userPublications = {
         publications: [
           {
@@ -57,11 +54,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceReports when other, and publication type report', (done) => {
+    it('should add one publication to the list of scienceReports when other, and publication type report', () => {
       const userPublications = {
         publications: [
           {
@@ -78,11 +73,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should NOT add a publication to the list of scienceReports when publication type code casing is BAD', (done) => {
+    it('should NOT add a publication to the list of scienceReports when publication type code casing is BAD', () => {
       const userPublications = {
         publications: [
           {
@@ -99,8 +92,6 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
-
-      done()
     })
   })
 })

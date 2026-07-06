@@ -7,11 +7,10 @@ describe('PublicationUtil', () => {
     json = ''
   }
 
-  beforeAll((done) => {
+  beforeAll(() => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
-    done()
   })
 
   // Kontrollera reglerna för att lägga till en publikation i listan för "science articles".
@@ -30,7 +29,7 @@ describe('PublicationUtil', () => {
   // contentTypeCode: "science" "refereed"
   // publicationSubTypeCode: "newsItem"
   describe('Rules for adding a publication to list of science articles.', () => {
-    it('should add one publication to the list of scienceArticles when science, article, and NOT subtype newsItem', (done) => {
+    it('should add one publication to the list of scienceArticles when science, article, and NOT subtype newsItem', () => {
       const userPublications = {
         publications: [
           {
@@ -47,11 +46,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceArticles when science, review, and NOT subtype newsItem', (done) => {
+    it('should add one publication to the list of scienceArticles when science, review, and NOT subtype newsItem', () => {
       const userPublications = {
         publications: [
           {
@@ -68,11 +65,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should NOT add one publication to the list of scienceArticles when refereed bookReview', (done) => {
+    it('should NOT add one publication to the list of scienceArticles when refereed bookReview', () => {
       const userPublications = {
         publications: [
           {
@@ -89,11 +84,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceArticles when other and article', (done) => {
+    it('should add one publication to the list of scienceArticles when other and article', () => {
       const userPublications = {
         publications: [
           {
@@ -110,11 +103,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceArticles when other and review', (done) => {
+    it('should add one publication to the list of scienceArticles when other and review', () => {
       const userPublications = {
         publications: [
           {
@@ -131,11 +122,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceArticles when other and bookReview', (done) => {
+    it('should add one publication to the list of scienceArticles when other and bookReview', () => {
       const userPublications = {
         publications: [
           {
@@ -152,11 +141,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceArticles when science and newsItem', (done) => {
+    it('should add one publication to the list of scienceArticles when science and newsItem', () => {
       const userPublications = {
         publications: [
           {
@@ -173,11 +160,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceArticles when refereed and newsItem', (done) => {
+    it('should add one publication to the list of scienceArticles when refereed and newsItem', () => {
       const userPublications = {
         publications: [
           {
@@ -194,8 +179,6 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
     /* -- bortkommenterade eftersom de blir fel. Det är dock inkonsekventa krav som ger det felaktiga beteendet
     it('should NOT add a publication to the list of scienceArticles when science, article and publication sub type code is newsItem', function (done) {
@@ -214,7 +197,6 @@ describe('PublicationUtil', () => {
 
       numPublications.should.equal(0)
 
-      done()
     })
 
     it('should NOT add a publication to the list of scienceArticles when science, review and publication sub type code is newsItem', function (done) {
@@ -233,7 +215,6 @@ describe('PublicationUtil', () => {
 
         numPublications.should.equal(0)
 
-        done()
       })
 
       it('should NOT add a publication to the list of scienceArticles when refereed, bookReview and publication sub type code is newsItem', function (done) {
@@ -252,7 +233,6 @@ describe('PublicationUtil', () => {
 
         numPublications.should.equal(0)
 
-        done()
       })
   */
   })

@@ -1,50 +1,43 @@
 describe('AuthorHelper', () => {
   let helper
 
-  beforeAll((done) => {
+  beforeAll(() => {
     helper = require('../helpers/AuthorHelper')
-    done()
   })
 
   describe('Eva', () => {
-    it('should be E.', (done) => {
+    it('should be E.', () => {
       expect(helper.splitAndFixNameParts('Eva', ' ')).toBe('E.')
-      done()
     })
   })
 
   describe('Jon-Olov', () => {
-    it('should be J.-O.', (done) => {
+    it('should be J.-O.', () => {
       expect(helper.splitAndFixNameParts('Jon-Olov', '-')).toBe('J.-O.')
-      done()
     })
   })
 
   describe('Jon Olov', () => {
-    it('should be J. O.', (done) => {
+    it('should be J. O.', () => {
       expect(helper.splitAndFixNameParts('Jon Olov', ' ')).toBe('J. O.')
-      done()
     })
   })
 
   describe('Candice L.', () => {
-    it('should be C. L.', (done) => {
+    it('should be C. L.', () => {
       expect(helper.splitAndFixNameParts('Candice L.', ' ')).toBe('C. L.')
-      done()
     })
   })
 
   describe('Gerald Q. Jr.', () => {
-    it('should be G. Q. Jr.', (done) => {
+    it('should be G. Q. Jr.', () => {
       expect(helper.splitAndFixNameParts('Gerald Q. Jr.', ' ')).toBe('G. Q. Jr.')
-      done()
     })
   })
 
   describe('Joakim Von Anka', () => {
-    it('should be J. Von A.', (done) => {
+    it('should be J. Von A.', () => {
       expect(helper.splitAndFixNameParts('Joakim Von Anka', ' ')).toBe('J. Von A.')
-      done()
     })
   })
 })

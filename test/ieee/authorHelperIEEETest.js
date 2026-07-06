@@ -1,9 +1,8 @@
 describe('AuthorHelper', () => {
   let helper
 
-  beforeAll((done) => {
+  beforeAll(() => {
     helper = require('../../helpers/AuthorHelper')
-    done()
   })
 
   describe('IEEE Authors', () => {

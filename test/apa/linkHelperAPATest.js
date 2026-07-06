@@ -1,9 +1,8 @@
 describe('LinkHelper', () => {
   let helper
 
-  beforeAll((done) => {
-    helper = require('../../helpers/DivaLinkHelper')
-    done()
+  beforeAll(() => {
+    helper = require('../../helpers/DivaLinkHelperAPA')
   })
 
   describe('APA Link Text', () => {

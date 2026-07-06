@@ -1,9 +1,8 @@
 describe('LinkHelper', () => {
   let helper
 
-  beforeAll((done) => {
-    helper = require('../../helpers/DivaLinkHelper')
-    done()
+  beforeAll(() => {
+    helper = require('../../helpers/DivaLinkHelperIEEE')
   })
 
   describe('IEEE Link Text', () => {

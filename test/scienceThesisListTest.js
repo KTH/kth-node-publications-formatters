@@ -7,11 +7,10 @@ describe('PublicationUtil', () => {
     json = ''
   }
 
-  beforeAll((done) => {
+  beforeAll(() => {
     json = require('./data.json')
 
     publicationUtil = require('../helpers/publicationUtil')
-    done()
   })
 
   // Kontrollera reglerna för att lägga till en publikation i listan för "science thesis".
@@ -19,7 +18,7 @@ describe('PublicationUtil', () => {
   // contentTypeCode: "science"
   // publicationTypeCode: "comprehensiveDoctoralThesis", "monographDoctoralThesis", "monographLicentiateThesis" eller "comprehensiveLicentiateThesis"
   describe('Rules for adding a publication to list of science thesis.', () => {
-    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveDoctoralThesis', (done) => {
+    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveDoctoralThesis', () => {
       const userPublications = {
         publications: [
           {
@@ -36,11 +35,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type monographDoctoralThesis', (done) => {
+    it('should add one publication to the list of scienceThesis when science, and publication type monographDoctoralThesis', () => {
       const userPublications = {
         publications: [
           {
@@ -57,11 +54,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type monographLicentiateThesis', (done) => {
+    it('should add one publication to the list of scienceThesis when science, and publication type monographLicentiateThesis', () => {
       const userPublications = {
         publications: [
           {
@@ -78,11 +73,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveLicentiateThesis', (done) => {
+    it('should add one publication to the list of scienceThesis when science, and publication type comprehensiveLicentiateThesis', () => {
       const userPublications = {
         publications: [
           {
@@ -99,11 +92,9 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
-
-      done()
     })
 
-    it('should NOT add a publication to the list of scienceThesis when publication type code casing is BAD', (done) => {
+    it('should NOT add a publication to the list of scienceThesis when publication type code casing is BAD', () => {
       const userPublications = {
         publications: [
           {
@@ -120,8 +111,6 @@ describe('PublicationUtil', () => {
       const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
-
-      done()
     })
   })
 })

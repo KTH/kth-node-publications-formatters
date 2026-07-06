@@ -1,9 +1,8 @@
 describe('DescriptionHelper', () => {
   let helper
 
-  beforeAll((done) => {
+  beforeAll(() => {
     helper = require('../../helpers/DescriptionHelper')
-    done()
   })
 
   // If publication is of type Article
@@ -43,7 +42,7 @@ describe('DescriptionHelper', () => {
     })
 
     // If Article has hostIssue (Both swedish and english)
-    it('The host issue should be in parenthesis', () => {
+    it('The host issue should be in parenthesis when article has hostIssue (Both swedish and english)', () => {
       const publication = {
         publicationTypeCode: 'article',
         hostTitle: 'The host title',
@@ -57,7 +56,7 @@ describe('DescriptionHelper', () => {
     })
 
     // If Article has hostExtentStart and hostExtentEnd
-    it('The host issue should be in parenthesis', () => {
+    it('The host issue should be in parenthesis when article has hostExtentStart and hostExtentEnd', () => {
       const publication = {
         publicationTypeCode: 'article',
         hostTitle: 'The host title',
