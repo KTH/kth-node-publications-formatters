@@ -1,21 +1,21 @@
 'use strict'
 module.exports = {
   splitAndFixNameParts: _splitAndFixNameParts,
-  shortenAndPunctuate: _shortenAndPunctuate
+  shortenAndPunctuate: _shortenAndPunctuate,
 }
 
 const reservedNameParts = ['von', 'van', 'der', 'af']
 
-function _shortenAndPunctuate (text) {
+function _shortenAndPunctuate(text) {
   if (text.length < 1) {
     return text.toUpperCase()
   }
   return text.substring(0, 1).toUpperCase()
 }
 
-function _splitAndFixNameParts (text, separator) {
+function _splitAndFixNameParts(text, separator) {
   // console.log(text)
-  let nameParts = text.split(separator)
+  const nameParts = text.split(separator)
   let firstNameBuilder = ''
   // console.log(firstNameBuilder)
   for (let index = 0; index < nameParts.length; index++) {
@@ -30,9 +30,7 @@ function _splitAndFixNameParts (text, separator) {
     } else {
       // Name part shortened and punctuation added
       if (!namePartIsReserved(nameParts[index])) {
-        firstNameBuilder = firstNameBuilder.concat(
-          _shortenAndPunctuate(nameParts[index])
-        )
+        firstNameBuilder = firstNameBuilder.concat(_shortenAndPunctuate(nameParts[index]))
         firstNameBuilder = firstNameBuilder.concat('.')
       } else {
         firstNameBuilder = firstNameBuilder.concat(nameParts[index])
@@ -42,7 +40,7 @@ function _splitAndFixNameParts (text, separator) {
   return firstNameBuilder.toString()
 }
 
-function namePartIsReserved (namePart) {
+function namePartIsReserved(namePart) {
   for (let index = 0; index < reservedNameParts.length; index++) {
     if (namePart.toLowerCase() === reservedNameParts[index]) {
       return true

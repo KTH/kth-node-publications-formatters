@@ -1,8 +1,8 @@
 const filters = require('../helpers/filters')
 
 describe('PublicationUtil', () => {
-  var publicationUtil
-  var json
+  let publicationUtil
+  let json
   if (!json) {
     json = ''
   }
@@ -22,7 +22,7 @@ describe('PublicationUtil', () => {
   // publicationStatus: får inte vara någon av ["In press", "Accepted", "Submitted"]
   describe('Rules for adding a publication to list of refereed articles.', () => {
     it('should add one publication to the list of scienceArticles when other, article, and published', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'other',
@@ -34,8 +34,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -43,7 +43,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should add one publication to the list of scienceArticles when other, article, regardless of subtype and published', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'other',
@@ -55,8 +55,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -64,7 +64,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should add one publication to the list of scienceArticles when refereed, article, subtype newsItem and published', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -76,8 +76,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -85,7 +85,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should add one publication to the list of scienceArticles when science, article, subtype newsItem and published', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
@@ -97,8 +97,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -106,7 +106,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceArticles when other, article, and NOT published', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'other',
@@ -118,8 +118,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceArticle)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceArticle)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -127,7 +127,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceArticles when refereed, article, subtype is NOT newsItem and published', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -139,8 +139,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceArticle)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceArticle)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -148,7 +148,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceArticles when science, article, subtype newsItem and NOT published', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
@@ -160,8 +160,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceArticle)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceArticle)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 

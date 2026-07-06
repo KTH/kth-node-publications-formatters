@@ -1,5 +1,5 @@
 describe('DescriptionHelper', () => {
-  var helper
+  let helper
 
   beforeAll((done) => {
     helper = require('../../helpers/DescriptionHelper')
@@ -10,7 +10,7 @@ describe('DescriptionHelper', () => {
   describe('Rules for formatting the description of a publication of the type Article.', () => {
     // If Article only has a hostTitle
     it('hostTitle should be displayed in italic.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'article',
         hostTitle: 'The host title',
       }
@@ -19,7 +19,7 @@ describe('DescriptionHelper', () => {
 
     // If Article has subtitle
     it('hostTitle and hostSubtitle should be displayed in italic and separated by a colon.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'article',
         hostTitle: 'The host title',
         hostSubTitle: 'The host subtitle',
@@ -31,7 +31,7 @@ describe('DescriptionHelper', () => {
 
     // If Article has hostVolume (Both swedish and english)
     it('The title(s) should end with a comma and host volume should be italicized.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'article',
         hostTitle: 'The host title',
         hostSubTitle: 'The host subtitle',
@@ -44,7 +44,7 @@ describe('DescriptionHelper', () => {
 
     // If Article has hostIssue (Both swedish and english)
     it('The host issue should be in parenthesis', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'article',
         hostTitle: 'The host title',
         hostSubTitle: 'The host subtitle',
@@ -58,7 +58,7 @@ describe('DescriptionHelper', () => {
 
     // If Article has hostExtentStart and hostExtentEnd
     it('The host issue should be in parenthesis', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'article',
         hostTitle: 'The host title',
         hostSubTitle: 'The host subtitle',
@@ -77,7 +77,7 @@ describe('DescriptionHelper', () => {
   describe('Rules for formatting the description of a publication of the type ConferencePaper.', () => {
     // If ConferencePaper only has a title
     it('Title should be displayed in italic.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'conferencePaper',
         hostTitle: 'The host title',
       }
@@ -88,7 +88,7 @@ describe('DescriptionHelper', () => {
 
     // If ConferencePaper has subtitle
     it('Title and subtitle should be displayed in italic and separated by a colon.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'conferencePaper',
         hostTitle: 'The host title',
         hostSubTitle: 'The host subtitle',
@@ -100,7 +100,7 @@ describe('DescriptionHelper', () => {
 
     // If ConferencePaper has hostExtentStart and hostExtentEnd
     it('hostExtentStart and hostExtentEnd should be in parenthesis and preceded by s. or pp.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'conferencePaper',
         hostTitle: 'The host title',
         hostSubTitle: 'The host subtitle',
@@ -117,7 +117,7 @@ describe('DescriptionHelper', () => {
 
     // If ConferencePaper has bookPlace and bookPublisher
     it('Include place and publisher should be separated by a colon.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'conferencePaper',
         hostTitle: 'The host title',
         hostSubTitle: 'The host subtitle',
@@ -136,7 +136,7 @@ describe('DescriptionHelper', () => {
 
     // If ConferencePaper has conferenceName
     it('ConferenceName should be preceded by "Presenterad vid"/"Presented at.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'conferencePaper',
         conferenceName: 'MILINF',
       }
@@ -151,7 +151,7 @@ describe('DescriptionHelper', () => {
 
   describe('Rules for formatting the description of a publication of the type Book.', () => {
     it('Edition, place and publisher should be correctly formatted.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'book',
         bookEdition: 5,
         bookPlace: 'Bräkne-Hoby',
@@ -168,7 +168,7 @@ describe('DescriptionHelper', () => {
 
   describe('Rules for formatting the description of a publication of the type chapter.', () => {
     it('Chapter correctly formatted.', () => {
-      var publication = {
+      const publication = {
         statementOfResponsibility: 'Urpo ja Turpo',
         bookPublisher: 'Advanced Knowledge International',
         bookPlace: 'Bräkne-Hoby',
@@ -189,7 +189,7 @@ describe('DescriptionHelper', () => {
 
   describe('Rules for formatting the description of a publication of the type thesis.', () => {
     it('Thesis correctly formatted.', () => {
-      var publication = {
+      const publication = {
         seriesIssueNr: '2017:29',
         seriesTitle: 'TRITA-TEST',
         bookPublisher: 'Advanced Knowledge International',
@@ -209,7 +209,7 @@ describe('DescriptionHelper', () => {
 
   describe('Rules for formatting the description of a publication of the type Report.', () => {
     it('seriesTitle, seriesIssueNr, place and publisher should be correctly formatted.', () => {
-      var publication = {
+      const publication = {
         publicationTypeCode: 'report',
         seriesTitle: 'Testserie',
         seriesIssueNr: '2012:06',
@@ -224,7 +224,7 @@ describe('DescriptionHelper', () => {
 
   describe('Rules for formatting the description of a publication of the type Collection.', () => {
     it('edition, place and publisher should be correctly formatted.', () => {
-      var publication = {
+      const publication = {
         bookPlace: 'Bräkne-Hoby',
         bookPublisher: 'Advanced Knowledge International',
         bookEdition: '3',
@@ -242,7 +242,7 @@ describe('DescriptionHelper', () => {
 
   describe('Rules for formatting the description of a publication of the type conferenceProceedings.', () => {
     it('edition, place and publisher should be correctly formatted.', () => {
-      var publication = {
+      const publication = {
         bookPlace: 'Bräkne-Hoby',
         bookPublisher: 'Advanced Knowledge International',
         bookEdition: '3',
@@ -260,7 +260,7 @@ describe('DescriptionHelper', () => {
 
   describe('Rules for formatting the description of a publication of the type patent.', () => {
     it('edition, place and publisher should be correctly formatted.', () => {
-      var publication = {
+      const publication = {
         patent: 'WO2015144902-A1',
         identifierUri: 'http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-180012',
         contentTypeCode: 'other',

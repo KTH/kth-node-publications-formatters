@@ -1,7 +1,8 @@
-var { groupPublications } = require('../')
+const { groupPublications } = require('../')
+
 describe('PublicationUtil', () => {
-  var publicationUtil
-  var json
+  let publicationUtil
+  let json
   if (!json) {
     json = ''
   }
@@ -15,7 +16,7 @@ describe('PublicationUtil', () => {
 
   describe('Test itemCounter', () => {
     it('should count 3', (done) => {
-      var json = { list: [1, 2], list2: [1], name: 'Jon' }
+      const json = { list: [1, 2], list2: [1], name: 'Jon' }
       expect(itemCounter(json)).toBe(3)
       done()
     })
@@ -24,11 +25,11 @@ describe('PublicationUtil', () => {
   // Kontrollera att alla publikationer i listan skrivs ut
   describe('No publications should be lost after filtering', () => {
     it('should be the same amount of publications if includeHidden is true.', (done) => {
-      var publicationsBefore = json.publications.length
+      const publicationsBefore = json.publications.length
 
-      var jsonResult = publicationUtil.filterList(json, true)
+      const jsonResult = publicationUtil.filterList(json, true)
       // var publicationsAfter = itemCounter(jsonResult)
-      var publicationsAfter = jsonResult.length
+      const publicationsAfter = jsonResult.length
 
       expect(publicationsBefore).toBe(publicationsAfter)
 
@@ -39,11 +40,11 @@ describe('PublicationUtil', () => {
   // Kontrollera att om publications är hidden så skall den ej visas i publication-vyn
   describe('Publications have to be hidden in Publication view if they are hidden in edit view', () => {
     it('blabla', (done) => {
-      var publicationsBefore = json.publications.length
+      const publicationsBefore = json.publications.length
 
-      var jsonResult = publicationUtil.filterList(json, false)
+      const jsonResult = publicationUtil.filterList(json, false)
       // var publicationsAfter = itemCounter(jsonResult)
-      var publicationsAfter = jsonResult.length
+      const publicationsAfter = jsonResult.length
 
       expect(publicationsBefore).not.toBe(publicationsAfter)
       expect(publicationsBefore).toBe(publicationsAfter + 4)
@@ -54,11 +55,11 @@ describe('PublicationUtil', () => {
 
   describe('For publications not filterable to any list, discard them.', () => {
     it('should be 3 discarded publications.', (done) => {
-      var jsonWithHiddenPub = require('./dataWithHiddenPublications.json')
-      var publicationsBefore = jsonWithHiddenPub.publications.length
+      const jsonWithHiddenPub = require('./dataWithHiddenPublications.json')
+      const publicationsBefore = jsonWithHiddenPub.publications.length
 
-      var jsonResult = groupPublications(publicationUtil.filterList(jsonWithHiddenPub, false))
-      var publicationsAfter = itemCounter(jsonResult)
+      const jsonResult = groupPublications(publicationUtil.filterList(jsonWithHiddenPub, false))
+      const publicationsAfter = itemCounter(jsonResult)
 
       expect(publicationsBefore).toBe(24)
       expect(publicationsAfter).toBe(21)
@@ -70,9 +71,9 @@ describe('PublicationUtil', () => {
   // Kontrollera att properties: Author/description/diva-helper finns på publikationen
 
   function itemCounter(json) {
-    var counter = 0
-    for (var list in json) {
-      var item = json[list]
+    let counter = 0
+    for (const list in json) {
+      const item = json[list]
       if (Array.isArray(item)) {
         counter += item.length
       }

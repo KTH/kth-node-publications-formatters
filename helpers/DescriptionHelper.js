@@ -12,16 +12,20 @@ const {
   getConferencePaperReference,
   getOtherReference,
   getThesisReference,
-  getManuscriptReference
+  getManuscriptReference,
 } = require('./referenceFormatters')
 
 module.exports = {
-  getDescription: _getDescription
+  getDescription: _getDescription,
 }
 
-function _getHostAndHostVolume (publication, lang, style) {
+function _getHostAndHostVolume(publication, lang, style) {
   let tmp = ''
-  if (publication.publicationTypeCode === 'article' || publication.publicationTypeCode === 'review' || publication.publicationTypeCode === 'bookReview') {
+  if (
+    publication.publicationTypeCode === 'article' ||
+    publication.publicationTypeCode === 'review' ||
+    publication.publicationTypeCode === 'bookReview'
+  ) {
     // Host title
     if (publication.hostTitle) {
       if (publication.hostSubTitle) {
@@ -35,10 +39,10 @@ function _getHostAndHostVolume (publication, lang, style) {
   if (publication.hostVolume) {
     if (style === 'ieee') {
       if (tmp) tmp = makeItalic(tmp)
-      tmp = tmp + ', '
+      tmp += ', '
       return tmp + translator.message('host_volume', lang) + publication.hostVolume
     }
-    tmp = tmp + ', '
+    tmp += ', '
     return makeItalic(tmp + publication.hostVolume)
   }
   if (tmp) {
@@ -48,7 +52,7 @@ function _getHostAndHostVolume (publication, lang, style) {
   }
 }
 
-function _getHostIssue (publication, lang, style) {
+function _getHostIssue(publication, lang, style) {
   // Host Issue
   if (publication.hostIssue) {
     if (style === 'ieee') {
@@ -59,10 +63,10 @@ function _getHostIssue (publication, lang, style) {
   return ''
 }
 
-function _getHostExtent (publication, lang, style) {
+function _getHostExtent(publication, lang, style) {
   // --Host pages/extent--
   if (publication.hostExtentStart) {
-    var tmp = ', ' + (style === 'ieee' ? translator.message('host_pages', lang) : '') + publication.hostExtentStart
+    const tmp = ', ' + (style === 'ieee' ? translator.message('host_pages', lang) : '') + publication.hostExtentStart
     if (publication.hostExtentEnd) {
       return tmp + '-' + publication.hostExtentEnd
     }
@@ -72,8 +76,8 @@ function _getHostExtent (publication, lang, style) {
   return ''
 }
 
-function _getDescription (publicationType, publication, lang, style) {
-  var publicationDescription = ''
+function _getDescription(publicationType, publication, lang, style) {
+  let publicationDescription = ''
 
   if (filters.isScienceThesis(publication)) {
     return publicationDescription.concat(getThesisReference(publication, lang, style))
@@ -93,7 +97,9 @@ function _getDescription (publicationType, publication, lang, style) {
       publicationDescription = publicationDescription.concat(getConferencePaperReference(publication, lang, style))
       break
     case 'conferenceProceedings':
-      publicationDescription = publicationDescription.concat(getConferenceProceedingsReference(publication, lang, style))
+      publicationDescription = publicationDescription.concat(
+        getConferenceProceedingsReference(publication, lang, style)
+      )
       break
     case 'other':
       publicationDescription = publicationDescription.concat(getOtherReference(publication, style))
@@ -108,7 +114,9 @@ function _getDescription (publicationType, publication, lang, style) {
       publicationDescription = publicationDescription.concat(getManuscriptReference(publication, lang, style))
       break
     default:
-      publicationDescription = ' ' + _getHostAndHostVolume(publication, lang, style) +
+      publicationDescription =
+        ' ' +
+        _getHostAndHostVolume(publication, lang, style) +
         _getHostIssue(publication, lang, style) +
         _getHostExtent(publication, lang, style)
       if (publication.dateIssued && style === 'ieee') {

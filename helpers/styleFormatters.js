@@ -1,7 +1,7 @@
 module.exports = {
-  makeItalic: makeItalic
+  makeItalic,
 }
 
-function makeItalic (text) {
+function makeItalic(text) {
   return '<i>' + text + '</i>'
 }

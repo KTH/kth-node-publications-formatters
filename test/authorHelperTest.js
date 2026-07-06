@@ -1,5 +1,5 @@
 describe('AuthorHelper', () => {
-  var helper
+  let helper
 
   beforeAll((done) => {
     helper = require('../helpers/AuthorHelper')

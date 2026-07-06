@@ -1,8 +1,8 @@
 const filters = require('../helpers/filters')
 
 describe('PublicationUtil', () => {
-  var publicationUtil
-  var json
+  let publicationUtil
+  let json
   if (!json) {
     json = ''
   }
@@ -24,7 +24,7 @@ describe('PublicationUtil', () => {
   // publicationSubTypeCode: något av ["presentation", "poster", "meetingAbstract", "letter", "abstracts", "editorialMaterial", "newsItem"]
   describe('Rules for adding a publication to list of science conference papers.', () => {
     it('should add one publication to the list of scienceConferencePapers when science and publication type code conferencePaper', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'science',
@@ -36,8 +36,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -45,7 +45,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should add one publication to the list of scienceConferencePapers when other and publication type code conferencePaper', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'other',
@@ -57,8 +57,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -66,7 +66,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceConferencePapers when refereed and type code conferencePaper and sub type code presentation', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -78,8 +78,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -87,7 +87,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceConferencePapers when refereed and type code conferencePaper and sub type code poster', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -99,8 +99,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -108,7 +108,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceConferencePapers when refereed and type code conferencePaper and sub type code meetingAbstract', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -120,8 +120,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -129,7 +129,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceConferencePapers when refereed and type code conferencePaper and sub type code letter', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -141,8 +141,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -150,7 +150,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceConferencePapers when refereed and type code conferencePaper and sub type code abstracts', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -162,8 +162,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -171,7 +171,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceConferencePapers when refereed and type code conferencePaper and sub type code editorialMaterial', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -183,8 +183,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -192,7 +192,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add one publication to the list of scienceConferencePapers when refereed and type code conferencePaper and sub type code newsItem', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -204,8 +204,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -213,7 +213,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add a publication to the list of scienceConferencePapers when refereed, conferencePaper and publication sub type code is BAD(review)', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -225,8 +225,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -234,7 +234,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add a publication to the list of scienceConferencePapers when refereed, conferencePaper and publication sub type code has BAD casing', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -246,8 +246,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isScienceConferencePaper)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 

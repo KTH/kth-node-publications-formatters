@@ -1,10 +1,10 @@
 'use strict'
 
+const log = require('@kth/log')
 const AuthorHelper = require('./helpers/AuthorHelper')
 const DescriptionHelper = require('./helpers/DescriptionHelper')
 const DivaLinkHelper = require('./helpers/DivaLinkHelper')
 const filters = require('./helpers/filters')
-const log = require('@kth/log')
 const pubUtil = require('./helpers/publicationUtil')
 
 module.exports = {
@@ -16,8 +16,8 @@ module.exports = {
 
 // This function is primarily used to get a formatted output for Cortina
 function _render(publications) {
-  return publications.reduce(function (str, item, index) {
-    return (
+  return publications.reduce(
+    (str, item, index) =>
       str +
       `
     <div class="row publicationRow">
@@ -27,21 +27,21 @@ function _render(publications) {
       <div class="col-md-10 col-xs-8 publicationInfo">
         <span>${item.formattedAuthors}</span>
         <a href="${item.formattedLink}" target="_blank" rel="noopener noreferrer"><span>${
-        item.formattedLinkText
-      }</span></a>
+          item.formattedLinkText
+        }</span></a>
         <span>${item.formattedDescription}</span>
       </div>
-    </div>`
-    )
-  }, '')
+    </div>`,
+    ''
+  )
 }
 
 function _formatPublications(data, style, lang) {
-  var i = 1
-  var pubs
+  let i = 1
+  let pubs
   if (Array.isArray(data)) {
     pubs = data.map((item) => {
-      var obj = _formatSinglePublication(item, lang, style)
+      const obj = _formatSinglePublication(item, lang, style)
       obj.index = ++i
       return obj
     })
@@ -58,7 +58,7 @@ function _formatSinglePublication(publ, lang, style) {
   publ.formattedLinkText = DivaLinkHelper.getLinkText(publ.publicationTypeCode, publ, style)
   publ.formattedDescription = DescriptionHelper.getDescription(publ.publicationTypeCode, publ, lang, style)
   if (!publ.formattedDescription.endsWith('.')) {
-    publ.formattedDescription = publ.formattedDescription + '.'
+    publ.formattedDescription += '.'
   }
 
   return publ
@@ -66,7 +66,7 @@ function _formatSinglePublication(publ, lang, style) {
 
 // This function repacks a list of publications into an object with several sublists of publications of the same type
 function _groupPublications(publs) {
-  var obj = {}
+  const obj = {}
   obj.refereedArticles = []
   obj.refereedConferencePapers = []
   obj.refereedBooks = []
@@ -165,9 +165,9 @@ function _groupPublications(publs) {
 }
 
 function sortFilteredList(filteredList) {
-  for (let listName in filteredList) {
+  for (const listName in filteredList) {
     if (filteredList.hasOwnProperty(listName) && Array.isArray(filteredList[listName])) {
-      var list = filteredList[listName]
+      const list = filteredList[listName]
       list.sort(sortPublicationsByDateTitle)
     }
   }

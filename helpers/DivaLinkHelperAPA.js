@@ -1,10 +1,11 @@
 const { makeItalic } = require('./styleFormatters')
 const filters = require('./filters')
+
 module.exports = {
-  getLinkText: _getLinkText
+  getLinkText: _getLinkText,
 }
 
-function _getLinkText (publicationType, publication) {
+function _getLinkText(publicationType, publication) {
   let title = ''
   if (publication.subTitle !== null && publication.subTitle !== '') {
     title = publication.title + ' : ' + publication.subTitle
@@ -30,13 +31,15 @@ function _getLinkText (publicationType, publication) {
   }
 }
 
-function isBookOrSo (publication) {
-  return (publication.publicationTypeCode === 'book' ||
+function isBookOrSo(publication) {
+  return (
+    publication.publicationTypeCode === 'book' ||
     filters.isScienceThesis(publication) ||
     filters.isScienceReport(publication) ||
     filters.isOtherReport(publication) ||
     filters.isScienceConferenceProceeding(publication) ||
     filters.isOtherConferenceProceeding(publication) ||
     filters.isScienceCollection(publication) ||
-    filters.isOtherCollection(publication))
+    filters.isOtherCollection(publication)
+  )
 }

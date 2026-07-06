@@ -1,8 +1,8 @@
 const filters = require('../helpers/filters')
 
 describe('PublicationUtil', () => {
-  var publicationUtil
-  var json
+  let publicationUtil
+  let json
   if (!json) {
     json = ''
   }
@@ -20,7 +20,7 @@ describe('PublicationUtil', () => {
   // publicationTypeCode: "chapter"
   describe('Rules for adding a publication to list of refereed chapters.', () => {
     it('should add one publication to the list of refereedChapters when refereed, chapter', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -32,8 +32,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -41,7 +41,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add a publication to the list of refereedChapters when publication type code has BAD casing', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -53,8 +53,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedChapter)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedChapter)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 

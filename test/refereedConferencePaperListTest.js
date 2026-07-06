@@ -1,6 +1,6 @@
 describe('PublicationUtil', () => {
-  var publicationUtil
-  var json
+  let publicationUtil
+  let json
   if (!json) {
     json = ''
   }
@@ -19,7 +19,7 @@ describe('PublicationUtil', () => {
   // publicationSubTypeCode: ""
   describe('Rules for adding a publication to list of refereed conference papers.', () => {
     it('should add one publication to the list of refereedConferencePapers when refereed, conferencePaper, and correct subtype = ""', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -31,8 +31,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -40,7 +40,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should add a publication to the list of refereedConferencePapers regardless of publicationSubTypeCode', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -52,8 +52,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 

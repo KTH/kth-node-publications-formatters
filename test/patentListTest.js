@@ -1,8 +1,8 @@
 const filters = require('../helpers/filters')
 
 describe('PublicationUtil', () => {
-  var publicationUtil
-  var json
+  let publicationUtil
+  let json
   if (!json) {
     json = ''
   }
@@ -21,7 +21,7 @@ describe('PublicationUtil', () => {
   // dateIssued: "2015-07-30" har värde satt
   describe('Rules for adding a publication to list of patents.', () => {
     it('should add one publication to the list of patents when other, publication type patent and dateIssued set', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'other',
@@ -33,8 +33,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -42,7 +42,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add a publication to the list of patents when publication issuedDate is missing', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'other',
@@ -54,8 +54,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isPatent)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isPatent)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 

@@ -12,12 +12,12 @@ module.exports = {
   getConferenceProceedingsReference: _getConferenceProceedingsReference,
   getCollectionReference: _getCollectionReference,
   getPatentReference: _getPatentReference,
-  getOtherReference: _getOtherReference
+  getOtherReference: _getOtherReference,
 }
 
-function _getBookReference (publication, lang) {
+function _getBookReference(publication, lang) {
   // Book edition
-  var tmp = ''
+  let tmp = ''
   tmp = _getEdition(publication, tmp, lang)
 
   // City of publisher
@@ -33,19 +33,33 @@ function _getBookReference (publication, lang) {
   return tmp
 }
 
-function _getChapterReference (publication, lang) {
-  var tmp = ''
+function _getChapterReference(publication, lang) {
+  let tmp = ''
   // Book title
   if (publication.hostTitle) {
     if (publication.hostSubTitle) {
-      if (publication.statementOfResponsibility || publication.bookEdition || publication.bookPlace || publication.bookPublisher) {
-        tmp = tmp.concat(translator.message('chapter_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle + ', ')
+      if (
+        publication.statementOfResponsibility ||
+        publication.bookEdition ||
+        publication.bookPlace ||
+        publication.bookPublisher
+      ) {
+        tmp = tmp.concat(
+          translator.message('chapter_in', lang) +
+            makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle + ', ')
         )
       } else {
-        tmp = tmp.concat(translator.message('chapter_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle))
+        tmp = tmp.concat(
+          translator.message('chapter_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle)
+        )
       }
     } else {
-      if (publication.statementOfResponsibility || publication.bookEdition || publication.bookPlace || publication.bookPublisher) {
+      if (
+        publication.statementOfResponsibility ||
+        publication.bookEdition ||
+        publication.bookPlace ||
+        publication.bookPublisher
+      ) {
         tmp = tmp.concat(translator.message('chapter_in', lang) + makeItalic(publication.hostTitle + ', '))
       } else {
         tmp = tmp.concat(translator.message('chapter_in', lang) + makeItalic(publication.hostTitle))
@@ -76,8 +90,8 @@ function _getChapterReference (publication, lang) {
   return tmp
 }
 
-function _getCollectionReference (publication, lang) {
-  var tmp = ''
+function _getCollectionReference(publication, lang) {
+  let tmp = ''
 
   // Book edition
   tmp = _getEdition(publication, tmp, lang)
@@ -96,12 +110,14 @@ function _getCollectionReference (publication, lang) {
   return tmp
 }
 
-function _getConferencePaperReference (publication, lang) {
-  var tmp = ''
+function _getConferencePaperReference(publication, lang) {
+  let tmp = ''
   // Host/conference title
   if (publication.hostTitle) {
     if (publication.hostSubTitle) {
-      tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle))
+      tmp = tmp.concat(
+        translator.message('conference_in', lang) + makeItalic(publication.hostTitle + ' : ' + publication.hostSubTitle)
+      )
     } else {
       tmp = tmp.concat(translator.message('conference_in', lang) + makeItalic(publication.hostTitle))
     }
@@ -119,15 +135,15 @@ function _getConferencePaperReference (publication, lang) {
   return tmp
 }
 
-function _getConferenceProceedingsReference (publication) {
-  var tmp = ''
+function _getConferenceProceedingsReference(publication) {
+  let tmp = ''
   // City of publisher
   tmp = _addBookPlace(publication, 'conferenceProceedings', tmp)
 
   // Publisher
   tmp = _addBookPublisher(publication, tmp)
   if (publication.seriesTitle || publication.seriesIssueNr || publication.dateIssued) {
-    tmp = tmp + ', '
+    tmp += ', '
   }
 
   // Series title
@@ -142,8 +158,8 @@ function _getConferenceProceedingsReference (publication) {
   return tmp
 }
 
-function _getOtherReference (publication) {
-  var tmp = ''
+function _getOtherReference(publication) {
+  let tmp = ''
   // Publisher
   if (publication.bookPublisher) {
     if (publication.bookPlace) {
@@ -157,9 +173,9 @@ function _getOtherReference (publication) {
   return tmp
 }
 
-function _getPatentReference (publication) {
+function _getPatentReference(publication) {
   // Patent
-  var tmp = ''
+  let tmp = ''
   if (publication.patent) {
     tmp = tmp.concat(publication.patent)
   }
@@ -169,8 +185,8 @@ function _getPatentReference (publication) {
   return tmp
 }
 
-function _getReportReference (publication) {
-  var tmp = ''
+function _getReportReference(publication) {
+  let tmp = ''
   // City of publisher
   if (publication.bookPlace) {
     if (!publication.bookPublisher) {
@@ -195,11 +211,14 @@ function _getReportReference (publication) {
   return tmp
 }
 
-function _getThesisReference (publication, lang) {
-  var tmp = ''
+function _getThesisReference(publication, lang) {
+  let tmp = ''
   // Thesis type
-  var i18nThesisType = 'thesis_licentiate'
-  if (publication.publicationTypeCode === 'comprehensiveDoctoralThesis' || publication.publicationTypeCode === 'monographDoctoralThesis') {
+  let i18nThesisType = 'thesis_licentiate'
+  if (
+    publication.publicationTypeCode === 'comprehensiveDoctoralThesis' ||
+    publication.publicationTypeCode === 'monographDoctoralThesis'
+  ) {
     i18nThesisType = 'thesis_doctoral'
   }
 
@@ -228,14 +247,14 @@ function _getThesisReference (publication, lang) {
  * Example: if we have a publisherPlace, we should append a comma and the publisherPlace to the formatted string,
  * not decide in publisher whether or not we should append the comma.
  * This doesn't always work, some things have either a colon or comma depending on some parameter.
-*/
+ */
 
-function _getEdition (publication, tmpString, lang) {
+function _getEdition(publication, tmpString, lang) {
   if (!publication.bookEdition) {
     return tmpString
   }
-  var text = publication.bookEdition
-  var value = 0
+  const text = publication.bookEdition
+  let value = 0
   try {
     value = parseInt(text)
   } catch (e) {
@@ -254,63 +273,65 @@ function _getEdition (publication, tmpString, lang) {
   }
 }
 
-function _addDateIssued (publication, tmpString) {
+function _addDateIssued(publication, tmpString) {
   if (publication.dateIssued) {
-    var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+    const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
     return tmpString.concat(prepend + publication.dateIssued)
   }
   return tmpString
 }
 
 const _bookPlaceSuffix = {
-  'book': ' : ',
-  'chapter': ' : ',
-  'thesis': ' : ',
-  'collection': ', ',
-  'conferenceProceedings': ', '
+  book: ' : ',
+  chapter: ' : ',
+  thesis: ' : ',
+  collection: ', ',
+  conferenceProceedings: ', ',
 }
 
-function _addBookPlace (publication, type, tmpString) {
-  var addition = _bookPlaceSuffix[type]
+function _addBookPlace(publication, type, tmpString) {
+  const addition = _bookPlaceSuffix[type]
   if (publication.bookPublisher) {
     return tmpString.concat(publication.bookPlace + addition)
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
   return tmpString.concat(prepend + publication.bookPlace)
 }
 
-function _addBookPublisher (publication, tmpString) {
+function _addBookPublisher(publication, tmpString) {
   if (!publication.bookPublisher) {
     return tmpString
   }
   return tmpString.concat(publication.bookPublisher)
 }
 
-function _addSeriesIssueNumber (publication, tmpString) {
+function _addSeriesIssueNumber(publication, tmpString) {
   if (!publication.seriesIssueNr) {
     return tmpString
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
 
   return tmpString.concat(prepend + publication.seriesIssueNr)
 }
 
-function _addSeriesTitle (publication, tmpString) {
+function _addSeriesTitle(publication, tmpString) {
   if (!publication.seriesTitle) {
     return tmpString
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
 
   return tmpString.concat(prepend + publication.seriesTitle)
 }
 
-function _addHostStartEnd (publication, lang, tmpString) {
+function _addHostStartEnd(publication, lang, tmpString) {
   if (!publication.hostExtentStart) {
     return tmpString
   }
-  var prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
   if (publication.hostExtentEnd) {
-    return tmpString.concat(prepend + translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd)
+    return tmpString.concat(
+      prepend + translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd
+    )
   } else {
     return tmpString.concat(prepend + translator.message('host_page', lang) + publication.hostExtentStart)
   }

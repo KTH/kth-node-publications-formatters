@@ -1,13 +1,11 @@
 module.exports = {
-  getLinkText: _getLinkText
+  getLinkText: _getLinkText,
 }
 
-function _getLinkText (publicationType, publication) {
+function _getLinkText(publicationType, publication) {
   if (publication.publicationTypeCode === 'book') {
     if (publication.subTitle !== null && publication.subTitle !== '') {
-      return (
-        '<i>' + publication.title + ' : ' + publication.subTitle + '.' + '</i> '
-      )
+      return '<i>' + publication.title + ' : ' + publication.subTitle + '.' + '</i> '
     } else {
       return '<i>' + publication.title + '.' + '</i> '
     }

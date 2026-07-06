@@ -4,10 +4,10 @@ const utils = require('./AuthorHelperUtil')
 
 module.exports = {
   getAuthors: _getAuthors,
-  splitAndFixNameParts: utils.splitAndFixNameParts
+  splitAndFixNameParts: utils.splitAndFixNameParts,
 }
 
-function _getAuthors (publicationType, publication, lang, style) {
+function _getAuthors(publicationType, publication, lang, style) {
   switch (style) {
     case 'ieee':
       return ieeeStyle.getAuthors(publicationType, publication, lang)

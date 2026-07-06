@@ -3,10 +3,10 @@ const ieeeStyle = require('./DivaLinkHelperIEEE')
 
 module.exports = {
   getLinkText: _getLinkText,
-  getLinkUrl: _getLinkUrl
+  getLinkUrl: _getLinkUrl,
 }
 
-function _getLinkText (publicationType, publication, style) {
+function _getLinkText(publicationType, publication, style) {
   if (style === 'apa') {
     return apaStyle.getLinkText(publicationType, publication)
   } else {
@@ -14,6 +14,6 @@ function _getLinkText (publicationType, publication, style) {
   }
 }
 
-function _getLinkUrl (publicationType, publication) {
-  return ('http://kth.diva-portal.org/smash/record.jsf?dswid=3396&pid=' + publication.publicationId)
+function _getLinkUrl(publicationType, publication) {
+  return 'http://kth.diva-portal.org/smash/record.jsf?dswid=3396&pid=' + publication.publicationId
 }

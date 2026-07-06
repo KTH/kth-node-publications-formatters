@@ -15,16 +15,16 @@ module.exports = {
  * Excludes all hidden publication by user if not explicitly requested.
  */
 function _filterList(publicationList, includeHidden) {
-  var filteredList = []
+  const filteredList = []
 
   if (!publicationList) {
     log.debug('Empty list' + JSON.stringify(publicationList))
     return filteredList
   }
 
-  var publications = publicationList.publications
-  for (var index = 0; index < publications.length; index++) {
-    var publication = publications[index]
+  const { publications } = publicationList
+  for (let index = 0; index < publications.length; index++) {
+    const publication = publications[index]
 
     publication.visible = publicationList.hiddenPublications.indexOf(publication.publicationId) === -1
 

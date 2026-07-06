@@ -14,10 +14,10 @@ module.exports = {
   getPatentReference: _getPatentReference,
   getReportReference: _getReportReference,
   getThesisReference: _getThesisReference,
-  getManuscriptReference: _getManuscriptReference
+  getManuscriptReference: _getManuscriptReference,
 }
 
-function _getBookReference (publication, lang, style) {
+function _getBookReference(publication, lang, style) {
   if (style === 'apa') {
     return apaStyle.getBookReference(publication, lang)
   }
@@ -25,7 +25,7 @@ function _getBookReference (publication, lang, style) {
   return ieeeStyle.getBookReference(publication, lang)
 }
 
-function _getChapterReference (publication, lang, style) {
+function _getChapterReference(publication, lang, style) {
   if (style === 'apa') {
     return apaStyle.getChapterReference(publication, lang)
   }
@@ -33,7 +33,7 @@ function _getChapterReference (publication, lang, style) {
   return ieeeStyle.getChapterReference(publication, lang)
 }
 
-function _getCollectionReference (publication, lang, style) {
+function _getCollectionReference(publication, lang, style) {
   if (style === 'apa') {
     return apaStyle.getCollectionReference(publication, lang)
   }
@@ -41,7 +41,7 @@ function _getCollectionReference (publication, lang, style) {
   return ieeeStyle.getCollectionReference(publication, lang)
 }
 
-function _getConferencePaperReference (publication, lang, style) {
+function _getConferencePaperReference(publication, lang, style) {
   if (style === 'apa') {
     return apaStyle.getConferencePaperReference(publication, lang)
   }
@@ -49,7 +49,7 @@ function _getConferencePaperReference (publication, lang, style) {
   return ieeeStyle.getConferencePaperReference(publication, lang)
 }
 
-function _getConferenceProceedingsReference (publication, lang, style) {
+function _getConferenceProceedingsReference(publication, lang, style) {
   if (style === 'apa') {
     return apaStyle.getConferenceProceedingsReference(publication, lang)
   }
@@ -57,7 +57,7 @@ function _getConferenceProceedingsReference (publication, lang, style) {
   return ieeeStyle.getConferenceProceedingsReference(publication, lang)
 }
 
-function _getOtherReference (publication, style) {
+function _getOtherReference(publication, style) {
   if (style === 'apa') {
     return apaStyle.getOtherReference(publication)
   }
@@ -65,7 +65,7 @@ function _getOtherReference (publication, style) {
   return ieeeStyle.getOtherReference(publication)
 }
 
-function _getPatentReference (publication, style) {
+function _getPatentReference(publication, style) {
   if (style === 'apa') {
     return apaStyle.getPatentReference(publication)
   }
@@ -73,7 +73,7 @@ function _getPatentReference (publication, style) {
   return ieeeStyle.getPatentReference(publication)
 }
 
-function _getReportReference (publication, style) {
+function _getReportReference(publication, style) {
   if (style === 'apa') {
     return apaStyle.getReportReference(publication)
   }
@@ -81,7 +81,7 @@ function _getReportReference (publication, style) {
   return ieeeStyle.getReportReference(publication)
 }
 
-function _getThesisReference (publication, lang, style) {
+function _getThesisReference(publication, lang, style) {
   if (style === 'apa') {
     return apaStyle.getThesisReference(publication, lang)
   }
@@ -89,8 +89,8 @@ function _getThesisReference (publication, lang, style) {
   return ieeeStyle.getThesisReference(publication, lang)
 }
 
-function _getManuscriptReference (publication, lang) {
-  var tmp = ''
+function _getManuscriptReference(publication, lang) {
+  let tmp = ''
   tmp += ' ('
   tmp += translator.message('manuscript', lang)
   tmp += ')'

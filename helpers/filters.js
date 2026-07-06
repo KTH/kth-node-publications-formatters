@@ -1,4 +1,5 @@
 const log = require('@kth/log')
+
 module.exports = {
   isRefereedArticle,
   isRefereedBook,
@@ -135,8 +136,8 @@ function isOtherArticle(publication) {
       publication.publicationStatus
   )
 
-  var isArticleOfTypeOther = isPubContentOther(publication) && isArticle(publication)
-  var isNewsItem =
+  const isArticleOfTypeOther = isPubContentOther(publication) && isArticle(publication)
+  const isNewsItem =
     (isPubContentScience(publication) || isPubContentRefereed(publication)) &&
     publication.publicationSubTypeCode === 'newsItem'
   return (isArticleOfTypeOther || isNewsItem) && isPublished(publication)

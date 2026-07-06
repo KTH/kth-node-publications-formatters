@@ -17,11 +17,11 @@ module.exports = {
 
 function _getBookReference(publication, lang) {
   // Book edition
-  var tmp = ''
+  let tmp = ''
   tmp = tmp.concat(_getEdition(publication, lang) + '. ')
 
   // City and publisher
-  let placeAndPublisher = _getPlaceAndPublisher(publication)
+  const placeAndPublisher = _getPlaceAndPublisher(publication)
   // if (placeAndPublisher && tmp) {
   //   tmp += ' '
   // }
@@ -31,10 +31,10 @@ function _getBookReference(publication, lang) {
 }
 
 function _getChapterReference(publication, lang) {
-  var tmp = ' ' + translator.message('chapter_in_apa', lang)
+  let tmp = ' ' + translator.message('chapter_in_apa', lang)
 
   // editor
-  let editor = publication.statementOfResponsibility
+  const editor = publication.statementOfResponsibility
   if (editor) {
     tmp += editor + ' ' + translator.message('editor_apa', lang) + ', '
   }
@@ -45,7 +45,7 @@ function _getChapterReference(publication, lang) {
   if (bookTitle) tmp += makeItalic(bookTitle)
 
   // Book edition
-  let edition = _getEdition(publication, lang)
+  const edition = _getEdition(publication, lang)
 
   // pages, extent
   let pages = ''
@@ -79,11 +79,11 @@ function _getChapterReference(publication, lang) {
 
 function _getCollectionReference(publication, lang) {
   // Book edition
-  var tmp = ''
+  let tmp = ''
   tmp = tmp.concat(_getEdition(publication, lang) + '. ')
 
   // City and publisher
-  let placeAndPublisher = _getPlaceAndPublisher(publication)
+  const placeAndPublisher = _getPlaceAndPublisher(publication)
   // if (placeAndPublisher && tmp) {
   //   tmp += ' '
   // }
@@ -93,7 +93,7 @@ function _getCollectionReference(publication, lang) {
 }
 
 function _getConferencePaperReference(publication, lang) {
-  var tmp = ''
+  let tmp = ''
   // Host/conference title
   // This is not according to PI suggestion
   // Since values for host title and conference most often contain "Proceedings of" Just list the title and hope for the best
@@ -117,7 +117,7 @@ function _getConferencePaperReference(publication, lang) {
     tmp += ' (' + pages + ').'
   }
   // City and publisher
-  let placeAndPublisher = _getPlaceAndPublisher(publication)
+  const placeAndPublisher = _getPlaceAndPublisher(publication)
   if (placeAndPublisher) {
     tmp += ' ' + placeAndPublisher
   }
@@ -129,9 +129,9 @@ function _getConferenceProceedingsReference(publication, lang) {
 }
 
 function _getOtherReference(publication) {
-  var tmp = ''
+  let tmp = ''
   // City and publisher
-  let placeAndPublisher = _getPlaceAndPublisher(publication)
+  const placeAndPublisher = _getPlaceAndPublisher(publication)
   if (placeAndPublisher) {
     tmp += ' '
     tmp += placeAndPublisher
@@ -142,7 +142,7 @@ function _getOtherReference(publication) {
 
 function _getPatentReference(publication) {
   // Patent
-  var tmp = ''
+  let tmp = ''
   if (publication.patent) {
     tmp = tmp.concat(' ' + makeItalic(publication.patent))
   }
@@ -151,7 +151,7 @@ function _getPatentReference(publication) {
 }
 
 function _getReportReference(publication) {
-  var tmp = ''
+  let tmp = ''
   // Series info
   const seriesInfo = _getSeriesInfo(publication)
   if (seriesInfo) {
@@ -169,9 +169,9 @@ function _getReportReference(publication) {
 }
 
 function _getThesisReference(publication, lang) {
-  var tmp = ''
+  let tmp = ''
   // Thesis type
-  var i18nThesisType = 'thesis_licentiate'
+  let i18nThesisType = 'thesis_licentiate'
   if (
     publication.publicationTypeCode === 'comprehensiveDoctoralThesis' ||
     publication.publicationTypeCode === 'monographDoctoralThesis'

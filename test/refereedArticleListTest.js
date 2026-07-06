@@ -1,8 +1,8 @@
 const filters = require('../helpers/filters')
 
 describe('PublicationUtil', () => {
-  var publicationUtil
-  var json
+  let publicationUtil
+  let json
   if (!json) {
     json = ''
   }
@@ -22,7 +22,7 @@ describe('PublicationUtil', () => {
   // publicationStatus: får inte vara någon av ["In press", "Accepted", "Submitted"]
   describe('Rules for adding a publication to list of refereed articles.', () => {
     it('should add one publication to the list of refereedArticles when refereed, article, and correct subtype and status', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -34,8 +34,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -43,7 +43,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should add one publication to the list of refereedArticles when refereed, review, and correct subtype and status', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -55,8 +55,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(1)
 
@@ -64,7 +64,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add a publication to the list of refereedArticles when publication sub type code is BAD', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -76,8 +76,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedArticle)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedArticle)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 
@@ -85,7 +85,7 @@ describe('PublicationUtil', () => {
     })
 
     it('should NOT add a publication to the list of refereedArticles when publication status is BAD', (done) => {
-      var userPublications = {
+      const userPublications = {
         publications: [
           {
             contentTypeCode: 'refereed',
@@ -97,8 +97,8 @@ describe('PublicationUtil', () => {
         hiddenPublications: [],
       }
 
-      var jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedArticle)
-      var numPublications = jsonResult.length
+      const jsonResult = publicationUtil.filterList(userPublications, true).filter(filters.isRefereedArticle)
+      const numPublications = jsonResult.length
 
       expect(numPublications).toBe(0)
 

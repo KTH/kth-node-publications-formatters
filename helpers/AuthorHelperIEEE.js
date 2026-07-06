@@ -3,20 +3,25 @@ const styleFormatters = require('./styleFormatters')
 const utils = require('./AuthorHelperUtil')
 
 module.exports = {
-  getAuthors: _getIEEEAuthors
+  getAuthors: _getIEEEAuthors,
 }
 
-function _getIEEEAuthors (publicationType, publication, lang) {
-  var authors = publication.authors
-  var authorRole = 'aut'
-  if (publicationType === 'scienceCollections' || publicationType === 'otherCollections' || publicationType === 'scienceConferenceProceedings' || publicationType === 'otherConferenceProceedings') {
+function _getIEEEAuthors(publicationType, publication, lang) {
+  const { authors } = publication
+  let authorRole = 'aut'
+  if (
+    publicationType === 'scienceCollections' ||
+    publicationType === 'otherCollections' ||
+    publicationType === 'scienceConferenceProceedings' ||
+    publicationType === 'otherConferenceProceedings'
+  ) {
     authorRole = 'edt'
   }
   if (authors === null) return ''
-  var returnNames = []
+  const returnNames = []
 
-  for (var index = 0; index < authors.length; index++) {
-    var author = authors[index]
+  for (let index = 0; index < authors.length; index++) {
+    const author = authors[index]
     if (author.role !== null && author.role.toLowerCase() === authorRole) {
       /*
         if (names.length != 2) {
@@ -25,34 +30,22 @@ function _getIEEEAuthors (publicationType, publication, lang) {
       // } else {
       if (author.givenName.indexOf(' ') !== -1) {
         // Space separated name, eg Anna Lisa
-        returnNames.push(
-          utils.splitAndFixNameParts(author.givenName, ' ') + ' ' + author.familyName
-        )
+        returnNames.push(utils.splitAndFixNameParts(author.givenName, ' ') + ' ' + author.familyName)
       } else if (author.givenName.indexOf('-') !== -1) {
         // Line separated name, eg Anna-Lisa
-        returnNames.push(
-          utils.splitAndFixNameParts(author.givenName, '-') + ' ' + author.familyName
-        )
+        returnNames.push(utils.splitAndFixNameParts(author.givenName, '-') + ' ' + author.familyName)
       } else {
         // Standard single name, eg Anna
-        returnNames.push(
-          utils.shortenAndPunctuate(author.givenName) + '. ' + author.familyName
-        )
+        returnNames.push(utils.shortenAndPunctuate(author.givenName) + '. ' + author.familyName)
       }
     }
   }
 
-  var authorNames = ''
+  let authorNames = ''
   if (returnNames.length === 1) {
     authorNames = returnNames[0] + ', '
   } else if (returnNames.length === 2) {
-    authorNames =
-      returnNames[0] +
-      ' ' +
-      translator.message('author_and', lang) +
-      ' ' +
-      returnNames[1] +
-      ', '
+    authorNames = returnNames[0] + ' ' + translator.message('author_and', lang) + ' ' + returnNames[1] + ', '
   } else if (returnNames.length === 3) {
     authorNames =
       returnNames[0] +
@@ -77,6 +70,6 @@ function _getIEEEAuthors (publicationType, publication, lang) {
   return authorNames
 }
 
-function getEtAl (lang) {
+function getEtAl(lang) {
   return styleFormatters.makeItalic(translator.message('author_et_al', lang))
 }
