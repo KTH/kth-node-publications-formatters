@@ -1,5 +1,7 @@
 const { groupPublications } = require('../')
 
+jest.mock('@kth/log')
+
 describe('PublicationUtil', () => {
   let publicationUtil
   let json
