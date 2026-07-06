@@ -1,17 +1,21 @@
 const { makeItalic } = require('./styleFormatters')
 const filters = require('./filters')
 
-module.exports = {
-  getLinkText: _getLinkText,
+function isBookOrSo(publication) {
+  return (
+    publication.publicationTypeCode === 'book' ||
+    filters.isScienceThesis(publication) ||
+    filters.isScienceReport(publication) ||
+    filters.isOtherReport(publication) ||
+    filters.isScienceConferenceProceeding(publication) ||
+    filters.isOtherConferenceProceeding(publication) ||
+    filters.isScienceCollection(publication) ||
+    filters.isOtherCollection(publication)
+  )
 }
 
 function _getLinkText(publicationType, publication) {
-  let title = ''
-  if (publication.subTitle !== null && publication.subTitle !== '') {
-    title = publication.title + ' : ' + publication.subTitle
-  } else {
-    title = publication.title
-  }
+  let title = publication.subTitle ? `${publication.title} : ${publication.subTitle}` : publication.title
   // always remove trailing period in title if Book or so
   // since they need edition or so before the period
   if (isBookOrSo(publication)) {
@@ -31,15 +35,6 @@ function _getLinkText(publicationType, publication) {
   }
 }
 
-function isBookOrSo(publication) {
-  return (
-    publication.publicationTypeCode === 'book' ||
-    filters.isScienceThesis(publication) ||
-    filters.isScienceReport(publication) ||
-    filters.isOtherReport(publication) ||
-    filters.isScienceConferenceProceeding(publication) ||
-    filters.isOtherConferenceProceeding(publication) ||
-    filters.isScienceCollection(publication) ||
-    filters.isOtherCollection(publication)
-  )
+module.exports = {
+  getLinkText: _getLinkText,
 }

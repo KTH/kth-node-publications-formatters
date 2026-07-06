@@ -1,32 +1,59 @@
 const log = require('@kth/log')
 
-module.exports = {
-  isRefereedArticle,
-  isRefereedBook,
-  isRefereedChapter,
-  isRefereedConferencePaper,
-  isRefereedOthers,
-  isScienceArticle,
-  isScienceBook,
-  isScienceChapter,
-  isScienceCollection,
-  isScienceConferencePaper,
-  isScienceConferenceProceeding,
-  isScienceOthers,
-  isScienceReport,
-  isScienceThesis,
-  isPatent,
-  isPendingPatent,
-  isArticle,
-  isOtherArticle,
-  isOtherBook,
-  isOtherChapter,
-  isOtherCollection,
-  isOtherConferencePaper,
-  isOtherConferenceProceeding,
-  isOtherReport,
-  isOtherOther,
-  isManuscript,
+// Function checks if publication is refereed
+function isPubContentRefereed(publication) {
+  return publication.contentTypeCode.toLowerCase() === 'refereed'
+}
+
+// Function checks if publication is type science
+function isPubContentScience(publication) {
+  return publication.contentTypeCode && publication.contentTypeCode.toLowerCase() === 'science'
+}
+
+// Function checks if publication is type other
+function isPubContentOther(publication) {
+  return publication.contentTypeCode.toLowerCase() === 'other'
+}
+
+// Function checks if publication is type science manuscript
+function isManuscript(publication) {
+  if (publication.publicationTypeCode === 'manuscript') {
+    return true
+  }
+  return false
+}
+
+// Check if the publication is counted as an article.
+function isArticle(publication) {
+  return (
+    publication.publicationTypeCode === 'article' ||
+    publication.publicationTypeCode === 'review' ||
+    publication.publicationTypeCode === 'bookReview'
+  )
+}
+
+// Check if the publication is published.
+function isPublished(publication) {
+  return (
+    publication.publicationStatus !== 'Submitted' &&
+    publication.publicationStatus !== 'Accepted' &&
+    publication.publicationStatus !== 'In press'
+  )
+}
+
+// Check if the publication is a thesis.
+function isThesis(publication) {
+  return (
+    publication.publicationTypeCode === 'comprehensiveDoctoralThesis' ||
+    publication.publicationTypeCode === 'monographDoctoralThesis' ||
+    publication.publicationTypeCode === 'monographLicentiateThesis' ||
+    publication.publicationTypeCode === 'comprehensiveLicentiateThesis'
+  )
+}
+
+// Function checks if publication has date issued
+function pubHasDateIssued(publication) {
+  return publication.dateIssued !== null
 }
 
 /* * * * * * * * * * * * * Refereed * * * * * * * * * * * * * */
@@ -171,58 +198,31 @@ function isOtherOther(publication) {
   return publication.publicationTypeCode === 'other' && isPubContentOther(publication)
 }
 
-// Check if the publication is counted as an article.
-function isArticle(publication) {
-  return (
-    publication.publicationTypeCode === 'article' ||
-    publication.publicationTypeCode === 'review' ||
-    publication.publicationTypeCode === 'bookReview'
-  )
-}
-
-// Check if the publication is published.
-function isPublished(publication) {
-  return (
-    publication.publicationStatus !== 'Submitted' &&
-    publication.publicationStatus !== 'Accepted' &&
-    publication.publicationStatus !== 'In press'
-  )
-}
-
-// Check if the publication is a thesis.
-function isThesis(publication) {
-  return (
-    publication.publicationTypeCode === 'comprehensiveDoctoralThesis' ||
-    publication.publicationTypeCode === 'monographDoctoralThesis' ||
-    publication.publicationTypeCode === 'monographLicentiateThesis' ||
-    publication.publicationTypeCode === 'comprehensiveLicentiateThesis'
-  )
-}
-
-// Function checks if publication is refereed
-function isPubContentRefereed(publication) {
-  return publication.contentTypeCode.toLowerCase() === 'refereed'
-}
-
-// Function checks if publication is type science
-function isPubContentScience(publication) {
-  return publication.contentTypeCode && publication.contentTypeCode.toLowerCase() === 'science'
-}
-
-// Function checks if publication is type other
-function isPubContentOther(publication) {
-  return publication.contentTypeCode.toLowerCase() === 'other'
-}
-
-// Function checks if publication is type science manuscript
-function isManuscript(publication) {
-  if (publication.publicationTypeCode === 'manuscript') {
-    return true
-  }
-  return false
-}
-
-// Function checks if publication has date issued
-function pubHasDateIssued(publication) {
-  return publication.dateIssued !== null
+module.exports = {
+  isRefereedArticle,
+  isRefereedBook,
+  isRefereedChapter,
+  isRefereedConferencePaper,
+  isRefereedOthers,
+  isScienceArticle,
+  isScienceBook,
+  isScienceChapter,
+  isScienceCollection,
+  isScienceConferencePaper,
+  isScienceConferenceProceeding,
+  isScienceOthers,
+  isScienceReport,
+  isScienceThesis,
+  isPatent,
+  isPendingPatent,
+  isArticle,
+  isOtherArticle,
+  isOtherBook,
+  isOtherChapter,
+  isOtherCollection,
+  isOtherConferencePaper,
+  isOtherConferenceProceeding,
+  isOtherReport,
+  isOtherOther,
+  isManuscript,
 }

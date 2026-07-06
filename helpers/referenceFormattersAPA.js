@@ -3,16 +3,82 @@
 const translator = require('./translate')
 const { makeItalic } = require('./styleFormatters')
 
-module.exports = {
-  getBookReference: _getBookReference,
-  getChapterReference: _getChapterReference,
-  getCollectionReference: _getCollectionReference,
-  getConferencePaperReference: _getConferencePaperReference,
-  getConferenceProceedingsReference: _getConferenceProceedingsReference,
-  getOtherReference: _getOtherReference,
-  getPatentReference: _getPatentReference,
-  getReportReference: _getReportReference,
-  getThesisReference: _getThesisReference,
+/**
+ *  UTILITY FUNCTIONS
+ * The idea is to decide as much as possible about the formatting as late as possible to avoid a lot of branching.
+ * Example: if we have a publisherPlace, we should append a comma and the publisherPlace to the formatted string,
+ * not decide in publisher whether or not we should append the comma.
+ * This doesn't always work, some things have either a colon or comma depending on some parameter.
+ */
+
+function _getEdition(publication, lang) {
+  if (!publication.bookEdition) {
+    return ''
+  }
+  let result = publication.bookEdition
+  // add ed/uppl if edition numeric
+  const numbersRegex = /^[0-9]*$/
+  if (numbersRegex.test(result)) {
+    result += translator.message('edition_apa', lang)
+  }
+
+  if (result) {
+    return ' (' + result + ')'
+  }
+  return ''
+}
+
+function _getThesisOrigin(publication) {
+  let university = ''
+  if (publication.bookPublisher) {
+    university = publication.bookPublisher
+  }
+  if (publication.bookPlace) {
+    if (university) {
+      return university + ', ' + publication.bookPlace
+    }
+    return publication.bookPlace
+  }
+  return university
+}
+
+function _getPlaceAndPublisher(publication) {
+  let result = publication.bookPlace
+  if (publication.bookPublisher) {
+    if (result) {
+      result += ': '
+      result += publication.bookPublisher
+    } else {
+      result = publication.bookPublisher
+    }
+  }
+
+  return result || ''
+}
+
+function _getSeriesInfo(publication) {
+  let space = ''
+  let thesisSeries = ''
+  if (publication.seriesTitle) {
+    thesisSeries += publication.seriesTitle
+    space = ' '
+  }
+  if (publication.seriesIssueNr) {
+    thesisSeries += space + publication.seriesIssueNr
+  }
+  return thesisSeries
+}
+
+function _getHostStartEnd(publication, lang) {
+  if (!publication.hostExtentStart) {
+    return ''
+  }
+
+  if (publication.hostExtentEnd) {
+    return translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd
+  } else {
+    return translator.message('host_page', lang) + publication.hostExtentStart
+  }
 }
 
 function _getBookReference(publication, lang) {
@@ -205,80 +271,14 @@ function _getThesisReference(publication, lang) {
   return tmp
 }
 
-/**
- *  UTILITY FUNCTIONS
- * The idea is to decide as much as possible about the formatting as late as possible to avoid a lot of branching.
- * Example: if we have a publisherPlace, we should append a comma and the publisherPlace to the formatted string,
- * not decide in publisher whether or not we should append the comma.
- * This doesn't always work, some things have either a colon or comma depending on some parameter.
- */
-
-function _getEdition(publication, lang) {
-  if (!publication.bookEdition) {
-    return ''
-  }
-  let result = publication.bookEdition
-  // add ed/uppl if edition numeric
-  const numbersRegex = /^[0-9]*$/
-  if (numbersRegex.test(result)) {
-    result += translator.message('edition_apa', lang)
-  }
-
-  if (result) {
-    return ' (' + result + ')'
-  }
-  return ''
-}
-
-function _getThesisOrigin(publication) {
-  let university = ''
-  if (publication.bookPublisher) {
-    university = publication.bookPublisher
-  }
-  if (publication.bookPlace) {
-    if (university) {
-      return university + ', ' + publication.bookPlace
-    }
-    return publication.bookPlace
-  }
-  return university
-}
-
-function _getPlaceAndPublisher(publication) {
-  let result = publication.bookPlace
-  if (publication.bookPublisher) {
-    if (result) {
-      result += ': '
-      result += publication.bookPublisher
-    } else {
-      result = publication.bookPublisher
-    }
-  }
-
-  return result || ''
-}
-
-function _getSeriesInfo(publication) {
-  let space = ''
-  let thesisSeries = ''
-  if (publication.seriesTitle) {
-    thesisSeries += publication.seriesTitle
-    space = ' '
-  }
-  if (publication.seriesIssueNr) {
-    thesisSeries += space + publication.seriesIssueNr
-  }
-  return thesisSeries
-}
-
-function _getHostStartEnd(publication, lang) {
-  if (!publication.hostExtentStart) {
-    return ''
-  }
-
-  if (publication.hostExtentEnd) {
-    return translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd
-  } else {
-    return translator.message('host_page', lang) + publication.hostExtentStart
-  }
+module.exports = {
+  getBookReference: _getBookReference,
+  getChapterReference: _getChapterReference,
+  getCollectionReference: _getCollectionReference,
+  getConferencePaperReference: _getConferencePaperReference,
+  getConferenceProceedingsReference: _getConferenceProceedingsReference,
+  getOtherReference: _getOtherReference,
+  getPatentReference: _getPatentReference,
+  getReportReference: _getReportReference,
+  getThesisReference: _getThesisReference,
 }

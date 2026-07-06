@@ -4,19 +4,6 @@ const translator = require('./translate')
 const apaStyle = require('./referenceFormattersAPA')
 const ieeeStyle = require('./referenceFormattersIEEE')
 
-module.exports = {
-  getBookReference: _getBookReference,
-  getChapterReference: _getChapterReference,
-  getCollectionReference: _getCollectionReference,
-  getConferencePaperReference: _getConferencePaperReference,
-  getConferenceProceedingsReference: _getConferenceProceedingsReference,
-  getOtherReference: _getOtherReference,
-  getPatentReference: _getPatentReference,
-  getReportReference: _getReportReference,
-  getThesisReference: _getThesisReference,
-  getManuscriptReference: _getManuscriptReference,
-}
-
 function _getBookReference(publication, lang, style) {
   if (style === 'apa') {
     return apaStyle.getBookReference(publication, lang)
@@ -96,4 +83,17 @@ function _getManuscriptReference(publication, lang) {
   tmp += ')'
 
   return tmp
+}
+
+module.exports = {
+  getBookReference: _getBookReference,
+  getChapterReference: _getChapterReference,
+  getCollectionReference: _getCollectionReference,
+  getConferencePaperReference: _getConferencePaperReference,
+  getConferenceProceedingsReference: _getConferenceProceedingsReference,
+  getOtherReference: _getOtherReference,
+  getPatentReference: _getPatentReference,
+  getReportReference: _getReportReference,
+  getThesisReference: _getThesisReference,
+  getManuscriptReference: _getManuscriptReference,
 }

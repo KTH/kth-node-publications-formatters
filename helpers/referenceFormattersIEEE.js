@@ -3,16 +3,101 @@
 const translator = require('./translate')
 const { makeItalic } = require('./styleFormatters')
 
-module.exports = {
-  getConferencePaperReference: _getConferencePaperReference,
-  getBookReference: _getBookReference,
-  getChapterReference: _getChapterReference,
-  getThesisReference: _getThesisReference,
-  getReportReference: _getReportReference,
-  getConferenceProceedingsReference: _getConferenceProceedingsReference,
-  getCollectionReference: _getCollectionReference,
-  getPatentReference: _getPatentReference,
-  getOtherReference: _getOtherReference,
+/**
+ *  UTILITY FUNCTIONS
+ * The idea is to decide as much as possible about the formatting as late as possible to avoid a lot of branching.
+ * Example: if we have a publisherPlace, we should append a comma and the publisherPlace to the formatted string,
+ * not decide in publisher whether or not we should append the comma.
+ * This doesn't always work, some things have either a colon or comma depending on some parameter.
+ */
+
+function _getEdition(publication, tmpString, lang) {
+  if (!publication.bookEdition) {
+    return tmpString
+  }
+  const text = publication.bookEdition
+  let value = 0
+  try {
+    value = parseInt(text)
+    // eslint-disable-next-line no-unused-vars
+  } catch (e) {
+    return tmpString
+  }
+
+  switch (value) {
+    case 1:
+      return tmpString.concat(value + translator.message('suffix_one', lang) + translator.message('edition', lang))
+    case 2:
+      return tmpString.concat(value + translator.message('suffix_two', lang) + translator.message('edition', lang))
+    case 3:
+      return tmpString.concat(value + translator.message('suffix_three', lang) + translator.message('edition', lang))
+    default:
+      return tmpString.concat(value + translator.message('suffix_default', lang) + translator.message('edition', lang))
+  }
+}
+
+function _addDateIssued(publication, tmpString) {
+  if (publication.dateIssued) {
+    const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+    return tmpString.concat(prepend + publication.dateIssued)
+  }
+  return tmpString
+}
+
+const _bookPlaceSuffix = {
+  book: ' : ',
+  chapter: ' : ',
+  thesis: ' : ',
+  collection: ', ',
+  conferenceProceedings: ', ',
+}
+
+function _addBookPlace(publication, type, tmpString) {
+  const addition = _bookPlaceSuffix[type]
+  if (publication.bookPublisher) {
+    return tmpString.concat(publication.bookPlace + addition)
+  }
+  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+  return tmpString.concat(prepend + publication.bookPlace)
+}
+
+function _addBookPublisher(publication, tmpString) {
+  if (!publication.bookPublisher) {
+    return tmpString
+  }
+  return tmpString.concat(publication.bookPublisher)
+}
+
+function _addSeriesIssueNumber(publication, tmpString) {
+  if (!publication.seriesIssueNr) {
+    return tmpString
+  }
+  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+
+  return tmpString.concat(prepend + publication.seriesIssueNr)
+}
+
+function _addSeriesTitle(publication, tmpString) {
+  if (!publication.seriesTitle) {
+    return tmpString
+  }
+  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+
+  return tmpString.concat(prepend + publication.seriesTitle)
+}
+
+function _addHostStartEnd(publication, lang, tmpString) {
+  if (!publication.hostExtentStart) {
+    return tmpString
+  }
+  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
+  if (publication.hostExtentEnd) {
+    return tmpString.concat(
+      prepend + translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd
+    )
+  } else {
+    return tmpString.concat(prepend + translator.message('host_page', lang) + publication.hostExtentStart)
+  }
 }
 
 function _getBookReference(publication, lang) {
@@ -241,98 +326,14 @@ function _getThesisReference(publication, lang) {
   return tmp
 }
 
-/**
- *  UTILITY FUNCTIONS
- * The idea is to decide as much as possible about the formatting as late as possible to avoid a lot of branching.
- * Example: if we have a publisherPlace, we should append a comma and the publisherPlace to the formatted string,
- * not decide in publisher whether or not we should append the comma.
- * This doesn't always work, some things have either a colon or comma depending on some parameter.
- */
-
-function _getEdition(publication, tmpString, lang) {
-  if (!publication.bookEdition) {
-    return tmpString
-  }
-  const text = publication.bookEdition
-  let value = 0
-  try {
-    value = parseInt(text)
-  } catch (e) {
-    return tmpString
-  }
-
-  switch (value) {
-    case 1:
-      return tmpString.concat(value + translator.message('suffix_one', lang) + translator.message('edition', lang))
-    case 2:
-      return tmpString.concat(value + translator.message('suffix_two', lang) + translator.message('edition', lang))
-    case 3:
-      return tmpString.concat(value + translator.message('suffix_three', lang) + translator.message('edition', lang))
-    default:
-      return tmpString.concat(value + translator.message('suffix_default', lang) + translator.message('edition', lang))
-  }
-}
-
-function _addDateIssued(publication, tmpString) {
-  if (publication.dateIssued) {
-    const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
-    return tmpString.concat(prepend + publication.dateIssued)
-  }
-  return tmpString
-}
-
-const _bookPlaceSuffix = {
-  book: ' : ',
-  chapter: ' : ',
-  thesis: ' : ',
-  collection: ', ',
-  conferenceProceedings: ', ',
-}
-
-function _addBookPlace(publication, type, tmpString) {
-  const addition = _bookPlaceSuffix[type]
-  if (publication.bookPublisher) {
-    return tmpString.concat(publication.bookPlace + addition)
-  }
-  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
-  return tmpString.concat(prepend + publication.bookPlace)
-}
-
-function _addBookPublisher(publication, tmpString) {
-  if (!publication.bookPublisher) {
-    return tmpString
-  }
-  return tmpString.concat(publication.bookPublisher)
-}
-
-function _addSeriesIssueNumber(publication, tmpString) {
-  if (!publication.seriesIssueNr) {
-    return tmpString
-  }
-  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
-
-  return tmpString.concat(prepend + publication.seriesIssueNr)
-}
-
-function _addSeriesTitle(publication, tmpString) {
-  if (!publication.seriesTitle) {
-    return tmpString
-  }
-  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
-
-  return tmpString.concat(prepend + publication.seriesTitle)
-}
-
-function _addHostStartEnd(publication, lang, tmpString) {
-  if (!publication.hostExtentStart) {
-    return tmpString
-  }
-  const prepend = tmpString.endsWith(', ') ? '' : ', ' // safety check to avoid double commas
-  if (publication.hostExtentEnd) {
-    return tmpString.concat(
-      prepend + translator.message('host_pages', lang) + publication.hostExtentStart + '-' + publication.hostExtentEnd
-    )
-  } else {
-    return tmpString.concat(prepend + translator.message('host_page', lang) + publication.hostExtentStart)
-  }
+module.exports = {
+  getConferencePaperReference: _getConferencePaperReference,
+  getBookReference: _getBookReference,
+  getChapterReference: _getChapterReference,
+  getThesisReference: _getThesisReference,
+  getReportReference: _getReportReference,
+  getConferenceProceedingsReference: _getConferenceProceedingsReference,
+  getCollectionReference: _getCollectionReference,
+  getPatentReference: _getPatentReference,
+  getOtherReference: _getOtherReference,
 }

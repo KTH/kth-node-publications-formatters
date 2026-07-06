@@ -59,19 +59,22 @@ const _messages = {
   },
 }
 
-module.exports = {
-  message: _message,
-}
+const SUPPORTED_LANGS = new Set(['en', 'sv'])
 
 function _message(key, lang = 'sv') {
-  if (lang !== 'en' && lang !== 'sv') {
-    lang = 'sv'
-    log.info('Given lang parameter is not on correct format: (' + lang + '). Falling back to "sv"')
-  }
-
   if (!key) {
     throw new Error('Key must be defined')
   }
 
-  return _messages[lang][key]
+  let language = lang
+  if (!SUPPORTED_LANGS.has(language)) {
+    log.info(`Given lang parameter is not on correct format: (${language}). Falling back to "sv"`)
+    language = 'sv'
+  }
+
+  return _messages[language][key]
+}
+
+module.exports = {
+  message: _message,
 }

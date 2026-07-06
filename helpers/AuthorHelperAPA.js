@@ -4,38 +4,62 @@ const translator = require('./translate')
 const util = require('./AuthorHelperUtil')
 const filters = require('./filters')
 
-module.exports = {
-  getAuthors: _getAPAAuthors,
+function formatArticleAuthors(authorNames) {
+  return authorNames.reduce((names, authorName, idx, arr) => {
+    if (idx === 0) {
+      return authorName
+    }
+    if (arr.length > 7 && idx >= 6 && idx + 1 < arr.length) {
+      return names
+    } else if (idx + 1 === arr.length && arr.length > 7) {
+      return names + ' ... ' + authorName
+    } else if (idx + 1 === arr.length) {
+      return names + ' & ' + authorName
+    } else {
+      return names + ', ' + authorName
+    }
+  }, '')
 }
 
-function _getAPAAuthors(publicationType, publication, lang) {
-  const { authors } = publication
-  let authorRole = 'aut'
-  if (
-    publicationType === 'collection' ||
-    publicationType === 'conferenceProceedings' ||
-    publicationType === 'scienceCollections' ||
-    publicationType === 'otherCollections' ||
-    publicationType === 'scienceConferenceProceedings' ||
-    publicationType === 'otherConferenceProceedings'
-  ) {
-    authorRole = 'edt'
+function formatBookAuthors(authorNames) {
+  return authorNames.reduce((names, authorName, idx, arr) => {
+    if (idx === 0) {
+      return authorName
+    }
+    if (idx + 1 === arr.length) {
+      return names + ' & ' + authorName
+    } else {
+      return names + ', ' + authorName
+    }
+  }, '')
+}
+
+function formatCollectionAuthors(authorNames, lang) {
+  const editorLabel =
+    authorNames.length > 1 ? translator.message('editors_apa', lang) : translator.message('editor_apa', lang)
+  return authorNames.join(', ').concat(' ' + editorLabel + '.')
+}
+
+function formatAuthorName(author) {
+  /*
+    if (names.length != 2) {
+    // No first- or lastname, just one name
+    returnNames.push(authors[index]); */
+  // } else {
+  if (author.givenName.indexOf(' ') !== -1) {
+    // Space separated name, eg Anna Lisa
+    return author.familyName + ', ' + util.splitAndFixNameParts(author.givenName, ' ')
+  } else if (author.givenName.indexOf('-') !== -1) {
+    // Line separated name, eg Anna-Lisa
+    return author.familyName + ', ' + util.splitAndFixNameParts(author.givenName, '-')
+  } else {
+    // Standard single name, eg Anna
+    let formattedName = util.shortenAndPunctuate(author.givenName)
+    if (formattedName.length === 1) {
+      formattedName += '.' // all given names should be initials and ended with a period
+    }
+    return author.familyName + ', ' + formattedName
   }
-  if (authors === null) return ''
-
-  const authorNames = authors
-    .filter((author) => {
-      const include = author.role !== null && author.role.toLowerCase() === authorRole
-      return include
-    })
-    .map((author) => {
-      const name = formatAuthorName(author)
-      return name
-    })
-  const formattedAuthorNames = formatAuthors(publication, authorNames, lang)
-  const formattedDate = publication.dateIssued
-
-  return formattedAuthorNames.concat(' ').concat('(' + formattedDate + '). ')
 }
 
 function formatAuthors(publication, authorNames, lang) {
@@ -109,60 +133,36 @@ function formatAuthors(publication, authorNames, lang) {
   return authorNames.join(', ')
 }
 
-function formatArticleAuthors(authorNames) {
-  return authorNames.reduce((names, authorName, idx, arr) => {
-    if (idx === 0) {
-      return authorName
-    }
-    if (arr.length > 7 && idx >= 6 && idx + 1 < arr.length) {
-      return names
-    } else if (idx + 1 === arr.length && arr.length > 7) {
-      return names + ' ... ' + authorName
-    } else if (idx + 1 === arr.length) {
-      return names + ' & ' + authorName
-    } else {
-      return names + ', ' + authorName
-    }
-  }, '')
-}
-
-function formatBookAuthors(authorNames) {
-  return authorNames.reduce((names, authorName, idx, arr) => {
-    if (idx === 0) {
-      return authorName
-    }
-    if (idx + 1 === arr.length) {
-      return names + ' & ' + authorName
-    } else {
-      return names + ', ' + authorName
-    }
-  }, '')
-}
-
-function formatCollectionAuthors(authorNames, lang) {
-  const editorLabel =
-    authorNames.length > 1 ? translator.message('editors_apa', lang) : translator.message('editor_apa', lang)
-  return authorNames.join(', ').concat(' ' + editorLabel + '.')
-}
-
-function formatAuthorName(author) {
-  /*
-    if (names.length != 2) {
-    // No first- or lastname, just one name
-    returnNames.push(authors[index]); */
-  // } else {
-  if (author.givenName.indexOf(' ') !== -1) {
-    // Space separated name, eg Anna Lisa
-    return author.familyName + ', ' + util.splitAndFixNameParts(author.givenName, ' ')
-  } else if (author.givenName.indexOf('-') !== -1) {
-    // Line separated name, eg Anna-Lisa
-    return author.familyName + ', ' + util.splitAndFixNameParts(author.givenName, '-')
-  } else {
-    // Standard single name, eg Anna
-    let formattedName = util.shortenAndPunctuate(author.givenName)
-    if (formattedName.length === 1) {
-      formattedName += '.' // all given names should be initials and ended with a period
-    }
-    return author.familyName + ', ' + formattedName
+function _getAPAAuthors(publicationType, publication, lang) {
+  const { authors } = publication
+  let authorRole = 'aut'
+  if (
+    publicationType === 'collection' ||
+    publicationType === 'conferenceProceedings' ||
+    publicationType === 'scienceCollections' ||
+    publicationType === 'otherCollections' ||
+    publicationType === 'scienceConferenceProceedings' ||
+    publicationType === 'otherConferenceProceedings'
+  ) {
+    authorRole = 'edt'
   }
+  if (authors === null) return ''
+
+  const authorNames = authors
+    .filter((author) => {
+      const include = author.role !== null && author.role.toLowerCase() === authorRole
+      return include
+    })
+    .map((author) => {
+      const name = formatAuthorName(author)
+      return name
+    })
+  const formattedAuthorNames = formatAuthors(publication, authorNames, lang)
+  const formattedDate = publication.dateIssued
+
+  return formattedAuthorNames.concat(' ').concat('(' + formattedDate + '). ')
+}
+
+module.exports = {
+  getAuthors: _getAPAAuthors,
 }

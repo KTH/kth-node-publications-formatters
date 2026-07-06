@@ -6,10 +6,6 @@ const log = require('@kth/log')
  * Utility functions for publications and lists of publications.
  */
 
-module.exports = {
-  filterList: _filterList,
-}
-
 /**
  * Filter the publication list.
  * Excludes all hidden publication by user if not explicitly requested.
@@ -35,4 +31,8 @@ function _filterList(publicationList, includeHidden) {
     filteredList.push(publication)
   }
   return filteredList
+}
+
+module.exports = {
+  filterList: _filterList,
 }

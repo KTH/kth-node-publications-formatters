@@ -2,8 +2,8 @@ const translator = require('./translate')
 const styleFormatters = require('./styleFormatters')
 const utils = require('./AuthorHelperUtil')
 
-module.exports = {
-  getAuthors: _getIEEEAuthors,
+function getEtAl(lang) {
+  return styleFormatters.makeItalic(translator.message('author_et_al', lang))
 }
 
 function _getIEEEAuthors(publicationType, publication, lang) {
@@ -70,6 +70,6 @@ function _getIEEEAuthors(publicationType, publication, lang) {
   return authorNames
 }
 
-function getEtAl(lang) {
-  return styleFormatters.makeItalic(translator.message('author_et_al', lang))
+module.exports = {
+  getAuthors: _getIEEEAuthors,
 }

@@ -15,10 +15,6 @@ const {
   getManuscriptReference,
 } = require('./referenceFormatters')
 
-module.exports = {
-  getDescription: _getDescription,
-}
-
 function _getHostAndHostVolume(publication, lang, style) {
   let tmp = ''
   if (
@@ -126,4 +122,8 @@ function _getDescription(publicationType, publication, lang, style) {
   }
 
   return publicationDescription
+}
+
+module.exports = {
+  getDescription: _getDescription,
 }

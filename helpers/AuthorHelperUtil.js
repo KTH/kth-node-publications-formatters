@@ -1,8 +1,4 @@
 'use strict'
-module.exports = {
-  splitAndFixNameParts: _splitAndFixNameParts,
-  shortenAndPunctuate: _shortenAndPunctuate,
-}
 
 const reservedNameParts = ['von', 'van', 'der', 'af']
 
@@ -11,6 +7,15 @@ function _shortenAndPunctuate(text) {
     return text.toUpperCase()
   }
   return text.substring(0, 1).toUpperCase()
+}
+
+function namePartIsReserved(namePart) {
+  for (let index = 0; index < reservedNameParts.length; index++) {
+    if (namePart.toLowerCase() === reservedNameParts[index]) {
+      return true
+    }
+  }
+  return false
 }
 
 function _splitAndFixNameParts(text, separator) {
@@ -40,11 +45,7 @@ function _splitAndFixNameParts(text, separator) {
   return firstNameBuilder.toString()
 }
 
-function namePartIsReserved(namePart) {
-  for (let index = 0; index < reservedNameParts.length; index++) {
-    if (namePart.toLowerCase() === reservedNameParts[index]) {
-      return true
-    }
-  }
-  return false
+module.exports = {
+  splitAndFixNameParts: _splitAndFixNameParts,
+  shortenAndPunctuate: _shortenAndPunctuate,
 }
