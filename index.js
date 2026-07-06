@@ -7,11 +7,26 @@ const DivaLinkHelper = require('./helpers/DivaLinkHelper')
 const filters = require('./helpers/filters')
 const pubUtil = require('./helpers/publicationUtil')
 
-module.exports = {
-  render: _render,
-  formatPublications: _formatPublications,
-  filterList: pubUtil.filterList,
-  groupPublications: _groupPublications,
+function sortPublicationsByDateTitle(item1, item2) {
+  if (item1.dateIssued > item2.dateIssued) {
+    return -1
+  } else if (item1.dateIssued < item2.dateIssued) {
+    return 1
+  } else {
+    if (item1.title > item2.title) {
+      return 1
+    } else {
+      return -1
+    }
+  }
+}
+
+function sortFilteredList(filteredList) {
+  for (const [, list] of Object.entries(filteredList)) {
+    if (Array.isArray(list)) {
+      list.sort(sortPublicationsByDateTitle)
+    }
+  }
 }
 
 // This function is primarily used to get a formatted output for Cortina
@@ -36,6 +51,18 @@ function _render(publications) {
   )
 }
 
+function _formatSinglePublication(publ, lang, style) {
+  publ.formattedAuthors = AuthorHelper.getAuthors(publ.publicationTypeCode, publ, lang, style)
+  publ.formattedLink = DivaLinkHelper.getLinkUrl(publ.publicationTypeCode, publ)
+  publ.formattedLinkText = DivaLinkHelper.getLinkText(publ.publicationTypeCode, publ, style)
+  publ.formattedDescription = DescriptionHelper.getDescription(publ.publicationTypeCode, publ, lang, style)
+  if (!publ.formattedDescription.endsWith('.')) {
+    publ.formattedDescription += '.'
+  }
+
+  return publ
+}
+
 function _formatPublications(data, style, lang) {
   let i = 1
   let pubs
@@ -50,18 +77,6 @@ function _formatPublications(data, style, lang) {
   }
 
   return pubs
-}
-
-function _formatSinglePublication(publ, lang, style) {
-  publ.formattedAuthors = AuthorHelper.getAuthors(publ.publicationTypeCode, publ, lang, style)
-  publ.formattedLink = DivaLinkHelper.getLinkUrl(publ.publicationTypeCode, publ)
-  publ.formattedLinkText = DivaLinkHelper.getLinkText(publ.publicationTypeCode, publ, style)
-  publ.formattedDescription = DescriptionHelper.getDescription(publ.publicationTypeCode, publ, lang, style)
-  if (!publ.formattedDescription.endsWith('.')) {
-    publ.formattedDescription += '.'
-  }
-
-  return publ
 }
 
 // This function repacks a list of publications into an object with several sublists of publications of the same type
@@ -93,7 +108,7 @@ function _groupPublications(publs) {
   obj.otherCollections = []
   obj.otherOthers = []
 
-  publs.map((publication) => {
+  publs.forEach((publication) => {
     if (filters.isRefereedArticle(publication)) {
       obj.refereedArticles.push(publication)
     } else if (filters.isRefereedConferencePaper(publication)) {
@@ -164,25 +179,9 @@ function _groupPublications(publs) {
   return obj
 }
 
-function sortFilteredList(filteredList) {
-  for (const listName in filteredList) {
-    if (filteredList.hasOwnProperty(listName) && Array.isArray(filteredList[listName])) {
-      const list = filteredList[listName]
-      list.sort(sortPublicationsByDateTitle)
-    }
-  }
-}
-
-function sortPublicationsByDateTitle(item1, item2) {
-  if (item1.dateIssued > item2.dateIssued) {
-    return -1
-  } else if (item1.dateIssued < item2.dateIssued) {
-    return 1
-  } else {
-    if (item1.title > item2.title) {
-      return 1
-    } else {
-      return -1
-    }
-  }
+module.exports = {
+  render: _render,
+  formatPublications: _formatPublications,
+  filterList: pubUtil.filterList,
+  groupPublications: _groupPublications,
 }
