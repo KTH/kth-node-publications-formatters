@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/KTH/kth-node-publications-formatters#readme",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.0.0"
   },
   "devDependencies": {
     "@kth/eslint-config-kth": "^4.1.0",
